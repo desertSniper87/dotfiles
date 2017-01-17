@@ -1,0 +1,164 @@
+# We use the global settings as a shortcut to define our own separator.
+# Based on the default i3blocks config file.
+
+#full_text=][
+full_text=|
+align=center
+color=#FFFDD0
+separator=false
+separator_block_width=5
+
+[separator]
+
+full_text=|
+#full_text=[
+align=center
+color=#FFFDD0
+separator=false
+separator_block_width=5
+
+[volume]
+#label=♪
+#label=:
+label=VOL
+command=~/scripts/i3blocks/blocklets/volume.sh
+color=#1793D1
+interval=1
+signal=10
+
+[separator]
+#full_text=][
+#full_text=||
+align=center
+color=#FFFDD0
+separator=false
+separator_block_width=5
+
+[weather label]
+color=#d11793
+full_text= DHK
+#full_text=☂ฺ ☀ฺ Weather ☂ฺ ☀ฺ
+#separator=false
+
+[weather]
+#command=~/weather.sh "ASI|CN|CH024|SHANGHAI"
+command=~/scripts/i3blocks/blocklets/iconweather.sh "ASI|BD|BD002|DHAKA"
+interval=30
+color=#d11793
+#separator=false
+
+[separator]
+
+#[root label]
+#color=#d15517
+#full_text= /:
+#full_text=☂ฺ ☀ฺ Weather ☂ฺ ☀ฺ
+#separator=false
+
+#[root]
+#command=df -h | grep /dev/sda2 | awk '{print $3,$2,$5}'
+#command=/home/derrick/scripts/i3blocks/blocklets/memory
+#color=#d15517
+#interval=30
+
+[cpu]
+#label= CPU:
+label=CPU
+command=/home/torsho/scripts/i3blocks/blocklets/cpu
+#command=top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
+color=#d15517
+#min_width=CPU: 100.00%
+interval=10
+
+#[separator]
+
+[Memory label]
+color=#17d155
+#full_text=:
+#full_text=☂ฺ ☀ฺ Weather ☂ฺ ☀ฺ
+#separator=false
+
+[Memory]
+#label=:
+label=RAM
+command=/home/torsho/scripts/i3blocks/blocklets/memory.sh
+color=#17d155
+separator=false
+interval=30
+
+[separator]
+
+[ssid]
+#label=
+command=echo "$(iw dev wlp6s0 link | grep SSID | cut -d " " -f 2-)"
+color=#d33682
+interval=5
+
+#[disk-home]
+#command=/home/torsho/scripts/i3/i3blocks/disk $HOME
+#color=#17d155
+#interval=30
+
+[wireless]
+command=/home/torsho/scripts/i3blocks/blocklets/network wlp6s0 W
+color=#00FF00
+interval=10
+
+#[ethernet]
+#label=:
+#command=/home/torsho/scripts/i3blocks/blocklets/network enp2s0 E
+#color=#F6B032
+#interval=10
+
+[separator]
+
+[download]
+#label=:
+label=DL:
+command=~/scripts/i3blocks/blocklets/bandwidth.sh rx
+#min_width=0000 kB/s
+#align=left
+color=#1793D1
+interval=1 # IMPORTANT
+#min_width=: 100 kB/s
+#separator=false
+
+[upload]
+#label=:
+label=UL:
+command=~/scripts/i3blocks/blocklets/bandwidth.sh tx
+#min_width=: 100 kB/s
+#align=right
+color=#d15517
+interval=1 # IMPORTANT
+
+[separator]
+
+[battery]
+command=/home/torsho/scripts/i3blocks/blocklets/battery BAT0
+interval=30
+
+#[Date]
+#label=:
+#command=date '+%a %b %d, %Y'
+#color=#FFFDD0
+#interval=5
+
+[separator]
+
+[Time]
+#label=:
+#label=:
+label=TIME
+#command=date '+%H:%M'
+command=/home/torsho/scripts/i3blocks/blocklets/date.sh
+color=#FFFDD0
+interval=5
+
+[separator]
+#full_text=]
+full_text=|
+align=center
+color=#FFFDD0
+separator=false
+separator_block_width=5
