@@ -1,21 +1,19 @@
-
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+"source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
 colorscheme evening
 set guifont=Consolas:h12:cANSI:qDRAFT
 set guioptions-=T  "remove toolbar 
 
-set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 " For Linux
-"set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 " For Windows
-set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
-call vundle#begin()
+" set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
+" call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
