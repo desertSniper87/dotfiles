@@ -2,10 +2,16 @@ set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
-colorscheme evening
 set guifont=Liberation\ mono\ 12
 set guioptions-=T  "remove toolbar 
-
+syntax enable
+set number
+set cpoptions+=$
+set virtualedit=all
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -22,12 +28,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 "Install plugins here
 
+"Plugin  'justinmk/vim-sneak'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+"Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -41,7 +48,20 @@ Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 
+"Plugin 'easymotion/vim-easymotion'
+Plugin 'flazz/vim-colorschemes'
 
+"Plugin 'justinmk/vim-gtfo'
+
+Plugin 'dahu/nexus'
+Plugin 'dahu/vim-KWEasy'
+
+Plugin 'qualiabyte/vim-colorstepper'
+
+
+Plugin  'jiangmiao/auto-pairs'
+
+Plugin 'scrooloose/nerdcommenter'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -57,7 +77,12 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
+"colorscheme industry
+"colorscheme morning
+"colorscheme breeze
+"colorscheme SlateDark
+"colorscheme evening
+colorscheme Benokai
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -70,7 +95,7 @@ function MyDiff()
   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
   let arg3 = v:fname_out
   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
+  let eq = ''                                              
   if $VIMRUNTIME =~ ' '
     if &sh =~ '\<cmd'
       let cmd = '"' . $VIMRUNTIME . '\diff"'
@@ -84,4 +109,16 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+"let g:gtfo#terminals = {'unix' : 'xterm -cd'}
+
+"Keymappings
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+"Easymotion configs
+"let g:Easymotion_mapping_{easymotion-bd-w} = '<c-\>'
+"nmap <c-;> <plug>(easymotion-bd-f) 
+"map s <plug>Sneak_s
+"let g:sneak#label = 1
+
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
