@@ -1,7 +1,7 @@
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
-"set guifont=Liberation\ mono\ 12
+set guifont=Consolas:h12:cANSI:qDRAFT 
 set guioptions-=T  "remove toolbar 
 syntax enable
 set number
@@ -55,7 +55,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'dahu/nexus'
 Plugin 'dahu/vim-KWEasy'
 
-Plugin 'qualiabyte/vim-colorstepper'
+"Plugin 'qualiabyte/vim-colorstepper'
 
 
 Plugin  'jiangmiao/auto-pairs'
