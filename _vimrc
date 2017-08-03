@@ -61,6 +61,8 @@ Plugin 'dahu/vim-KWEasy'
 Plugin  'jiangmiao/auto-pairs'
 
 Plugin 'scrooloose/nerdcommenter'
+
+Plugin 'wikitopian/hardmode'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -82,6 +84,10 @@ filetype plugin indent on    " required
 "colorscheme SlateDark
 "colorscheme evening
 colorscheme Benokai
+
+let g:HardMode_level = 'wannabe'
+let g:HardMode_hardmodeMsg = "Don't fucking use this!"
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 set diffexpr=MyDiff()
 function MyDiff()
