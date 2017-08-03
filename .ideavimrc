@@ -2,7 +2,7 @@ nnoremap <Left> :echo "No left for you!"<CR>
 inoremap <Left> <nop>
 nnoremap <Right> :echo "No right for you!"<CR>
 inoremap <Right> <nop>
-nnoremap <Left> :echo "No down for you!"<CR>
-inoremap <Left> <nop>
+nnoremap <Down> :echo "No down for you!"<CR>
+inoremap <Down> <nop>
 nnoremap <Up> :echo "No up for you!"<CR>
 inoremap <Up> <nop>
