@@ -63,6 +63,10 @@ Plugin  'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'wikitopian/hardmode'
+
+Plugin 'svermeulen/vim-easyclip.git'
+
+Plugin 'tpope/vim-repeat'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -135,3 +139,11 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 nnoremap <Left> :bprevious<Return>
 nnoremap <Right> :bnext<Return>
+
+"Cycling between register
+"nnoremap <Leader>s :let @x=@" \| let @"=@a \| let @a=@b \| let @b=@x<CR>
+
+"Easyclip Cut
+
+"nnoremap gm m
+"unmap m   
