@@ -1,3 +1,8 @@
+set cpoptions+=$
+set virtualedit=all
+set incsearch  
+set hlsearch
+
 nnoremap <Left> :echo "No left for you!"<CR>
 inoremap <Left> <nop>
 nnoremap <Right> :echo "No right for you!"<CR>
