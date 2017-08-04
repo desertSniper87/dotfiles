@@ -85,9 +85,9 @@ filetype plugin indent on    " required
 "colorscheme evening
 colorscheme Benokai
 
-let g:HardMode_level = 'wannabe'
-let g:HardMode_hardmodeMsg = "Don't fucking use this!"
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+"let g:HardMode_level = 'wannabe'
+"let g:HardMode_hardmodeMsg = "Don't fucking use this!"
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -127,3 +127,11 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+nnoremap <Left> :bprevious<Return>
+nnoremap <Right> :bnext<Return>
