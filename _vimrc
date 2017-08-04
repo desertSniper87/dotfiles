@@ -18,6 +18,16 @@ filetype off                  " required
 "set rtp+=~/.vim/bundle/Vundle.vim
 " For Windows
 set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
+
+" Set tabs as spaces
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
@@ -178,7 +188,7 @@ function! DelEmptyLineBelow()
         call cursor(line("."), l:colsave)
     endif
 endfunction
-
+ 
 function! AddEmptyLineBelow()
     call append(line("."), "")
 endfunction
