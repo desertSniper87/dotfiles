@@ -77,6 +77,7 @@ Plugin 'wikitopian/hardmode'
 Plugin 'svermeulen/vim-easyclip.git'
 
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-unimpaired'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -141,6 +142,12 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+
+"Tim Pope's cursor keyscheme
+nmap <Up> [e
+nmap <Down> ]e
+vmap <Up> [egv
+vmap <Down> ]egv
 
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
