@@ -140,10 +140,63 @@ nmap <silent> <A-Right> :wincmd l<CR>
 nnoremap <Left> :bprevious<Return>
 nnoremap <Right> :bnext<Return>
 
+"insert mode
+
+function! DelEmptyLineAbove()
+    if line(".") == 1
+        return
+    endif
+    let l:line = getline(line(".") - 1)
+    if l:line =~ '^s*$'
+        let l:colsave = col(".")
+        .-1d
+        silent normal! <C-y>
+        call cursor(line("."), l:colsave)
+    endif
+endfunction
+
+function! AddEmptyLineAbove()
+    let l:scrolloffsave = &scrolloff
+    " Avoid jerky scrolling with ^E at top of window
+    set scrolloff=0
+    call append(line(".") - 1, "")
+    if winline() != winheight(0)
+        silent normal! <C-e>
+    endif
+    let &scrolloff = l:scrolloffsave
+endfunction
+
+function! DelEmptyLineBelow()
+    if line(".") == line("$")
+        return
+    endif
+    let l:line = getline(line(".") + 1)
+    if l:line =~ '^s*$'
+        let l:colsave = col(".")
+        .+1d
+        ''
+        call cursor(line("."), l:colsave)
+    endif
+endfunction
+
+function! AddEmptyLineBelow()
+    call append(line("."), "")
+endfunction
+
+"inoremap <Up> : <esc><S-[><i>
+"inoremap <Down> : <esc><: S-]><i>
+imap <silent> <Left> <C-D>
+imap <silent> <Right> <C-T>
+inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()<CR>a
+inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+inoremap <silent> <C-Up> <Esc>:call DelEmptyLineBelow()<CR>a
+inoremap <silent> <C-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+
 "Cycling between register
 "nnoremap <Leader>s :let @x=@" \| let @"=@a \| let @a=@b \| let @b=@x<CR>
 
 "Easyclip Cut
 
-"nnoremap gm m
-"unmap m   
+"let g:EasyClipUseCutDefaults = 0
+"nmap d <Plug>MoveMotionPlug
+nnoremap gm m
