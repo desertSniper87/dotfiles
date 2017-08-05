@@ -72,10 +72,10 @@ bindsym $mod+Home mode "$mode_system"
 #bindsym $mod+d exec rofi -dmenu
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -84,10 +84,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -96,7 +96,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+semicolon split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -133,7 +133,11 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+t workspace T
+bindsym $mod+y workspace Y
 bindsym $mod+u workspace U
+bindsym $mod+i workspace I
+bindsym $mod+o workspace O
+bindsym $mod+p workspace P
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
@@ -150,8 +154,20 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+t move container to workspace T
+bindsym $mod+Shift+y move container to workspace Y
 bindsym $mod+Shift+u move container to workspace U
-bindsym $mod+m exec i3-winmenu
+bindsym $mod+Shift+i move container to workspace I
+bindsym $mod+Shift+o move container to workspace O
+bindsym $mod+Shift+p move container to workspace P
+#bindsym $mod+m exec i3-winmenu
+                  
+#Moving between displays
+bindsym $mod+shift+m move workspace to output right
+bindsym $mod+shift+n move workspace to output left
+
+#Foucus between displays
+bindsym $mod+m focus output right
+bindsym $mod+n focus output left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -209,11 +225,19 @@ for_window [class="Terminator"] border pixel 1, floating disable
 
 # --- Assignment to Workspace -- #
 assign [class="(?i)kate"] 5
+assign [class="(?i)gvim"] 5
 assign [class="(?i)qbittorrent"] T
 assign [class="(?i)Firefox"] 3
 assign [class="(?i)chromium"] 3
 assign [class="(?i)Pale moon"] 3
+assign [class="(?i)chrome"] 3
 assign [class="(?i)Opera"] 3
+assign [class="(?!)Intellij"] 10
+assign [class="(?!)jetbrains-pycharm-ce"] 10
+assign [class="(?!)jetbrains-pycharm"] 10
+assign [class="(?!)sun-awt-X11-XDialogPeer"] 10
+assign [class="(?!)jetbrains-rubymine"] 10
+assign [class="(?!)sun-awt-X11-XFramePeer"] 10
 assign [class="(?i)8 Puzzle Solution by A* Algorithm"] T
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -221,6 +245,7 @@ assign [class="(?i)8 Puzzle Solution by A* Algorithm"] T
 bar {
         #status_command i3status
         status_command i3blocks
+        tray_output LVDS1
 }
 
 # Pulse Audio controls
@@ -239,20 +264,25 @@ bindsym XF86MonBrightnessDown exec light -U 2
 bindsym XF86MonBrightnessUp exec light -A 2
 
 # Touchpad controls
-#bindsym XF86TouchpadToggle exec /home/torsho/toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec /home/torsho/toggletouchpad.sh # toggle touchpad
+
  
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+
 #exec --no-startup-id nitrogen --restore
 exec --no-startup-id feh --bg-scale /home/torsho/Pictures/arch-linux-wallpaper.jpg 
 exec --no-startup-id nm-applet
-exec --no-startup-id dropbox                   #nethog
+#exec --no-startup-id connmand
+#exec --no-startup-id cmst
+#exec --no-startup-id dropbox                   #nethog
 exec --no-startup-id ibus-daemon --xim -d
 exec --no-startup-id blueman-applet
+#exec --no-startup-id blueberry-tray
 exec --no-startup-id i3session restore
 exec --no-startup-id rescuetime
 exec --no-startup-id compton
@@ -260,17 +290,23 @@ exec --no-startup-id kdeinit5
 exec --no-startup-id pamac-tray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id aclidswitch
+#exec --no-startup-id tilda
+#exec --no-startup-id megasync
+exec --no-startup-id mocp-scrobbler.py
+exec --no-startup-id lxqt-policykit-agent
 #exec --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id redshift
 
 #touchpad settigns
 exec --no-startup-id "synclient TapButton1=1"
 exec --no-startup-id "synclient TapButton2=2"
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
 exec synclient VertEdgeScroll=1
-exec syndaemon -i 0.5 -t -K -R -d
+exec --no-startup-id syndaemon -t -k -i 2 -d
 
 
 # Workspace layout
 exec_always /home/torsho/per-workspace-layout.pl
 
-
+# Monitor layout
+exec_always xrandr --output LVDS1 --auto --output HDMI1 --auto --left-of LVDS1
