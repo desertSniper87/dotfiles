@@ -200,6 +200,10 @@ function! AddEmptyLineBelow()
     call append(line("."), "")
 endfunction
 
+"mswin.vim is evil
+nnoremap <kPlus> <C-x>
+nnoremap <kMinus> <C-a>
+
 "inoremap <Up> : <esc><S-[><i>
 "inoremap <Down> : <esc><: S-]><i>
 imap <silent> <Left> <C-D>
