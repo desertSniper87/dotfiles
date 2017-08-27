@@ -65,7 +65,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'dahu/nexus'
 Plugin 'dahu/vim-KWEasy'
 
-"Plugin 'qualiabyte/vim-colorstepper'
+Plugin 'qualiabyte/vim-colorstepper'
 
 
 Plugin  'jiangmiao/auto-pairs'
@@ -98,7 +98,12 @@ filetype plugin indent on    " required
 "colorscheme breeze
 "colorscheme SlateDark
 "colorscheme evening
-colorscheme Benokai
+if has ("gui_running")
+    colorscheme Benokai
+else
+    "colorscheme ron
+    colorscheme thor
+endif
 
 "let g:HardMode_level = 'wannabe'
 "let g:HardMode_hardmodeMsg = "Don't fucking use this!"

@@ -100,7 +100,12 @@ filetype plugin indent on    " required
 "colorscheme breeze
 "colorscheme SlateDark
 "colorscheme evening
-colorscheme Benokai
+if has ("gui_running")
+    colorscheme Benokai
+else
+    "colorscheme ron
+    colorscheme thor
+endif
 
 "let g:HardMode_level = 'wannabe'
 "let g:HardMode_hardmodeMsg = "Don't fucking use this!"
