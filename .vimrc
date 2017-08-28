@@ -1,7 +1,9 @@
 set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 set guifont=Liberation\ mono\ 12
+"set guifont=Dejavu\ Sans\ mono\ 12
 set guioptions-=T  "remove toolbar 
+set guioptions-=r  "remove right scrollbar
 syntax enable
 set number
 set cpoptions+=$
@@ -70,7 +72,7 @@ Plugin 'dahu/vim-KWEasy'
 Plugin 'qualiabyte/vim-colorstepper'
 
 
-Plugin  'jiangmiao/auto-pairs'
+Plugin 'jiangmiao/auto-pairs'
 
 Plugin 'scrooloose/nerdcommenter'
 
@@ -80,6 +82,8 @@ Plugin 'svermeulen/vim-easyclip.git'
 
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-unimpaired'
+
+Plugin 'scrooloose/nerdtree'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -100,12 +104,15 @@ filetype plugin indent on    " required
 "colorscheme breeze
 "colorscheme SlateDark
 "colorscheme evening
-if has ("gui_running")
+"colorscheme gruvbox
+
+"if has ("gui_running")
     colorscheme Benokai
-else
+"else
     "colorscheme ron
-    colorscheme thor
-endif
+    "colorscheme solarized
+"endif
+
 
 "let g:HardMode_level = 'wannabe'
 "let g:HardMode_hardmodeMsg = "Don't fucking use this!"
