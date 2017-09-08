@@ -29,24 +29,26 @@ URxvt.lineSpace:            0
 ! Fonts
 URxvt.allow_bold:           false
 !URxvt.font:                 -*-terminus-*-12-120-72-72-c-60-iso8859-1 
-URxvt*font:                 xft:bitstream vera sans Mono:size=12:antialias=true
-URxvt*boldFont:             xft:bitstream vera sans Mono:size=12:antialias=true
+!URxvt*font:                 xft:bitstream vera sans Mono:size=12:antialias=true
+!URxvt*boldFont:             xft:bitstream vera sans Mono:size=12:antialias=true
+!URxvt*font:                 xft:dejavu sans Mono:size=12:antialias=true
+!URxvt*boldFont:             xft:dejavu sans Mono:size=12:antialias=true
 !URxvt*font:                 xft:droid sans mono:size=10:antialias=true
 !URxvt*boldFont:             xft:droid sans mono:size=10:antialias=true
-!URxvt*font:                 xft:source code pro:size=10:antialias=true
-!URxvt*boldFont:             xft:source code pro:size=10:antialias=true
+!URxvt*font:                 xft:source code pro:size=12:antialias=true
+!URxvt*boldFont:             xft:source code pro:size=12:antialias=true
 !URxvt*font:                 xft:inconsolata regular:size=10:antialias=true
 !URxvt*boldFont:             xft:inconsolata regular:size=10:antialias=true
-!URxvt*font:                 xft:monaco:size=8
-!URxvt*boldFont:             xft:monaco:size=8
+URxvt*font:                 xft:monaco:size=12:antialias=true
+URxvt*boldFont:             xft:monaco:size=12:antialias=true
                             
 !URxvt.keysym.C-Down:       command:\033]710;-*-dina-medium-r-normal-12-*-*-*-*-*-*-*\007
 !URxvt.keysym.C-Down:      command:\033]710;xft:terminus:pixelsize=14\007
-URxvt.keysym.C-Down:      command:\033]710;xft:Dina:pixelsize=13\007
-URxvt.keysym.C-Up:         command:\033]710;xft:bitstream vera sans Mono:pixelsize=16:antialias=true\007   
+!URxvt.keysym.C-Down:      command:\033]710;xft:Dina:pixelsize=13\007
+!URxvt.keysym.C-Up:         command:\033]710;xft:bitstream vera sans Mono:pixelsize=16:antialias=true\007   
 
 ! Fix font space
-URxvt*letterSpace: -1
+!URxvt*letterSpace: -1
 
 ! Scrollbar
 URxvt.scrollStyle:          rxvt
@@ -55,7 +57,7 @@ URxvt.scrollBar:            false
 ! Perl extensions1
 URxvt.matcher.button:       1
 URxvt.urlLauncher:          firefox
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,font-size
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
@@ -64,9 +66,11 @@ URxvt.keysym.M-s:           perl:keyboard-select:search
 
 !URxvt.keysym.C-Up:     font-size:increase
 !URxvt.keysym.C-Down:   font-size:decrease
-URxvt.keysym.C-S-Up:   font-size:incglobal
-URxvt.keysym.C-S-Down: font-size:decglobal
+!URxvt.keysym.C-S-Up:   font-size:incglobal
+!URxvt.keysym.C-S-Down: font-size:decglobal
 
+!URxvt.resize-font.smaller: C-Down
+!URxvt.resize-font.bigger: C-Up
 
 
 ! Cursor
@@ -85,48 +89,68 @@ URxvt*saveLines:            4095
 
 !!Source http://github.com/altercation/solarized
 
-*background: #002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
+!*background: #002b36
+!*foreground: #657b83
+!!!*fading: 40
+!*fadeColor: #002b36
+!*cursorColor: #93a1a1
+!*pointerColorBackground: #586e75
+!*pointerColorForeground: #93a1a1
 
-!! black dark/light
-*color0: #073642
-*color8: #002b36
+!!! black dark/light
+!*color0: #073642
+!*color8: #002b36
 
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
+!!! red dark/light
+!*color1: #dc322f
+!*color9: #cb4b16
 
-!! green dark/light
-*color2: #859900
-*color10: #586e75
+!!! green dark/light
+!*color2: #859900
+!*color10: #586e75
 
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
+!!! yellow dark/light
+!*color3: #b58900
+!*color11: #657b83
 
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
+!!! blue dark/light
+!*color4: #268bd2
+!*color12: #839496
 
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
+!!! magenta dark/light
+!*color5: #d33682
+!*color13: #6c71c4
 
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
+!!! cyan dark/light
+!*color6: #2aa198
+!*color14: #93a1a1
 
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
+!!! white dark/light
+!*color7: #eee8d5
+!*color15: #fdf6e3
 
- Xft.dpi:        96
- Xft.antialias:  true
- Xft.hinting:    true
- Xft.rgba:       rgb
- Xft.hintstyle:  hintslightQ
+!Source:https://github.com/dracula/xresources/blob/master/Xresources
+! Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6Xft.dpi:        96
+
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.hintstyle:  hintslightQ
