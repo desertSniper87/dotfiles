@@ -2,9 +2,9 @@ set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 "set guifont=Liberation\ mono\ 12
 "set guifont=Dejavu\ Sans\ mono\ 12
-"set guifont=xos4\ Terminus\ 15             
+"set guifont=xos4\ Terminus\ 15
 set guifont=monaco\ 12
-set guioptions-=T  "remove toolbar 
+set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right scrollbar
 syntax enable
 set number
@@ -15,7 +15,10 @@ set hlsearch
 set ignorecase
 set smartcase
 set autochdir
+set clipboard=unnamed  
 filetype off                  " required
+filetype plugin indent on
+au! BufRead,BufNewFile *.fish setfiletype fish
 
 
 "if using fish shell
@@ -27,7 +30,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
 
 " Set tabs as spaces
-filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=4
 " when indenting with '>', use 4 spaces width
@@ -73,9 +75,15 @@ endif
 
 "Persistent undo
 if has('persistent_undo')      "check if your vim version supports it
-    set undofile                 "turn on the feature  
+    set undofile                 "turn on the feature
     set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
-endif 
+endif
+
+"Make [[ work
+map ]] :call search("^\\(\\w.*\\)\\?{")<CR>
+map [[ :call search("^\\(\\w.*\\)\\?{", "b")<CR>
+map ][ :call search("^}")<CR>
+map [] :call search("^}", "b")<CR>
 
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -103,7 +111,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULLY
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 
@@ -114,17 +122,18 @@ Plugin 'justinmk/vim-gtfo'
 
 Plugin 'dahu/nexus'
 Plugin 'dahu/vim-KWEasy'
-"Vim-KWEasy lets you jump to the very character you’ve got your eyeballs on! 
+"Vim-KWEasy lets you jump to the very character you’ve got your eyeballs on!
 Plugin 'qualiabyte/vim-colorstepper'
 
 
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'raimondi/delimitmate'
 
 Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'wikitopian/hardmode'
 
-Plugin 'svermeulen/vim-easyclip.git'
+Plugin 'svermeulen/vim-easyclip'
 
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-unimpaired'
@@ -142,7 +151,40 @@ Plugin 'tpope/vim-abolish'
 
 Plugin 'mileszs/ack.vim'
 
-Plugin 'thaerkh/vim-workspace'
+"Plugin 'thaerkh/vim-workspace'
+
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+Plugin 'AndrewRadev/switch.vim'
+
+Plugin 'airblade/vim-rooter'
+"Plugin 'shougo/neocomplete.vim'
+
+Plugin 'dag/vim-fish'
+
+Plugin 'alvan/vim-closetag'
+
+Plugin 'will133/vim-dirdiff'
+
+"Plugin 'python-mode/python-mode'
+
+"Plugin 'fs111/pydoc.vim' "Should be installed in ftpplugin
+
+Plugin 'tell-k/vim-autopep8'
+
+"Plugin 'ap/vim-css-color'
+Plugin 'chrisbra/Colorizer'
+
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-easytags'
+
+Plugin 'ludovicchabant/vim-gutentags'
+
+Plugin 'tpope/vim-speeddating'
+Plugin 'sagarrakshe/toggle-bool'
+
+Plugin 'vim-scripts/indentpython'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -188,7 +230,7 @@ filetype plugin indent on    " required
   "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
   "let arg3 = v:fname_out
   "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  "let eq = ''                                              
+  "let eq = ''
   "if $VIMRUNTIME =~ ' '
     "if &sh =~ '\<cmd'
       "let cmd = '"' . $VIMRUNTIME . '\diff"'
@@ -205,24 +247,140 @@ filetype plugin indent on    " required
 "let g:gtfo#terminals = {'unix' : 'termite & -d'}
 
 "ctrlP options
+"let g:ctrlp_map = '<c-p>p'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_cmd = 'CtrlPMixed'
-"map <A-p> :CtrlPMRU <CR>
+"let g:ctrlp_cmd = 'CtrlPMixed'
+map <s-f9> :cTRLpmru <cr>
+"Map <A-F9> :CtrlPMixed<CR>
+map <c-p><c-o> :CtrlPMixed<CR>
+map <c-p><c-p> :CtrlPBuffer<CR>
+map <c-p><c-i> :CtrlPRoot<CR>
+map <c-p><c-l> :CtrlPTag<CR>
+let g:ctrlp_cmd = 'CtrlPMRU'
+
+"let g:colorizer_auto_color = 1
+:let g:colorizer_auto_filetype='css,html,dosini,xdefaults'
 
 let g:airline#extensions#tabline#enabled = 1
 
-"vim workspace
-let g:workspace_persist_undo_history = 1
-let g:workspace_autosave = 1
+"Syntastic
+let g:syntastic_python_checkers = ['python']
+
+"let g:pymode_python = 'python3'
+"let g:pymode_lint_ignore = "E116"
+"vim-workspace
+"let g:workspace_autocreate =1
+"let g:workspace_persist_undo_history = 1
+"let g:workspace_autosave = 1
+
+" _   _            _____                       _      _
+"| \ | |          /  __ \                     | |    | |
+"|  \| | ___  ___ | /  \/ ___  _ __ ___  _ __ | | ___| |_ ___
+"| . ` |/ _ \/ _ \| |    / _ \| '_ ` _ \| '_ \| |/ _ | __/ _ \
+"| |\  |  __| (_) | \__/| (_) | | | | | | |_) | |  __| ||  __/
+"\_| \_/\___|\___/ \____/\___/|_| |_| |_| .__/|_|\___|\__\___|
+"                                       | |
+"                                       |_|
+
+""Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+"" Disable AutoComplPop.
+"let g:acp_enableAtStartup = 1
+"" Use neocomplete.
+"let g:neocomplete#enable_at_startup = 1
+"" Use smartcase.
+"let g:neocomplete#enable_smart_case = 1
+"" Set minimum syntax keyword length.
+"let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+"" Define dictionary.
+"let g:neocomplete#sources#dictionary#dictionaries = {
+    "\ 'default' : '',
+    "\ 'vimshell' : $HOME.'/.vimshell_hist',
+    "\ 'scheme' : $HOME.'/.gosh_completions'
+        "\ }
+
+"" Define keyword.
+"if !exists('g:neocomplete#keyword_patterns')
+    "let g:neocomplete#keyword_patterns = {}
+"endif
+"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+"" Plugin key-mappings.
+"inoremap <expr><C-g>     neocomplete#undo_completion()
+"inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+"" Recommended key-mappings.
+"" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  "" For no inserting <CR> key.
+  ""return pumvisible() ? "\<C-y>" : "\<CR>"
+"endfunction
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"" Close popup by <Space>.
+""inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+"" AutoComplPop like behavior.
+""let g:neocomplete#enable_auto_select = 1
+
+"" Shell like behavior(not recommended).
+""set completeopt+=longest
+""let g:neocomplete#enable_auto_select = 1
+""let g:neocomplete#disable_auto_complete = 1
+""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+"" Enable omni completion.
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"" Enable heavy omni completion.
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+  "let g:neocomplete#sources#omni#input_patterns = {}
+"endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+
+"Youcompleteme
+let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_seed_identifiers_with_syntax = 1
+
+"rooter
+let g:rooter_silent_chdir = 1
+let g:rooter_change_directory_for_non_project_files = 'current'
+
+"vim-easytags
+"let g:easytags_cmd = '/usr/bin/ctags'
+"Gutentags
+let g:gutentags_generate_on_missing = 1
 
 "Keymappings
+
+"Visual mode Search and replace
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+"Visual mode swap
+vnoremap <C-x> <Esc>`.``gvP``P
+"Visual mode search selected 
+vnoremap // y/<C-R>"<CR>
+
 "Easymotion configs
 "let g:Easymotion_mapping_{easymotion-bd-w} = '<c-\>'
-"nmap <c-;> <plug>(easymotion-bd-f) 
+"nmap <c-;> <plug>(easymotion-bd-f)
 "map s <plug>Sneak_s
 "let g:sneak#label = 1
-
+  
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
@@ -233,16 +391,21 @@ nmap <Down> ]e
 vmap <Up> [egv
 vmap <Down> ]egv
 
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"nmap <silent> <A-Up> :wincmd k<CR>
+"nmap <silent> <A-Down> :wincmd j<CR>
+"nmap <silent> <A-Left> :wincmd h<CR>
+"nmap <silent> <A-Right> :wincmd l<CR>
 
 nnoremap <Left> :bprevious<Return>
 nnoremap <Right> :bnext<Return>
 
-map <F2> :NERDTreeToggle<CR> 
-map <S-F2> :NERDTreeFind<CR> 
+map <F2> :NERDTreeToggle<CR>
+map <S-F2> :NERDTreeFind<CR>
 "tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
 "extra keycommands
@@ -285,25 +448,58 @@ function! DelEmptyLineBelow()
         call cursor(line("."), l:colsave)
     endif
 endfunction
- 
+
 function! AddEmptyLineBelow()
     call append(line("."), "")
 endfunction
+
+"Vim-easyclip 
+
+let g:EasyClipUsePasteToggleDefaults = 0
+
+nmap <space>f <plug>EasyClipSwapPasteForward
+nmap <space>d <plug>EasyClipSwapPasteBackwards
+
+let g:EasyClipUseSubstituteDefaults = 1
+
+"nmap <c-s> <plug>SubstituteOverMotionMap
+
+"Sp_ace mappings
+
+nnoremap <Space>o :only <CR>
+nnoremap <Space>b :bd <CR>
+nnoremap <Space>p $p
+nnoremap <Space>4 $ 
+vnoremap <Space>4 $ 
+nnoremap <Space>; A:<esc>
+nnoremap <Space>w :w <CR>
+nnoremap <Space>e :e <CR>
+nnoremap <Space>y4 y$ sCR>
+nnoremap <Space>rp :!python % <CR>
+nnoremap <Space>rs :source % <CR>
+nnoremap <Space>rc :g++; ./a.out <CR>
+nnoremap <Space>r :cd %:p:h <CR>
+"nnoremap <Space>l "+p
+"nnoremap <Space>L "+P
 
 "inoremap <Up> : <esc><S-[><i>
 "inoremap <Down> : <esc><: S-]><i>
 imap <silent> <Left> <C-D>
 imap <silent> <Right> <C-T>
-inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
+"inoremap <silent> <Down> <Esc>:call AddEmptyLineAbove()<CR>a
 inoremap <silent> <C-Up> <Esc>:call DelEmptyLineBelow()<CR>a
 inoremap <silent> <C-Down> <Esc>:call AddEmptyLineBelow()<CR>a
 "does not work
-inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()\gEldwi\<CR>a        
-"inoremap <silent> <up> <Esc> ddkPi 
+"inoremap <silent> <Up> <Esc>:call DelEmptyLineAbove()\gEldwi\<CR>a
+
+imap <Up> <Esc> [<space>A
+imap <Down> <Esc> ]<space>A
+
+"inoremap <silent> <up> <Esc> ddkPi
 "nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
 "Cycling between register
 "nnoremap <Leader>s :let @x=@" \| let @"=@a \| let @a=@b \| let @b=@x<CR>
-                                 
+
 "Easyclip Cut
 
 "let g:EasyClipUseCutDefaults = 0
