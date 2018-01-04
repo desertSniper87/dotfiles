@@ -3,7 +3,8 @@ set nocompatible
 "set guifont=Liberation\ mono\ 12
 "set guifont=Dejavu\ Sans\ mono\ 12
 "set guifont=xos4\ Terminus\ 15
-set guifont=monaco\ 12
+set guifont=xos4\ Terminus\ Bold\ 12
+"set guifont=monaco\ 12
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right scrollbar
 syntax enable
@@ -19,6 +20,7 @@ set clipboard=unnamed
 filetype off                  " required
 filetype plugin indent on
 au! BufRead,BufNewFile *.fish setfiletype fish
+au BufNewFile,BufRead *.html set filetype=htmldjango
 
 
 "if using fish shell
@@ -111,6 +113,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
+Bundle 'ervandew/supertab'
+
 Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULLY
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
@@ -123,6 +127,7 @@ Plugin 'justinmk/vim-gtfo'
 Plugin 'dahu/nexus'
 Plugin 'dahu/vim-KWEasy'
 "Vim-KWEasy lets you jump to the very character you’ve got your eyeballs on!
+"Use leader-k to find hints
 Plugin 'qualiabyte/vim-colorstepper'
 
 
@@ -185,6 +190,19 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'sagarrakshe/toggle-bool'
 
 Plugin 'vim-scripts/indentpython'
+"Plugin 'xolox/vim-session'
+ 
+"Plugin 'Houl/repmo-vim'
+
+Plugin 'vim-python/python-syntax'
+"Ultisnips
+"Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+"Plugin 'hdima/python-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -259,7 +277,8 @@ map <c-p><c-l> :CtrlPTag<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 
 "let g:colorizer_auto_color = 1
-:let g:colorizer_auto_filetype='css,html,dosini,xdefaults'
+"Is this wrong?
+let g:colorizer_auto_filetype='css,html,dosini,xdefaults'
 
 let g:airline#extensions#tabline#enabled = 1
 
@@ -356,6 +375,11 @@ let g:syntastic_python_checkers = ['python']
 let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_seed_identifiers_with_syntax = 1
+"Django recommended settings
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+"let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
 
 "rooter
 let g:rooter_silent_chdir = 1
@@ -463,6 +487,28 @@ nmap <space>d <plug>EasyClipSwapPasteBackwards
 let g:EasyClipUseSubstituteDefaults = 1
 
 "nmap <c-s> <plug>SubstituteOverMotionMap
+
+"Delitimate
+au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
+au FileType htmldjango let b:delimitMate_matchpairs = "(:),[:],{:}"
+
+"python-syntax
+let g:python_highlight_all = 1
+let python_highlight_indent_errors = 0
+let python_highlight_space_errors = 0
+
+"ultisnips/supertab
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "Sp_ace mappings
 
