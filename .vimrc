@@ -3,8 +3,9 @@ set nocompatible
 "set guifont=Liberation\ mono\ 12
 "set guifont=Dejavu\ Sans\ mono\ 12
 "set guifont=xos4\ Terminus\ 15
-set guifont=xos4\ Terminus\ Bold\ 12
+"set guifont=xos4\ Terminus\ Bold\ 12
 "set guifont=monaco\ 12
+set guifont=Tamzenforpowerline\ Bold\ 12
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right scrollbar
 syntax enable
@@ -17,11 +18,27 @@ set ignorecase
 set smartcase
 set autochdir
 set clipboard=unnamed  
+"set hidden
 filetype off                  " required
 filetype plugin indent on
+
 au! BufRead,BufNewFile *.fish setfiletype fish
 au BufNewFile,BufRead *.html set filetype=htmldjango
 
+"autocmd BufReadPost *.docx :%!pandoc -f docx -t markdown
+"autocmd BufWritePost *.docx :!pandoc -f markdown -t docx % > tmp.docx
+"au BufNewFile,BufRead *.py
+    "\ set softtabstop=4
+    "\ set textwidth=79
+    "\ set autoindent
+    "\ set fileformat=unix
+
+
+"Macros
+"Completed python codes
+let @c = '/last modifiedyypnct:Completed	         '
+"Python Print
+let @p = 'oprint('
 
 "if using fish shell
 set shell=/bin/bash
@@ -82,10 +99,13 @@ if has('persistent_undo')      "check if your vim version supports it
 endif
 
 "Make [[ work
-map ]] :call search("^\\(\\w.*\\)\\?{")<CR>
-map [[ :call search("^\\(\\w.*\\)\\?{", "b")<CR>
-map ][ :call search("^}")<CR>
-map [] :call search("^}", "b")<CR>
+"map ]] :call search("^\\(\\w.*\\)\\?{")<CR>
+"map [[ :call search("^\\(\\w.*\\)\\?{", "b")<CR>
+"map ][ :call search("^}")<CR>
+"map [] :call search("^}", "b")<CR>
+
+"matchit
+runtime macros/matchit.vim
 
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -119,17 +139,18 @@ Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULL
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 
-"Plugin 'easymotion/vim-easymotion'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'qualiabyte/vim-colorstepper'
 
 Plugin 'justinmk/vim-gtfo'
 
-Plugin 'dahu/nexus'
-Plugin 'dahu/vim-KWEasy'
+"Plugin 'dahu/nexus'
 "Vim-KWEasy lets you jump to the very character you’ve got your eyeballs on!
+"Plugin 'dahu/vim-KWEasy'
 "Use leader-k to find hints
-Plugin 'qualiabyte/vim-colorstepper'
-
+Plugin 'easymotion/vim-easymotion'
+"Plugin 'haya14busa/incsearch.vim'
+"Plugin 'dkprice/vim-easygrep'
 
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'raimondi/delimitmate'
@@ -146,6 +167,9 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'qdddddd/vim-cycle-airline-theme'
+
 Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'majutsushi/tagbar'
@@ -155,7 +179,7 @@ Plugin 'yggdroot/indentline'
 Plugin 'tpope/vim-abolish'
 
 Plugin 'mileszs/ack.vim'
-
+"Plugin 'albfan/ag.vim'
 "Plugin 'thaerkh/vim-workspace'
 
 Plugin 'godlygeek/tabular'
@@ -168,6 +192,7 @@ Plugin 'airblade/vim-rooter'
 
 Plugin 'dag/vim-fish'
 
+"Auto close (X)HTML tags
 Plugin 'alvan/vim-closetag'
 
 Plugin 'will133/vim-dirdiff'
@@ -181,7 +206,7 @@ Plugin 'tell-k/vim-autopep8'
 "Plugin 'ap/vim-css-color'
 Plugin 'chrisbra/Colorizer'
 
-"Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-easytags'
 
 Plugin 'ludovicchabant/vim-gutentags'
@@ -190,7 +215,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'sagarrakshe/toggle-bool'
 
 Plugin 'vim-scripts/indentpython'
-"Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-session'
  
 "Plugin 'Houl/repmo-vim'
 
@@ -203,6 +228,31 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 "Plugin 'hdima/python-syntax'
+
+Plugin 'wakatime/vim-wakatime'
+
+"Plugin 'jmcomets/vim-pony'
+
+Plugin 'alpertuna/vim-header'
+
+"http://www.vim.org/scripts/script.php?script_id=2154
+"Plugin 'vim-scripts/python.vim'
+
+Plugin 'vim-scripts/python_match.vim'
+
+"Marks management
+"https://github.com/vim-scripts/marvim
+"Plugin 'kshenoy/vim-signature'
+
+"Markdown
+"Plugin 'suan/vim-instant-markdown'
+
+Plugin 'lervag/vimtex'
+
+"Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+Plugin 'rhysd/open-pdf.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -268,19 +318,23 @@ filetype plugin indent on    " required
 "let g:ctrlp_map = '<c-p>p'
 let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_cmd = 'CtrlPMixed'
-map <s-f9> :cTRLpmru <cr>
+"map <s-f9> :CTRLpmru <cr>
 "Map <A-F9> :CtrlPMixed<CR>
 map <c-p><c-o> :CtrlPMixed<CR>
 map <c-p><c-p> :CtrlPBuffer<CR>
 map <c-p><c-i> :CtrlPRoot<CR>
 map <c-p><c-l> :CtrlPTag<CR>
+map <c-p><c-[> :CtrlPMRU<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 
 "let g:colorizer_auto_color = 1
 "Is this wrong?
 let g:colorizer_auto_filetype='css,html,dosini,xdefaults'
 
+"airline
 let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme='qwq'
+let g:airline_powerline_fonts = 1
 
 "Syntastic
 let g:syntastic_python_checkers = ['python']
@@ -383,7 +437,7 @@ let g:ycm_complete_in_strings = 1 " Completion in string
 
 "rooter
 let g:rooter_silent_chdir = 1
-let g:rooter_change_directory_for_non_project_files = 'current'
+"let g:rooter_change_directory_for_non_project_files = 'current'
 
 "vim-easytags
 "let g:easytags_cmd = '/usr/bin/ctags'
@@ -432,6 +486,17 @@ map <F2> :NERDTreeToggle<CR>
 map <S-F2> :NERDTreeFind<CR>
 "tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
+
+"vim-header
+let g:header_auto_add_header = 0
+let g:header_field_author = 'desertsniper87'
+let g:header_field_author_email = 'torshobuet@gmail.com'
+let g:header_field_filename = 0
+"let g:header_field_timestamp
+let g:header_field_modified_timestamp = 1
+let g:header_field_modified_by = 0
+"let g:header_field_timestamp_format 
+map <F4> :AddHeader<CR>
 "extra keycommands
 nmap <A-a> :%y+<CR>
 "insert mode
@@ -510,21 +575,37 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 "let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+"vim-session
+let g:session_autosave = "yes"
+let g:session_autoload = "yes"
+let g:session_default_to_last = 1 
+
+"open-pdf
+let g:pdf_convert_on_read = 1
+
+"closetag.vim
+let g:closetag_filenames = '*.html,*.xml,*.phtml,*.conf'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
 "Sp_ace mappings
 
 nnoremap <Space>o :only <CR>
 nnoremap <Space>b :bd <CR>
-nnoremap <Space>p $p
+nnoremap <Space>p4 $p
+nnoremap <Space>p7 "7P
 nnoremap <Space>4 $ 
 vnoremap <Space>4 $ 
 nnoremap <Space>; A:<esc>
 nnoremap <Space>w :w <CR>
 nnoremap <Space>e :e <CR>
 nnoremap <Space>y4 y$ sCR>
+nnoremap <Space>ya :%y+ <CR>
 nnoremap <Space>rp :!python % <CR>
 nnoremap <Space>rs :source % <CR>
 nnoremap <Space>rc :g++; ./a.out <CR>
 nnoremap <Space>r :cd %:p:h <CR>
+"au BufNewFile,BufRead *.py
+        "\ nnoremap <Space>l :!reindent -n % <CR>
 "nnoremap <Space>l "+p
 "nnoremap <Space>L "+P
 
