@@ -8,6 +8,7 @@ set nocompatible
 set guifont=Tamzenforpowerline\ Bold\ 12
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right scrollbar
+set guioptions-=L  "remove left scrollbar
 syntax enable
 set number
 set cpoptions+=$
@@ -39,6 +40,7 @@ au BufNewFile,BufRead *.html set filetype=htmldjango
 let @c = '/last modifiedyypnct:Completed	         '
 "Python Print
 let @p = 'oprint('
+let @s = 'yi)ysi)"f"i: ", p'
 
 "if using fish shell
 set shell=/bin/bash
@@ -107,6 +109,9 @@ endif
 "matchit
 runtime macros/matchit.vim
 
+set wildmenu
+set wildmode=list:longest,full
+
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
@@ -150,7 +155,7 @@ Plugin 'justinmk/vim-gtfo'
 "Use leader-k to find hints
 Plugin 'easymotion/vim-easymotion'
 "Plugin 'haya14busa/incsearch.vim'
-"Plugin 'dkprice/vim-easygrep'
+Plugin 'dkprice/vim-easygrep'
 
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'raimondi/delimitmate'
