@@ -24,7 +24,7 @@ filetype off                  " required
 filetype plugin indent on
 
 au! BufRead,BufNewFile *.fish setfiletype fish
-au BufNewFile,BufRead *.html set filetype=htmldjango
+"au BufNewFile,BufRead *.html set filetype=htmldjango
 
 "autocmd BufReadPost *.docx :%!pandoc -f docx -t markdown
 "autocmd BufWritePost *.docx :!pandoc -f markdown -t docx % > tmp.docx
@@ -33,6 +33,9 @@ au BufNewFile,BufRead *.html set filetype=htmldjango
     "\ set textwidth=79
     "\ set autoindent
     "\ set fileformat=unix
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 
 "Macros
@@ -48,7 +51,7 @@ set shell=/bin/bash
 " For Linux
 set rtp+=~/.vim/bundle/Vundle.vim
 " For Windows
-set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
+"set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
 
 " Set tabs as spaces
 " show existing tab with 4 spaces width
@@ -187,7 +190,6 @@ Plugin 'mileszs/ack.vim'
 "Plugin 'albfan/ag.vim'
 "Plugin 'thaerkh/vim-workspace'
 
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 Plugin 'AndrewRadev/switch.vim'
@@ -258,6 +260,13 @@ Plugin 'lervag/vimtex'
 "Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 Plugin 'rhysd/open-pdf.vim'
+
+Plugin 'godlygeek/tabular'
+
+Plugin 'pangloss/vim-javascript'
+
+Plugin 'alcesleo/vim-uppercase-sql'
+Plugin 'cosminadrianpopescu/vim-sql-workbench'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -592,6 +601,19 @@ let g:pdf_convert_on_read = 1
 let g:closetag_filenames = '*.html,*.xml,*.phtml,*.conf'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
 
+"Easygrep
+let g:EasyGrepMode = 1
+
+"Vim-javascript
+"Enables syntax highlighting for JSDocs.
+let g:javascript_plugin_jsdoc = 1
+
+"Enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well.
+let g:javascript_plugin_ngdoc = 1
+
+let g:javascript_plugin_flow = 1
+
+
 "Sp_ace mappings
 
 nnoremap <Space>o :only <CR>
@@ -609,6 +631,9 @@ nnoremap <Space>rp :!python % <CR>
 nnoremap <Space>rs :source % <CR>
 nnoremap <Space>rc :g++; ./a.out <CR>
 nnoremap <Space>r :cd %:p:h <CR>
+nnoremap <backspace> /[()\[\]{}<>]<CR>:noh<CR>
+nnoremap <s-backspace> ?[()\[\]{}<>]<CR>:noh<CR>
+nnoremap <leader>p i<c-r><s-"><esc>
 "au BufNewFile,BufRead *.py
         "\ nnoremap <Space>l :!reindent -n % <CR>
 "nnoremap <Space>l "+p
@@ -637,3 +662,4 @@ imap <Down> <Esc> ]<space>A
 "let g:EasyClipUseCutDefaults = 0
 "nmap d <Plug>MoveMotionPlug
 nnoremap gm m
+
