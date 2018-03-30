@@ -27,6 +27,14 @@ interval=1
 signal=10
 
 [separator]
+
+[temparature]
+label=
+command=~/scripts/i3blocks/blocklets/temp
+color=#FFCA33
+interval=1
+
+[separator]
 #full_text=][
 #full_text=||
 align=center
