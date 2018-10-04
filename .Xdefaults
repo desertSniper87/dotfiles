@@ -33,8 +33,8 @@ URxvt.allow_bold:           true
 !URxvt*font:                 xft:bitstream vera sans Mono:size=12:antialias=true
 !URxvt.font:                 -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
 !URxvt*boldFont:             xft:bitstream vera sans Mono:size=12:antialias=true
-!URxvt*font:                 xft:dejavu sans Mono:size=12:antialias=true
-!URxvt*boldFont:             xft:dejavu sans Mono:size=12:antialias=true
+URxvt*font:                 xft:dejavu sans Mono:size=12:antialias=true
+URxvt*boldFont:             xft:dejavu sans Mono:size=12:antialias=true
 !URxvt*font:                 xft:droid sans mono:size=10:antialias=true
 !URxvt*boldFont:             xft:droid sans mono:size=10:antialias=true
 !URxvt*font:                 xft:source code pro:size=12:antialias=true
@@ -46,7 +46,7 @@ URxvt.allow_bold:           true
 !urxvt*font:                 -misc-terminusmodx.icons-medium-r-normal-*-12-120-72-72-c-60-iso8859-1
 !URxvt*font:                 xft:monaco\ for\ powerline:size=12:antialias=true
 !URxvt*boldFont:             xft:monaco\ for\ powerline:size=12:antialias=true
-URxvt*font :                xft:Tamzenforpowerline:style=bold:size=13
+!URxvt*font :                xft:Tamzenforpowerline:style=bold:size=13
 !URxvt*font :                : -misc-tamzenforpowerline-medium-r-normal--16*
 !URxvt*boldFont:             xft:Tamzenforpowerline\ bold:size=12:antialias=true
 
