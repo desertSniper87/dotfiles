@@ -7,4 +7,5 @@ cp -r scripts ~/scripts
 cp .xprofile ~/.xprofile
 cp .zshrc ~/.zshrc
 cp .config/qutebrowser/config.py ~/.config/qutebrowser/config.py
+cp ~/.spacemacs .
 #cp .config/qutebrowser/quickmar
