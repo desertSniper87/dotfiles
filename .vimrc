@@ -27,7 +27,7 @@ filetype plugin indent on
 
 au! BufRead,BufNewFile *.fish setfiletype fish
 au! BufRead,BufNewFile *.vue setfiletype vue
-"au BufNewFile,BufRead *.html set filetype=htmldjango
+au BufNewFile,BufRead *.html set filetype=htmldjango
 
 "autocmd BufReadPost *.docx :%!pandoc -f docx -t markdown
 "autocmd BufWritePost *.docx :!pandoc -f markdown -t docx % > tmp.docx
@@ -225,7 +225,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'ludovicchabant/vim-gutentags'
 
 Plugin 'tpope/vim-speeddating'
-Plugin 'sagarrakshe/toggle-bool'
+"Plugin 'sagarrakshe/toggle-bool'
 
 Plugin 'vim-scripts/indentpython'
 Plugin 'xolox/vim-session'
@@ -813,7 +813,7 @@ nnoremap <Space>e :e <CR>
 nnoremap <Space>y4 y$ sCR>
 nnoremap <Space>ya :%y+ <CR>
 "nnoremap <Space>rp :w <bar> :term python % <CR>
-nnoremap <Space>rp :w <bar> :!python % <CR>
+nnoremap <Space>rp :w <bar> :!python3 % <CR>
 nnoremap <Space>rs :source % <CR>
 "nnoremap <Space>rc :g++; ./a.out <CR>
 nnoremap <Space>rc :!gcc % ; ./a.out <CR>

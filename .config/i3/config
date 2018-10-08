@@ -233,6 +233,7 @@ for_window [class="Terminator"] border pixel 1, floating disable
 
 # --- Assignment to Workspace -- #
 assign [class="(?i)kate"] 5
+assign [class="(?i)mattermost"] 5
 assign [class="(?i)gvim"] 10
 assign [class="(?i)qbittorrent"] T
 assign [class="(?i)Firefox"] 3
@@ -255,7 +256,7 @@ assign [class="(?i)8 Puzzle Solution by A* Algorithm"] T
 bar {
         #status_command i3status
         status_command i3blocks
-        tray_output LVDS1
+        tray_output eDP-1
 }
 
 # Pulse Audio controls
@@ -286,13 +287,14 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 
 #exec --no-startup-id nitrogen --restore
-exec --no-startup-id feh --bg-scale /home/torsho/Pictures/arch-linux-wallpaper.jpg 
+#exec --no-startup-id feh --bg-scale /home/torsho/Pictures/arch-linux-wallpaper.jpg 
+exec --no-startup-id variety
 exec --no-startup-id nm-applet
 #exec --no-startup-id cmst -m
 #exec --no-startup-id connmand
-#exec --no-startup-id connmand
 #exec --no-startup-id cmst
-exec --no-startup-id dropbox                   #nethog
+#exec --no-startup-id dropbox                   #nethog
+exec --no-startup-id dropbox start                   #nethog 
 exec --no-startup-id ibus-daemon --xim -d
 exec --no-startup-id blueman-applet
 #exec --no-startup-id blueberry-tray
@@ -307,10 +309,11 @@ exec --no-startup-id aclidswitch
 #exec --no-startup-id megasync
 exec --no-startup-id mocp-scrobbler.py
 exec --no-startup-id lxqt-policykit-agent
-#exec --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id setxkbmap -option caps:swapescape
 exec --no-startup-id redshift
 #exec --no-startup-id udiskie --tray
-exec --no-startup-id qbittorrent
+#exec --no-startup-id qbittorrent
+exec --no-startup-id mattermost-desktop
 
 #touchpad settigns
 exec --no-startup-id "synclient TapButton1=1"
@@ -324,4 +327,4 @@ exec --no-startup-id syndaemon -t -k -i 2 -d
 exec_always /home/torsho/per-workspace-layout.pl
 
 # Monitor layout
-exec_always xrandr --output LVDS1 --auto --output HDMI1 --auto --left-of LVDS1
+exec_always xrandr --output LVDS1 --auto --output HDMI1 --auto --left-of eDP-1
