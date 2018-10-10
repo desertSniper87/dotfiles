@@ -315,6 +315,7 @@ exec --no-startup-id redshift
 #exec --no-startup-id udiskie --tray
 #exec --no-startup-id qbittorrent
 exec --no-startup-id mattermost-desktop
+exec --no-startup-id copyq
 
 #touchpad settigns
 exec --no-startup-id "synclient TapButton1=1"
