@@ -63,5 +63,14 @@ source /usr/share/autojump/autojump.zsh
 
 # Tell Antigen that you're done.
 antigen apply
+
+# Aliases
 alias python=python3.6
 alias pip=pip3
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+
+
+
