@@ -248,6 +248,7 @@ assign [class="(?!)jetbrains-pycharm"] 10
 assign [class="(?!)sun-awt-X11-XDialogPeer"] 10
 assign [class="(?!)jetbrains-rubymine"] 10
 assign [class="(?!)virtualbox"] P
+assign [class="(?!)Spotify"] U
 assign [class="(?!)sun-awt-X11-XFramePeer"] 10
 assign [class="(?i)8 Puzzle Solution by A* Algorithm"] T
 
@@ -327,4 +328,4 @@ exec --no-startup-id syndaemon -t -k -i 2 -d
 exec_always /home/torsho/per-workspace-layout.pl
 
 # Monitor layout
-exec_always xrandr --output LVDS1 --auto --output HDMI1 --auto --left-of eDP-1
+exec_always xrandr --output HDMI1 --left-of eDP-1
