@@ -31,13 +31,14 @@ URxvt.allow_bold:           true
 !URxvt*font:                 -*-terminus-*-12-120-72-72-c-60-iso8859-1
 !URxvt*font:                 -*-terminus-bold-*-*-*-14-*-*-*-*
 !URxvt*font:                 xft:bitstream vera sans Mono:size=12:antialias=true
-!URxvt*boldFont:             xft:bitstream vera sans Mono:size=12:antialias=true
+!URxvt*boldFont:             xft:bitstream vera sans Mono:style=bold:size=12:antialias=true
 !URxvt.font:                 -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
 !URxvt*boldFont:             xft:bitstream vera sans Mono:size=12:antialias=true
 !URxvt*font:                 xft:dejavu sans Mono:size=12:antialias=true
 !URxvt*boldFont:             xft:dejavu sans Mono:size=12:antialias=true
-!URxvt*font:                 xft:droid sans mono:size=10:antialias=true
-!URxvt*boldFont:             xft:droid sans mono:size=10:antialias=true
+!URxvt*font:                 xft:droid sans mono for powerline:size=10:antialias=true
+!URxvt*font:                 xft:droid sans mono for powerline:style=bold:size=10:antialias=true
+!URxvt*boldFont:             xft:droid sans mono for powerline:style=bold:size=10:antialias=true
 !URxvt*font:                 xft:source code pro:size=12:antialias=true
 !URxvt*boldFont:             xft:source code pro:size=12:antialias=true
 !URxvt*font:                 xft:ubuntu mono:size=12:antialias=true
@@ -50,10 +51,10 @@ URxvt.allow_bold:           true
 !URxvt*font:                 xft:monaco\ for\ powerline:size=12:antialias=true
 !URxvt*boldFont:             xft:monaco\ for\ powerline:size=12:antialias=true
 !URxvt*font :                xft:Tamzenforpowerline:style=bold:size=8
-!URxvt*font :                xft:ProFont for powerline:size=12
-!URxvt*boldFont :            xft:ProFont for powerline:style=bold:size=12
-URxvt*font :                xft:Roboto mono for powerline:size=12
-URxvt*boldFont :            xft:Roboto mono for powerline:style=bold:size=12
+URxvt*font :                xft:ProFont for powerline:size=12
+URxvt*boldFont :            xft:ProFont for powerline:style=bold:size=12
+!URxvt*font :                xft:Roboto mono for powerline:size=12
+!URxvt*boldFont :            xft:Roboto mono for powerline:style=bold:size=12
 !URxvt*font :                -misc-tamzenforpowerline-bold-r-normal--12-87-100-100-c-60-iso10646-1
 !URxvt*font :                : -misc-tamzenforpowerline-medium-r-normal--16*
 !URxvt*boldFont:             xft:Tamzenforpowerline\ bold:size=12:antialias=true

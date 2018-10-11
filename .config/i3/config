@@ -45,10 +45,12 @@ bindsym $mod+Shift+q kill
 
 # Or start Rofi
 bindsym $mod+d exec rofi -show run -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -width 30 -lines 10 -padding 20 -separator-style none -hide-scrollbar -bw 4 -bc "#111111" 
+bindsym $mod+Shift+d exec rofi -show window -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -width 50 -padding 20 -separator-style none -hide-scrollbar -bw 4 -bc "#111111" 
+
 
 #connman_dmenu
 #bindsym $mod+shift+d exec gksu connman_dmenu
-bindsym $mod+shift+d exec networkmanager_dmenu
+bindsym $mod+Control+d exec networkmanager_dmenu
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -234,12 +236,12 @@ for_window [class="Terminator"] border pixel 1, floating disable
 # --- Assignment to Workspace -- #
 assign [class="(?i)kate"] 5
 assign [class="(?i)mattermost"] 5
-assign [class="(?i)gvim"] 10
+#assign [class="(?i)gvim"] 10
 assign [class="(?i)qbittorrent"] T
 assign [class="(?i)Firefox"] 3
 assign [class="(?i)chromium"] 3
 assign [class="(?i)Pale moon"] 3
-assign [class="(?i)chrome"] 3
+assign [class="(?i)chrome"] I
 assign [class="(?i)Opera"] 3
 assign [class="(?i)qutebrowser"] 3
 assign [class="(?!)Intellij"] 10

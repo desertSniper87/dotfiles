@@ -30,6 +30,7 @@ antigen bundle archlinux
 antigen bundle battery
 antigen bundle colored-man-pages
 antigen bundle virtualenv
+antigen bundle thefuck
 
 antigen bundle popstas/zsh-command-time
 
@@ -52,10 +53,12 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen theme af-magic
 
 source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_BATTERY_ICON='BAT'
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery time)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+#POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
 
 #autojump source
 source /usr/share/autojump/autojump.zsh

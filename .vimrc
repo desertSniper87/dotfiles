@@ -5,7 +5,8 @@ set nocompatible
 "set guifont=xos4\ Terminus\ 15
 "set guifont=xos4\ Terminus\ Bold\ 12
 "set guifont=monaco\ 12
-set guifont=Tamzenforpowerline\ Bold\ 12
+"set guifont=Tamzenforpowerline\ Bold\ 12
+set guifont=Droid\ Sans\ Mono\ for\ powerline\ Bold\ 12
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right scrollbar
 set guioptions-=L  "remove left scrollbar
@@ -40,6 +41,12 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 "Macros
 "Completed python codes
@@ -104,7 +111,9 @@ endif
 "Persistent undo
 if has('persistent_undo')      "check if your vim version supports it
     set undofile                 "turn on the feature
-    set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+    set undodir=$HOME/.vim/undo//  "directory where the undo files will be stored
+    set undolevels=1000
+    set undoreload=10000
 endif
 
 "Make [[ work
@@ -359,6 +368,7 @@ let g:colorizer_auto_filetype='css,html,dosini,xdefaults'
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='qwq'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tagbar#enabled = 0
 
 "Syntastic
 let g:syntastic_python_checkers = ['python']
@@ -771,7 +781,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "vim-session
 let g:session_autosave = "yes"
-let g:session_autoload = "yes"
+let g:session_autoload = "no"
 let g:session_default_to_last = 1 
 
 "open-pdf
