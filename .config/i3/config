@@ -169,10 +169,20 @@ bindsym $mod+Shift+i move container to workspace I
 bindsym $mod+Shift+o move container to workspace O
 bindsym $mod+Shift+p move container to workspace P
 #bindsym $mod+m exec i3-winmenu
+
+#Scratchpad
+#Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+#Show the first scratchpad window
+bindsym $mod+minus scratchpad show
                   
 #Moving between displays
 bindsym $mod+shift+m move workspace to output right
 bindsym $mod+shift+n move workspace to output left
+
+#Swapping displays
+bindsym $mod+Shift+s exec /home/torsho/scripts/swap_monitors.sh
 
 #Foucus between displays
 bindsym $mod+m focus output right
@@ -241,7 +251,7 @@ assign [class="(?i)qbittorrent"] T
 assign [class="(?i)Firefox"] 3
 assign [class="(?i)chromium"] 3
 assign [class="(?i)Pale moon"] 3
-assign [class="(?i)chrome"] I
+assign [class="(?i)chrome"] 3
 assign [class="(?i)Opera"] 3
 assign [class="(?i)qutebrowser"] 3
 assign [class="(?!)Intellij"] 10
@@ -266,8 +276,12 @@ bar {
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym $mod+z exec mocp --previous
-bindsym $mod+x exec mocp --next
+
+#bindsym $mod+z exec mocp --previous
+#bindsym $mod+x exec mocp --next
+
+bindsym $mod+z exec playerctl previous
+bindsym $mod+x exec playerctl next    
 
 # Sreen brightness controls
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 200 # increase screen brightness
@@ -298,7 +312,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id cmst
 #exec --no-startup-id dropbox                   #nethog
 exec --no-startup-id dropbox start                   #nethog 
-exec --no-startup-id ibus-daemon --xim -d
+#exec --no-startup-id ibus-daemon --xim -d
 exec --no-startup-id blueman-applet
 #exec --no-startup-id blueberry-tray
 exec --no-startup-id i3session restore
@@ -316,8 +330,13 @@ exec --no-startup-id setxkbmap -option caps:swapescape
 exec --no-startup-id redshift
 #exec --no-startup-id udiskie --tray
 #exec --no-startup-id qbittorrent
-exec --no-startup-id mattermost-desktop
+#exec --no-startup-id mattermost-desktop
 exec --no-startup-id copyq
+exec --no-startup-id google-chrome-stable
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+# Keyboard layout
+exec --no-startup-id "setxkbmap -layout us,bd -variant ,bd -option grp:shifts_toggle"
 
 #touchpad settigns
 exec --no-startup-id "synclient TapButton1=1"

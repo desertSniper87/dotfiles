@@ -1,4 +1,5 @@
 set nocompatible
+
 "source $VIMRUNTIME/vimrc_example.vim
 "set guifont=Liberation\ mono\ 12
 "set guifont=Dejavu\ Sans\ mono\ 12
@@ -6,10 +7,12 @@ set nocompatible
 "set guifont=xos4\ Terminus\ Bold\ 12
 "set guifont=monaco\ 12
 "set guifont=Tamzenforpowerline\ Bold\ 12
-set guifont=Droid\ Sans\ Mono\ for\ powerline\ Bold\ 12
+"set guifont=Droid\ Sans\ Mono\ for\ powerline\ Bold\ 12
+set guifont=ProFont\ for\ Powerline\ 13
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right scrollbar
 set guioptions-=L  "remove left scrollbar
+"set showtabline=0
 syntax enable
 set number
 set cpoptions+=$
@@ -21,6 +24,13 @@ set smartcase
 set autochdir
 set clipboard=unnamed  
 set relativenumber
+set showcmd
+
+"code folding
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 "set hidden
 filetype off                  " required
@@ -29,6 +39,11 @@ filetype plugin indent on
 au! BufRead,BufNewFile *.fish setfiletype fish
 au! BufRead,BufNewFile *.vue setfiletype vue
 au BufNewFile,BufRead *.html set filetype=htmldjango
+au BufNewFile,BufRead *.log set syntax=log
+
+"set tw=79
+"set fo=cqt
+"set wm=0
 
 "autocmd BufReadPost *.docx :%!pandoc -f docx -t markdown
 "autocmd BufWritePost *.docx :!pandoc -f markdown -t docx % > tmp.docx
@@ -37,10 +52,13 @@ au BufNewFile,BufRead *.html set filetype=htmldjango
     "\ set textwidth=79
     "\ set autoindent
     "\ set fileformat=unix
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+"autocmd FileType html setlocal shiftwidth=2 tabstop=2
+"autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
+"autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+"autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+
+"Linting xml
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -54,8 +72,10 @@ let @c = '/last modifiedyypnct:Completed	         '
 "Python Print
 let @p = 'oprint('
 let @s = 'yi)ysi)"f"i: ", p'
-
+let @d = 'oconsole.log(a"% -- l la: €kb€kbA;'
+"let @d = 'iprint("% -- l l'
 "if using fish shell
+
 set shell=/bin/bash
 
 " set the runtime path to include Vundle and initialize
@@ -198,6 +218,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 
 Plugin 'yggdroot/indentline'
+"Plugin 'nathanaelkane/vim-indent-guides'
 
 Plugin 'tpope/vim-abolish'
 
@@ -231,7 +252,7 @@ Plugin 'chrisbra/Colorizer'
 Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-easytags'
 
-Plugin 'ludovicchabant/vim-gutentags'
+"Plugin 'ludovicchabant/vim-gutentags'
 
 Plugin 'tpope/vim-speeddating'
 "Plugin 'sagarrakshe/toggle-bool'
@@ -286,6 +307,9 @@ Plugin 'posva/vim-vue'
 
 Plugin 'dbeniamine/cheat.sh-vim'
 Plugin 'kshenoy/vim-signature'
+
+Plugin 'dzeban/vim-log-syntax'
+Plugin 'AndrewRadev/splitjoin.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -315,6 +339,8 @@ filetype plugin indent on    " required
     "colorscheme solarized
 "endif
 
+"Stop Conceal
+set conceallevel=0
 
 "let g:HardMode_level = 'wannabe'
 "let g:HardMode_hardmodeMsg = "Don't fucking use this!"
@@ -371,7 +397,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tagbar#enabled = 0
 
 "Syntastic
-let g:syntastic_python_checkers = ['python']
+let g:syntastic_python_checkers = ['python3.6']
 let g:syntastic_vue_checkers = ['eslint']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_html_checkers = ['eslint']
@@ -463,8 +489,9 @@ let g:syntastic_html_checkers = ['eslint']
 " https://github.com/c9s/perlomni.vim
 
 "Youcompleteme
-let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_server_python_interpreter = '/usr/bin/python'
+"let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/torsho/.vim/bundle/youcompleteme/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:ycm_seed_identifiers_with_syntax = 1
 "Django recommended settings
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
@@ -805,9 +832,20 @@ let g:javascript_plugin_flow = 1
 
 "vimlatex
 let g:Tex_ViewRule_pdf = 'zathura'
+let g:tex_conceal = ""
 
 "vim-vue
 let g:vue_disable_pre_processors=1
+
+"splitjoin.vim
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+
+nmap <Leader>j :SplitjoinJoin<cr>
+nmap <Leader>s :SplitjoinSplit<cr>
+
+"Indentline  
+"let g:indentLine_conceallevel = 0
 
 "Sp_ace mappings
 
@@ -833,6 +871,7 @@ nnoremap <backspace> /[()\[\]{}<>]<CR>:noh<CR>
 nnoremap <s-backspace> ?[()\[\]{}<>]<CR>:noh<CR>
 nnoremap <leader>p i<c-r><s-"><esc>
 nnoremap <leader><space> i<space><esc>
+nnoremap <Space>l :execute "normal! iLine No.\ " . ( line(".") )<cr>
 
 "Vimpager configs
 "let vimpager_disable_x11 = 1

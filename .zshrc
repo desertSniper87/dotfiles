@@ -16,6 +16,7 @@ source ~/antigen.zsh
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/local/lib/python3.6"
+export MYPYPATH="/home/torsho/Dropbox/programming_code/github_projects/dev-tools/mypy-django"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -74,6 +75,7 @@ alias pip=pip3
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+alias dokku=${HOME}/.dokku/contrib/dokku_client.sh
+export DOKKU_HOST=dev.concitus.com
 
-
-
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
