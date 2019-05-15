@@ -69,6 +69,9 @@
   hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
+  environment.pathsToLink = [ "/libexec/"];
+
+
   services.xserver = {
 	enable = true;
 	layout = "us";
@@ -76,7 +79,7 @@
         # xkbVariant = "probhat";
 
 	displayManager.gdm.enable = false;
-	displayManager.slim.enable = true;
+	displayManager.slim.enable = false;
 	displayManager.sddm.enable = false;
 
 
@@ -109,7 +112,87 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "sway" ];
     uid = 1000;
+    # shell = pkgs.zsh;
   };
+
+
+  #environment.variables = {
+  #  antigen = [ "${pkgs.antigen}/share/antigen/antigen.zsh" ];
+  #};
+
+
+  programs.zsh = {
+      enable = true;
+      # shellAliases = {};
+      enableCompletion = true;
+      promptInit = "source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme";
+
+      interactiveShellInit = ''
+
+      HISTFILE=~/.histfile
+      HISTSIZE=1000
+      SAVEHIST=1000
+      zstyle :compinstall filename '/home/torsho/.zshrc'
+
+      autoload -Uz compinit
+      compinit
+
+      source ${pkgs.antigen}/share/antigen/antigen.zsh
+      export PATH="$PATH:$HOME/.rvm/bin"
+      export PATH="$PATH:/usr/local/lib/python3.6"
+      export MYPYPATH="/home/torsho/Dropbox/programming_code/github_projects/dev-tools/mypy-django"
+
+      antigen use oh-my-zsh
+      antigen bundle git
+      antigen bundle heroku
+      antigen bundle pip
+      antigen bundle lein
+      antigen bundle command-not-found
+      antigen bundle archlinux
+      antigen bundle battery
+      antigen bundle colored-man-pages
+      antigen bundle virtualenv
+      antigen bundle thefuck
+      antigen bundle popstas/zsh-command-time
+      antigen bundle zsh-autosuggestions
+      antigen bundle zsh-history-substring-search
+      antigen bundle zsh-users/zsh-syntax-highlighting
+
+      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+      source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+      # source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
+      source ${pkgs.autojump}/share/autojump/autojump.zsh
+
+      # Load the theme.
+      #antigen theme robbyrussell
+      #antigen theme agnoster
+      #antigen theme amuse
+      #antigen theme clean
+      #antigen theme af-magic
+      
+      ZSH_THEME="powerlevel9k"
+      #POWERLEVEL9K_BATTERY_ICON='BAT'
+      #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+      POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
+      POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery time)
+      POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+      #POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
+
+
+      # Tell Antigen that you're done.
+      antigen apply
+
+      # Aliases
+      alias python=python3.6
+      alias pip=pip3
+
+      alias pbcopy='xclip -selection clipboard'
+      alias pbpaste='xclip -selection clipboard -o'
+
+      function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+      '';
+    };
 
   systemd.user.services."urxvtd" = {
     enable = true;
@@ -133,6 +216,7 @@
   bash
   htop 
   vimHugeX
+  zathura
   wget
   which
   wpa_supplicant
@@ -140,6 +224,7 @@
   i3
   i3status
   rofi
+  lohit-fonts.bengali
   sway
   gnome3.gdm
   gnome3.gedit
@@ -148,22 +233,97 @@
   st
   #sakura
   #rxvt_unicode
-  #rxvt_unicode-with-plugins
-  #urxvt_vtwheel
+  rxvt_unicode-with-plugins
+  urxvt_vtwheel
+  #powerline-fonts
   #urxvt_perl
-  #urxvt_perls
+  urxvt_perls
+  #terminus_font
+  #profont
+  xfontsel
   gnome3.nautilus
+  #python37
+  (python37.withPackages(ps: with ps; [
+    pip setuptools virtualenv virtualenvwrapper pygame
+    pudb
+  ]))
+
+  zsh
+  antigen
+  nix-zsh-completions
+  zsh-autosuggestions
+  zsh-history-substring-search
+  zsh-powerlevel9k
+
+  autojump
+  thefuck
+
+  # python36Packages.pip
+  # python37Packages.setuptools
+  # python37Packages.virtualenv
+  # python37Packages.virtualenvwrapper
+  # python37Packages.pygame
+  # python37Packages.pysdl2
   jetbrains.idea-ultimate
+  jetbrains.pycharm-professional	
+  jetbrains.clion	
+  
+  gcc
+  gnumake
+  cmake
+  boost
+  llvmPackages.clang-unwrapped
+  llvmPackages.llvm
+
   google-chrome
   libsForQt5.vlc
+  mpv
   ntfs3g
   spotify
+  playerctl
   i3blocks
   jdk11
   keepass
   xsel
+  qemu
+  tightvnc
+  tigervnc
+  qbittorrent
+  jmtpfs
+  # aqemu
+  nmap
   ]);
 
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+
+
+    fonts = with pkgs; [
+
+      anonymousPro
+      corefonts
+      dejavu_fonts
+      dina-font
+      fira-code
+      fira-code-symbols
+      freefont_ttf
+      google-fonts
+      inconsolata
+      liberation_ttf
+      mplus-outline-fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      powerline-fonts
+      profont
+      proggyfonts
+      source-code-pro
+      terminus_font
+      ttf_bitstream_vera
+      ubuntu_font_family
+    ];
+  };
   
   nixpkgs.config = {
     allowUnfree = true;
