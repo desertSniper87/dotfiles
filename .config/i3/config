@@ -33,6 +33,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
+#bindsym $mod+Return exec st
 bindsym $mod+Return exec urxvt
 #bindsym $mod+Return exec terminator
 #bindsym $mod+Return exec termite
@@ -269,7 +270,7 @@ assign [class="(?i)8 Puzzle Solution by A* Algorithm"] T
 bar {
         #status_command i3status
         status_command i3blocks
-        tray_output eDP-1
+        # tray_output eDP-1
 }
 
 # Pulse Audio controls
@@ -350,4 +351,4 @@ exec --no-startup-id syndaemon -t -k -i 2 -d
 exec_always /home/torsho/per-workspace-layout.pl
 
 # Monitor layout
-exec_always xrandr --output HDMI1 --left-of eDP-1
+# exec_always xrandr --output HDMI1 --left-of eDP-1
