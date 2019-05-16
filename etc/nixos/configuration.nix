@@ -226,30 +226,26 @@
     i3
     i3status
     rofi
-    lohit-fonts.bengali
     sway
     gnome3.gdm
     gnome3.gedit
     gnome3.gnome-terminal
     dropbox
+
     st
     #sakura
-    #rxvt_unicode
     rxvt_unicode-with-plugins
     urxvt_vtwheel
-    #powerline-fonts
-    #urxvt_perl
     urxvt_perls
-    #terminus_font
-    #profont
     xfontsel
+
     networkmanagerapplet
 
     gnome3.nautilus
     #python37
     (python37.withPackages(ps: with ps; [
       pip setuptools virtualenv virtualenvwrapper pygame
-      pudb
+      pudb ranger
     ]))
 
     zsh
@@ -262,12 +258,6 @@
     autojump
     thefuck
 
-    # python36Packages.pip
-    # python37Packages.setuptools
-    # python37Packages.virtualenv
-    # python37Packages.virtualenvwrapper
-    # python37Packages.pygame
-    # python37Packages.pysdl2
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional	
     jetbrains.clion	
@@ -296,6 +286,9 @@
     jmtpfs
     # aqemu
 
+    texlive.combined.scheme-full
+    texstudio
+
     nmap
 ]);
 
@@ -305,7 +298,6 @@ fonts = {
 
 
   fonts = with pkgs; [
-
     anonymousPro
     corefonts
     dejavu_fonts
@@ -327,6 +319,8 @@ fonts = {
     terminus_font
     ttf_bitstream_vera
     ubuntu_font_family
+
+    lohit-fonts.bengali
   ];
 };
 
