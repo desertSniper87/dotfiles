@@ -16,7 +16,7 @@
 
 INSTANCE="${1:-BAT0}"
 ALERT_LOW="${2:-10}" # color will turn red under this value (default: 10%)
-UPOWER="/usr/bin/upower"
+UPOWER="$(which upower)"
 
 if [ ! -x "$UPOWER" ]; then
 	echo "upower not found"
