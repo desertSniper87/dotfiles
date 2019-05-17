@@ -77,31 +77,33 @@
     enable = true;
     layout = "us";
     xkbOptions = "caps:swapescape";
-        # xkbVariant = "probhat";
+    # xkbVariant = "probhat";
 
-        displayManager.gdm.enable = false;
-        displayManager.slim.enable = false;
-        displayManager.sddm.enable = false;
+    libinput ={
+      enable = true;
+    };
+
+    displayManager.gdm.enable = false;
+    displayManager.slim.enable = false;
+    displayManager.sddm.enable = false;
 
 
-        desktopManager = {
-          default = "none";
-          xterm.enable = false;
-        };
+    desktopManager = {
+      default = "none";
+      xterm.enable = false;
+    };
 
-        windowManager.i3 = {
-          enable = true;
-          extraPackages = with pkgs; [
-            rofi 
-            i3lock #default i3 screen locker
-            i3blocks #if you are planning on using i3blocks over i3status
-          ];
-        };
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        rofi 
+        i3lock #default i3 screen locker
+        i3blocks #if you are planning on using i3blocks over i3status
+      ];
+    };
 
-      };
+  };
 
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
 
   # programs.sway.enable = true;
 
@@ -113,7 +115,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "disk" "networkmanager" "sway" ];
     uid = 1000;
-    # shell = pkgs.zsh;
+    shell = pkgs.zsh;
   };
 
 
@@ -172,7 +174,7 @@
       #antigen theme af-magic
 
         ZSH_THEME="powerlevel9k"
-      #POWERLEVEL9K_BATTERY_ICON='BAT'
+      POWERLEVEL9K_BATTERY_ICON='BAT'
       #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery time)
@@ -213,6 +215,9 @@
 
   environment.systemPackages = (with pkgs; [
     firefox
+    qutebrowser
+    google-chrome
+
     git
     bash
     htop 
@@ -242,10 +247,12 @@
     networkmanagerapplet
 
     gnome3.nautilus
+    ranger
+
     #python37
     (python37.withPackages(ps: with ps; [
       pip setuptools virtualenv virtualenvwrapper pygame
-      pudb ranger
+      pudb powerline 
     ]))
 
     zsh
@@ -269,7 +276,6 @@
     llvmPackages.clang-unwrapped
     llvmPackages.llvm
 
-    google-chrome
     libsForQt5.vlc
     mpv
     ntfs3g
