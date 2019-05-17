@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #AccuWeather (r) RSS weather tool for conky
 #
 #USAGE: weather.sh UKXX0062

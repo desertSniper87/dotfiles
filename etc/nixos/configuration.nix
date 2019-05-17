@@ -231,7 +231,10 @@
     i3
     i3status
     rofi
-    sway
+    # sway
+    lm_sensors
+    upower
+
     gnome3.gdm
     gnome3.gedit
     gnome3.gnome-terminal
