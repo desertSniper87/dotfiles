@@ -53,6 +53,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.upower.enable = true;
 
   networking.networkmanager.enable = true;
 
@@ -75,9 +76,9 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbOptions = "caps:swapescape";
-    # xkbVariant = "probhat";
+    layout = "us, bd";
+    xkbOptions = "caps:swapescape, grp:shifts_toggle";
+    xkbVariant = " ,probhat";
 
     libinput ={
       enable = true;
@@ -164,29 +165,29 @@
 
         source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-      # source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
+        # source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
         source ${pkgs.autojump}/share/autojump/autojump.zsh
 
-      # Load the theme.
-      #antigen theme robbyrussell
-      #antigen theme agnoster
-      #antigen theme amuse
-      #antigen theme clean
-      #antigen theme af-magic
+        # Load the theme.
+        #antigen theme robbyrussell
+        #antigen theme agnoster
+        #antigen theme amuse
+        #antigen theme clean
+        #antigen theme af-magic
 
         ZSH_THEME="powerlevel9k"
-      POWERLEVEL9K_BATTERY_ICON='BAT'
-      #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+        POWERLEVEL9K_BATTERY_ICON='BAT'
+        #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery time)
         POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-      #POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
+        #POWERLEVEL9K_SHORTEN_STRATEGY=truncate_from_right
 
 
-      # Tell Antigen that you're done.
+        # Tell Antigen that you're done.
         antigen apply
 
-      # Aliases
+        # Aliases
         alias python=python3.6
         alias pip=pip3
 
