@@ -21,7 +21,7 @@
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -106,6 +106,7 @@
 
 
   # programs.sway.enable = true;
+  programs.ssh.startAgent = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.torsho = {
