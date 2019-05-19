@@ -98,7 +98,7 @@ interval=30
 
 [ssid]
 #label=
-command=echo "$(iw dev wlp6s0 link | grep SSID | cut -d " " -f 2-)"
+command=echo "$(iw dev wlo1 link | grep SSID | cut -d " " -f 2-)"
 color=#d33682
 interval=5
 
@@ -108,7 +108,7 @@ interval=5
 #interval=30
 
 [wireless]
-command=/home/torsho/scripts/i3blocks/blocklets/network wlp6s0 W
+command=/home/torsho/scripts/i3blocks/blocklets/network wlo1 W
 color=#00FF00
 interval=10
 

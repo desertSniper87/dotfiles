@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-INTERFACE="${1:-enp2s0}"
+INTERFACE="${1:-wlo1}"
 #LABEL="${2:-E}"
 #LABEL=""
 

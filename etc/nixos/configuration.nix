@@ -236,6 +236,7 @@
     # sway
     lm_sensors
     upower
+    iw
 
     gnome3.gdm
     gnome3.gedit

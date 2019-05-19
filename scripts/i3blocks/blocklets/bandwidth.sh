@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
  
 TYPE=$1
 if [ "$1" != "rx" -a "$1" != "tx" ]; then
