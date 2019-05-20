@@ -223,6 +223,8 @@
     git
     bash
     htop 
+    apg
+    file
     # vimHugeX
     (import ./vim.nix)
     zathura
@@ -260,6 +262,9 @@
       pip setuptools virtualenv virtualenvwrapper pygame
       pudb powerline 
     ]))
+    
+    jdk
+    jdk11
 
     zsh
     antigen
@@ -288,18 +293,22 @@
     spotify
     playerctl
     i3blocks
-    jdk11
+
+    
     keepass
     xsel
     qemu
     tightvnc
     tigervnc
+
     qbittorrent
     jmtpfs
     # aqemu
 
     texlive.combined.scheme-full
     texstudio
+
+    dpkg
 
     nmap
 ]);
