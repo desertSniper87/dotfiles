@@ -54,6 +54,10 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.upower.enable = true;
+  services.postgresql.enable = true;
+
+  services.redshift.enable = true;
+  services.redshift.provider = "geoclue2";
 
   networking.networkmanager.enable = true;
 
@@ -82,6 +86,8 @@
 
     libinput ={
       enable = true;
+      tapping = false;
+      clickMethod = "buttonareas";
     };
 
     displayManager.gdm.enable = false;
@@ -108,6 +114,7 @@
 
   # programs.sway.enable = true;
   programs.ssh.startAgent = true;
+  programs.light.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.torsho = {
@@ -134,6 +141,8 @@
 
       interactiveShellInit = ''
 
+        export EDITOR=vim
+
         HISTFILE=~/.histfile
         HISTSIZE=1000
         SAVEHIST=1000
@@ -144,7 +153,7 @@
 
         source ${pkgs.antigen}/share/antigen/antigen.zsh
         export PATH="$PATH:$HOME/.rvm/bin"
-        export PATH="$PATH:/usr/local/lib/python3.6"
+        export PATH="$PATH:/usr/local/lib/python3.7"
         export MYPYPATH="/home/torsho/Dropbox/programming_code/github_projects/dev-tools/mypy-django"
 
         antigen use oh-my-zsh
@@ -188,7 +197,7 @@
         antigen apply
 
         # Aliases
-        alias python=python3.6
+        alias python=python3.7
         alias pip=pip3
 
         alias pbcopy='xclip -selection clipboard'
@@ -221,7 +230,9 @@
     google-chrome
 
     git
+    ack
     bash
+    bat
     htop 
     apg
     file
@@ -236,14 +247,26 @@
     i3status
     rofi
     # sway
+    redshift
+
+    # Power management related tools
     lm_sensors
     upower
     iw
 
     gnome3.gdm
     gnome3.gedit
+    gnome3.gnome-screenshot
     gnome3.gnome-terminal
+    
     dropbox
+    goldendict
+    copyq
+    shutter
+
+    kdeApplications.okular
+
+    google-drive-ocamlfuse
 
     st
     #sakura
@@ -257,14 +280,33 @@
     gnome3.nautilus
     ranger
 
+    speedcrunch
+    mmex
+
     #python37
     (python37.withPackages(ps: with ps; [
       pip setuptools virtualenv virtualenvwrapper pygame
-      pudb powerline 
+      pudb powerline numpy cryptography djangorestframework
+      psycopg2 django mkdocs nltk scikitlearn
     ]))
     
     jdk
     jdk11
+
+    nodejs
+    nodePackages.node2nix
+    nodePackages.vue-cli
+
+    stack
+    ghc
+
+    postgresql_11
+    pgcli
+    
+    jdk
+    jdk11
+
+    cargo
 
     zsh
     antigen
@@ -279,6 +321,7 @@
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional	
     jetbrains.clion	
+    jetbrains.webstorm	
 
     gcc
     gnumake
@@ -294,7 +337,6 @@
     playerctl
     i3blocks
 
-    
     keepass
     xsel
     qemu
@@ -311,6 +353,10 @@
     dpkg
 
     nmap
+    burpsuite
+    zap
+    insomnia
+    httpie
 ]);
 
 fonts = {
@@ -350,6 +396,12 @@ nixpkgs.config = {
   allowBroken = true;
 
   pulseaudio = true;
+
+  
+  permittedInsecurePackages = [
+    "webkitgtk-2.4.11"
+  ];
+  
 
   packageOverrides = _pkgs: {
     # take the set of all packages and
