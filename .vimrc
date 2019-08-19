@@ -40,7 +40,7 @@ filetype plugin indent on
 
 au! BufRead,BufNewFile *.fish setfiletype fish
 au! BufRead,BufNewFile *.vue setfiletype vue
-au BufNewFile,BufRead *.html set filetype=htmldjango
+"au BufNewFile,BufRead *.html set filetype=htmldjango
 au BufNewFile,BufRead *.log set syntax=log
 
 "set tw=79
@@ -146,6 +146,7 @@ endif
 
 "matchit
 runtime macros/matchit.vim
+packadd! matchit
 
 set wildmenu
 set wildmode=list:longest,full
