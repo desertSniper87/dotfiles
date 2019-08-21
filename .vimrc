@@ -34,6 +34,14 @@ set foldlevel=2
 
 set backspace=indent,eol,start
 
+" Set tabs as spaces
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
 "set hidden
 filetype off                  " required
 filetype plugin indent on
@@ -54,10 +62,12 @@ au BufNewFile,BufRead *.log set syntax=log
     "\ set textwidth=79
     "\ set autoindent
     "\ set fileformat=unix
-"autocmd FileType html setlocal shiftwidth=2 tabstop=2
-"autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
-"autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-"autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+
+autocmd FileType markdown setlocal conceallevel=0
 
 "Linting xml
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
@@ -86,13 +96,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " For Windows
 "set rtp+=C:\Users\Torsho\vimfiles\bundle\Vundle.vim
 
-" Set tabs as spaces
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
 "change font quickly
 "from https://vi.stackexchange.com/questions/3093/how-can-i-change-the-font-size-in-gvim
 if has("unix")
@@ -315,6 +318,8 @@ Plugin 'dzeban/vim-log-syntax'
 Plugin 'AndrewRadev/splitjoin.vim'
 
 Plugin 'niklasl/vim-rdf'
+Plugin 'n3.vim'
+Plugin 'omer/vim-sparql'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
