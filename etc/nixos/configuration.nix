@@ -283,15 +283,17 @@
     speedcrunch
     mmex
 
+    zlib
+    zlib.dev
     #python37
+    #python37Packages.pillow
     (python37.withPackages(ps: with ps; [
       pip setuptools virtualenv virtualenvwrapper pygame
       pudb powerline numpy cryptography djangorestframework
-      psycopg2 django mkdocs nltk scikitlearn
+      psycopg2 django mkdocs nltk scikitlearn pillow
+
+      youtube-dl mps-youtube pylast
     ]))
-    
-    jdk
-    jdk11
 
     nodejs
     nodePackages.node2nix
@@ -300,7 +302,7 @@
     stack
     ghc
 
-    postgresql_11
+    postgresql_10
     pgcli
     
     jdk
@@ -337,7 +339,7 @@
     playerctl
     i3blocks
 
-    keepass
+    keepassxc
     xsel
     qemu
     tightvnc

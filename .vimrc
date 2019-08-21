@@ -32,13 +32,15 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 
+set backspace=indent,eol,start
+
 "set hidden
 filetype off                  " required
 filetype plugin indent on
 
 au! BufRead,BufNewFile *.fish setfiletype fish
 au! BufRead,BufNewFile *.vue setfiletype vue
-au BufNewFile,BufRead *.html set filetype=htmldjango
+"au BufNewFile,BufRead *.html set filetype=htmldjango
 au BufNewFile,BufRead *.log set syntax=log
 
 "set tw=79
@@ -76,7 +78,7 @@ let @d = 'oconsole.log(a"% -- l la: €kb€kbA;'
 "let @d = 'iprint("% -- l l'
 "if using fish shell
 
-set shell=/bin/bash
+"set shell=/bin/bash
 
 " set the runtime path to include Vundle and initialize
 " For Linux
@@ -131,7 +133,7 @@ endif
 "Persistent undo
 if has('persistent_undo')      "check if your vim version supports it
     set undofile                 "turn on the feature
-    set undodir=$HOME/.vim/undo//  "directory where the undo files will be stored
+    set undodir=$HOME/.vim/undo/  "directory where the undo files will be stored
     set undolevels=1000
     set undoreload=10000
 endif
@@ -144,6 +146,7 @@ endif
 
 "matchit
 runtime macros/matchit.vim
+packadd! matchit
 
 set wildmenu
 set wildmode=list:longest,full
@@ -176,14 +179,14 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Bundle 'ervandew/supertab'
 
-Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULLY
+"Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULLY
 "Plugin 'Shougo/deoplete.nvim'
 
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic' "Can use ALE over this
 
 Plugin 'flazz/vim-colorschemes'
-Plugin 'qualiabyte/vim-colorstepper'
+"Plugin 'qualiabyte/vim-colorstepper'
 
 Plugin 'justinmk/vim-gtfo'
 
@@ -310,6 +313,8 @@ Plugin 'kshenoy/vim-signature'
 
 Plugin 'dzeban/vim-log-syntax'
 Plugin 'AndrewRadev/splitjoin.vim'
+
+Plugin 'niklasl/vim-rdf'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -397,7 +402,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tagbar#enabled = 0
 
 "Syntastic
-let g:syntastic_python_checkers = ['python3.6']
+let g:syntastic_python_checkers = ['python3.7']
 let g:syntastic_vue_checkers = ['eslint']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_html_checkers = ['eslint']
@@ -490,8 +495,8 @@ let g:syntastic_html_checkers = ['eslint']
 
 "Youcompleteme
 "let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_global_ycm_extra_conf = '/home/torsho/.vim/bundle/youcompleteme/third_party/ycmd/.ycm_extra_conf.py'
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+"let g:ycm_global_ycm_extra_conf = '/home/torsho/.vim/bundle/youcompleteme/third_party/ycmd/.ycm_extra_conf.py'
+"let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:ycm_seed_identifiers_with_syntax = 1
 "Django recommended settings
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
@@ -861,7 +866,7 @@ nnoremap <Space>e :e <CR>
 nnoremap <Space>y4 y$ sCR>
 nnoremap <Space>ya :%y+ <CR>
 "nnoremap <Space>rp :w <bar> :term python % <CR>
-nnoremap <Space>rp :w <bar> :!python3.6 % <CR>
+nnoremap <Space>rp :w <bar> :!python3.7 % <CR>
 nnoremap <Space>rs :source % <CR>
 "nnoremap <Space>rc :g++; ./a.out <CR>
 nnoremap <Space>rc :!gcc % ; ./a.out <CR>
