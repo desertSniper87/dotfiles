@@ -21,7 +21,7 @@
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  networking.hostName = "nixos-laptop"; # Define your hostname.
+  networking.hostName = "nixos-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -283,15 +283,17 @@
     speedcrunch
     mmex
 
+    zlib
+    zlib.dev
     #python37
+    #python37Packages.pillow
     (python37.withPackages(ps: with ps; [
       pip setuptools virtualenv virtualenvwrapper pygame
       pudb powerline numpy cryptography djangorestframework
-      psycopg2 django mkdocs nltk scikitlearn
+      psycopg2 django mkdocs nltk scikitlearn pillow
+
+      youtube-dl mps-youtube pylast
     ]))
-    
-    jdk
-    jdk11
 
     nodejs
     nodePackages.node2nix
@@ -300,7 +302,7 @@
     stack
     ghc
 
-    postgresql_11
+    postgresql_10
     pgcli
     
     jdk
@@ -337,7 +339,7 @@
     playerctl
     i3blocks
 
-    keepass
+    keepassxc
     xsel
     qemu
     tightvnc
