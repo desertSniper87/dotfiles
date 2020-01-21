@@ -3,7 +3,7 @@
 echo yes | sudo apt-get update && sudo apt-get upgrade
 
 # Access virtualbox shared folder
-sudo usermod -aG vboxsf torsho
+# sudo usermod -aG vboxsf torsho
 
 # Install chromium
 echo yes | sudo apt-get install chromium-browser
@@ -22,7 +22,7 @@ sudo apt-get install curl
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
 
 #$release_name="$(lsb_release -sc)"
-echo 'deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com xenial main' | sudo tee /etc/apt/sources.list.d/brave.list
+echo 'deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com bionic main' | sudo tee /etc/apt/sources.list.d/brave.list
 
 sudo apt-get update
 echo yes | sudo apt-get install brave-browser brave-keyring
