@@ -6,7 +6,7 @@ cd ~
 # sudo apt install nodejs clang npm 
 echo yes | sudo apt install lm_sensors redshift variety
 echo yes | sudo apt install emacs copyq # hg
-echo yes | sudo apt install ack texstudio texlive-full htop aspell python3-pip nmap mysql-workbench mysql-server cmake apg python3-dev
+echo yes | sudo apt install ack texstudio texlive-full htop aspell python3-pip nmap mysql-workbench mysql-server cmake apg python3-dev 
 
 # mkdir ~/.fonts
 # git clone https://github.com/sunaku/tamzen-font
