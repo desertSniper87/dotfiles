@@ -82,6 +82,7 @@ fi
 export PATH="$PATH:/home/torsho/depot_tools"
 export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
+export PATH="$PATH:/home/torsho/dotfiles/scripts"
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -112,7 +113,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-GOPATH="/usr/lib/go-1.14/bin:/home/torsho/Go_Sokoban"
+GOPATH="/home/torsho/go"
 source /usr/share/autojump/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
+
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
+eval "$(direnv hook bash)"
