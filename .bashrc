@@ -83,6 +83,7 @@ export PATH="$PATH:/home/torsho/depot_tools"
 export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
+export PATH="$(yarn global bin):$PATH" 
 
 # some more ls aliases
 alias ll='ls -alF'
