@@ -77,12 +77,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# N = show line numbers
+export LESS='-N'
+
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH="$PATH:/home/torsho/depot_tools"
 export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
+export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
 export PATH="$(yarn global bin):$PATH" 
 
 # some more ls aliases
