@@ -34,9 +34,10 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec st
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvt -pe selection-to-clipboard
 #bindsym $mod+Return exec terminator
 #bindsym $mod+Return exec termite
+#bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -235,6 +236,7 @@ bindsym $Mod+Control+Shift+x [class="^.*"] border toggle
 #for_window [class="Pcmanfm"] border pixel 0
 for_window [class="Firefox"] border pixel 1
 for_window [class="chromium"] border pixel 1
+for_window [class="Chromium"] border pixel 1
 for_window [class="chrome"] border pixel 1
 for_window [class="Pale moon"] border pixel 1
 for_window [class="Opera"] border pixel 1
@@ -281,12 +283,15 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 #bindsym $mod+z exec mocp --previous
 #bindsym $mod+x exec mocp --next
 
-bindsym $mod+z exec playerctl previous
-bindsym $mod+x exec playerctl next    
+bindsym $mod+z exec "playerctl previous ; exec mocp --previous"
+bindsym $mod+x exec "playerctl next ; exec mocp --next"
+
+#bindsym $mod+z exec xdotool click 1
+#bindsym $mod+x exec xdotool click 3 
 
 # Sreen brightness controls
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 200 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 200 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 #bindsym XF86MonBrightnessUp exec sh ~/brightness.sh +2 # increase screen brightness
 #bindsym XF86MonBrightnessDown exec sh ~/brightness.sh -2# decrease screen brightness
 bindsym XF86MonBrightnessDown exec light -U 2
@@ -302,10 +307,14 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Auto Screen Locing
+exec --no-startup-id xautolock -time 6 -locker 'i3lock-fancy' 
+
+
 exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 
 #exec --no-startup-id nitrogen --restore
-#exec --no-startup-id feh --bg-scale /home/torsho/Pictures/arch-linux-wallpaper.jpg 
+exec --no-startup-id feh --bg-scale /usr/share/backgrounds/warty-final-ubuntu.png
 exec --no-startup-id variety
 exec --no-startup-id nm-applet
 #exec --no-startup-id cmst -m
@@ -325,23 +334,27 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id aclidswitch
 #exec --no-startup-id tilda
 #exec --no-startup-id megasync
-exec --no-startup-id mocp-scrobbler.py
+#exec --no-startup-id mocp-scrobbler.py
 exec --no-startup-id lxqt-policykit-agent
-exec --no-startup-id setxkbmap -option caps:swapescape
-exec --no-startup-id redshift
+#exec --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id redshift -l 23.71:90.41
 #exec --no-startup-id udiskie --tray
 #exec --no-startup-id qbittorrent
 #exec --no-startup-id mattermost-desktop
 exec --no-startup-id copyq
-exec --no-startup-id google-chrome-stable
+exec --no-startup-id flameshot
+#exec --no-startup-id google-chrome-stable --no-startup-window --password-store=gnome
+exec --no-startup-id chromium-browser --no-startup-window --password-store=gnome
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+#exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id xbindkeys
 
 # Keyboard layout
 exec --no-startup-id "setxkbmap -layout us,bd -variant ,bd -option grp:shifts_toggle"
 
 #touchpad settigns
-exec --no-startup-id "synclient TapButton1=1"
-exec --no-startup-id "synclient TapButton2=2"
+#exec --no-startup-id "synclient TapButton1=1"
+#exec --no-startup-id "synclient TapButton2=2"
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
 exec synclient VertEdgeScroll=1
 exec --no-startup-id syndaemon -t -k -i 2 -d
@@ -351,4 +364,11 @@ exec --no-startup-id syndaemon -t -k -i 2 -d
 exec_always /home/torsho/per-workspace-layout.pl
 
 # Monitor layout
-# exec_always xrandr --output HDMI1 --left-of eDP-1
+exec_always xrandr --output HDMI-1 --left-of eDP-1
+
+# Simple Screenshot
+bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens
+
+bindsym --release Shift+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # Area selection
+
+
