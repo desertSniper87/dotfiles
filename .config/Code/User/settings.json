@@ -1,0 +1,39 @@
+{
+    "window.zoomLevel": 0,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "vim.vimrc.enable": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "exercism.logging": "debug",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "python.pythonPath": "/usr/bin/python3",
+    "go.useLanguageServer": true,
+    "vim.commandLineModeKeyBindings": [
+    
+    ],
+    // "vim.normalModeKeyBindings": [
+    //     {
+    //         "before": ["<space>", "y", "a"],
+    //         "after": ["g", "g", "\"", "+", "y", "G"],
+    //         // "commands": [":%y+"]
+    //     }
+    
+    // ],
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-c>": false
+    
+    },
+    "workbench.colorTheme": "Default Light+",
+    "editor.tabCompletion": "on",
+    "editor.snippetSuggestions": "top",
+    "emmet.triggerExpansionOnTab": true
+}
