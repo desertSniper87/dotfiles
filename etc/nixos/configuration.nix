@@ -20,6 +20,13 @@
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  # boot.kernelPackages = pkgs.linuxPackages_4_9.amdgpu-pro;
+  boot.kernelPackages = pkgs.linuxPackages_4_9;
+
+  hardware.cpu.intel.updateMicrocode = true;
+  hardware.opengl.driSupport32Bit = true;
 
   networking.hostName = "nixos-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -53,17 +60,20 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.sshd.enable = true;
+
   services.upower.enable = true;
   services.postgresql.enable = true;
+  services.tor.enable = true;
+  services.tor.client.enable = true;
 
-  services.redshift.enable = true;
-  services.redshift.provider = "geoclue2";
+  # services.redshift.enable = true;
 
   networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedUDPPorts = [ 24800 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -76,9 +86,15 @@
 
   # Enable the X11 windowing system.
   environment.pathsToLink = [ "/libexec/"];
-
+ 
+  # Enable xrdp
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "i3";
+  networking.firewall.allowedTCPPorts = [ 3389 ];
 
   services.xserver = {
+    # videoDrivers = ["ati_unfree"];
+
     enable = true;
     layout = "us, bd";
     xkbOptions = "caps:swapescape, grp:shifts_toggle";
@@ -90,13 +106,20 @@
       clickMethod = "buttonareas";
     };
 
-    displayManager.gdm.enable = false;
-    displayManager.slim.enable = false;
-    displayManager.sddm.enable = false;
+    
+
+    displayManager ={
+      gdm.enable = false;
+      sddm.enable = false;
+      # lightdm.enable = true;
+
+      defaultSession = "none+i3";
+    };
 
 
     desktopManager = {
-      default = "none";
+      # plasma5.enable = true;
+      # xfce.enable = true;
       xterm.enable = false;
     };
 
@@ -155,6 +178,7 @@
         export PATH="$PATH:$HOME/.rvm/bin"
         export PATH="$PATH:/usr/local/lib/python3.7"
         export MYPYPATH="/home/torsho/Dropbox/programming_code/github_projects/dev-tools/mypy-django"
+        export GOROOT="${pkgs.go.out}/share/go"
 
         antigen use oh-my-zsh
         antigen bundle git
@@ -222,20 +246,35 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
+  system.stateVersion = "20.09"; # Did you read the comment?
 
   environment.systemPackages = (with pkgs; [
     firefox
-    qutebrowser
+    # qutebrowser
     google-chrome
+    tor-browser-bundle-bin
 
+    # plasma-desktop
+    # sddm
+
+    # icewm
+    
+    # thunderbird
+    # flashplayer
+
+    # nomachine-client
+    # x11vnc
+
+    tree
+    file
     git
     ack
     bash
     bat
+    patchelf
+    binutils
     htop 
     apg
-    file
     # vimHugeX
     (import ./vim.nix)
     zathura
@@ -247,7 +286,9 @@
     i3status
     rofi
     # sway
-    redshift
+    # redshift
+    unrar
+    unzip
 
     # Power management related tools
     lm_sensors
@@ -261,8 +302,12 @@
     
     dropbox
     goldendict
+    feh
     copyq
     shutter
+    gimp
+    libreoffice
+    pandoc
 
     kdeApplications.okular
 
@@ -283,32 +328,41 @@
     speedcrunch
     mmex
 
-    zlib
-    zlib.dev
+    # flex
+    # bison
+
     #python37
-    #python37Packages.pillow
     (python37.withPackages(ps: with ps; [
       pip setuptools virtualenv virtualenvwrapper pygame
       pudb powerline numpy cryptography djangorestframework
-      psycopg2 django mkdocs nltk scikitlearn pillow
+      psycopg2 django mkdocs nltk scikitlearn pipenv
 
-      youtube-dl mps-youtube pylast
+      jupyter
+
+      pycryptodome
     ]))
 
-    nodejs
-    nodePackages.node2nix
-    nodePackages.vue-cli
-
-    stack
-    ghc
-
-    postgresql_10
-    pgcli
+    # go
     
     jdk
     jdk11
 
-    cargo
+    # nodejs
+    # nodejs-10_x
+    # nodePackages.node2nix
+    # nodePackages.vue-cli
+    # yarn
+
+    # rtack
+    # ghc
+
+    # postgresql_11
+    # pgcli
+    
+    jdk
+    jdk11
+
+    # cargo
 
     zsh
     antigen
@@ -321,9 +375,9 @@
     thefuck
 
     jetbrains.idea-ultimate
-    jetbrains.pycharm-professional	
-    jetbrains.clion	
-    jetbrains.webstorm	
+    # jetbrains.pycharm-professional	
+    # jetbrains.clion	
+    # jetbrains.webstorm	
 
     gcc
     gnumake
@@ -332,14 +386,14 @@
     llvmPackages.clang-unwrapped
     llvmPackages.llvm
 
-    libsForQt5.vlc
+    # libsForQt5.vlc
     mpv
     ntfs3g
     spotify
     playerctl
     i3blocks
 
-    keepassxc
+    keepass
     xsel
     qemu
     tightvnc
@@ -351,66 +405,79 @@
 
     texlive.combined.scheme-full
     texstudio
+    vscode
 
     dpkg
 
-    nmap
-    burpsuite
-    zap
+    # nmap
+    # burpsuite
+    # zap
     insomnia
     httpie
-]);
+  ]);
 
-fonts = {
-  enableFontDir = true;
-  enableGhostscriptFonts = true;
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
 
 
-  fonts = with pkgs; [
-    anonymousPro
-    corefonts
-    dejavu_fonts
-    dina-font
-    fira-code
-    fira-code-symbols
-    freefont_ttf
-    google-fonts
-    inconsolata
-    liberation_ttf
-    mplus-outline-fonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    powerline-fonts
-    profont
-    proggyfonts
-    source-code-pro
-    terminus_font
-    ttf_bitstream_vera
-    ubuntu_font_family
+    fonts = with pkgs; [
+      anonymousPro
+      corefonts
+      dejavu_fonts
+      dina-font
+      fira-code
+      fira-code-symbols
+      freefont_ttf
+      google-fonts
+      inconsolata
+      liberation_ttf
+      mplus-outline-fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      powerline-fonts
+      profont
+      proggyfonts
+      source-code-pro
+      terminus_font
+      ttf_bitstream_vera
+      ubuntu_font_family
 
-    lohit-fonts.bengali
-  ];
-};
-
-nixpkgs.config = {
-  allowUnfree = true;
-  allowBroken = true;
-
-  pulseaudio = true;
-
-  
-  permittedInsecurePackages = [
-    "webkitgtk-2.4.11"
-  ];
-  
-
-  packageOverrides = _pkgs: {
-    # take the set of all packages and
-    # return a set of modified packages
-    #vimHugeX = _pkgs.vimHugeX.override {
-      #python = _pkgs.python3; 
-    #};
+      lohit-fonts.bengali
+    ];
   };
-};
+
+  i18n = {
+    inputMethod = {
+      enabled = "fcitx";
+      fcitx.engines = with pkgs.fcitx-engines; [ mozc ];
+    };
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+
+    pulseaudio = true;
+
+    
+    permittedInsecurePackages = [
+      "webkitgtk-2.4.11"
+    ];
+    
+
+    packageOverrides = _pkgs: {
+      # take the set of all packages and
+      # return a set of modified packages
+      #vimHugeX = _pkgs.vimHugeX.override {
+        #python = _pkgs.python3; 
+      #};
+    };
+  };
+
+  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  users.extraGroups.vboxusers.members = [ "torsho" ];
+
 }
