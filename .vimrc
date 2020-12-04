@@ -23,8 +23,10 @@ set ignorecase
 set smartcase
 set autochdir
 set clipboard=unnamed  
-set relativenumber
+"set relativenumber
 set showcmd
+set cursorline
+set cursorcolumn
 
 "code folding
 set foldmethod=indent   
@@ -48,7 +50,7 @@ filetype plugin indent on
 
 au! BufRead,BufNewFile *.fish setfiletype fish
 au! BufRead,BufNewFile *.vue setfiletype vue
-"au BufNewFile,BufRead *.html set filetype=htmldjango
+au BufNewFile,BufRead *.html set filetype=htmldjango
 au BufNewFile,BufRead *.log set syntax=log
 
 "set tw=79
@@ -84,7 +86,8 @@ let @c = '/last modifiedyypnct:Completed	         '
 "Python Print
 let @p = 'oprint('
 let @s = 'yi)ysi)"f"i: ", p'
-let @d = 'oconsole.log(a"% -- l la: €kb€kbA;'
+"let @d = 'oconsole.log(a"% -- l la: €kb€kbA;'
+let @d = 'iconsole.log()i'
 "let @d = 'iprint("% -- l l'
 "if using fish shell
 
@@ -182,7 +185,7 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 
 Bundle 'ervandew/supertab'
 
-"Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULLY
+Plugin 'valloric/youcompleteme'  "Install it from aur/git AND UPDATE IT CAREFULLY
 "Plugin 'Shougo/deoplete.nvim'
 
 Plugin 'tpope/vim-surround'
@@ -256,7 +259,7 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'chrisbra/Colorizer'
 
 Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-easytags'
 
 "Plugin 'ludovicchabant/vim-gutentags'
 
@@ -278,7 +281,7 @@ Plugin 'honza/vim-snippets'
 
 "Plugin 'hdima/python-syntax'
 
-Plugin 'wakatime/vim-wakatime'
+"Plugin 'wakatime/vim-wakatime'
 
 "Plugin 'jmcomets/vim-pony'
 
@@ -320,6 +323,8 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'niklasl/vim-rdf'
 Plugin 'n3.vim'
 Plugin 'omer/vim-sparql'
+Plugin 'fatih/vim-go'
+Plugin 'mrtazz/simplenote.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -404,7 +409,7 @@ let g:colorizer_auto_filetype='css,html,dosini,xdefaults'
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme='qwq'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tagbar#enabled = 1
 
 "Syntastic
 let g:syntastic_python_checkers = ['python3.7']
@@ -414,6 +419,8 @@ let g:syntastic_html_checkers = ['eslint']
 
 "let g:pymode_python = 'python3'
 "let g:pymode_lint_ignore = "E116"
+"vim-go
+let g:go_gopls_enabled = 0
 "vim-workspace
 "let g:workspace_autocreate =1
 "let g:workspace_persist_undo_history = 1
@@ -500,14 +507,15 @@ let g:syntastic_html_checkers = ['eslint']
 
 "Youcompleteme
 "let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"let g:ycm_global_ycm_extra_conf = '/home/torsho/.vim/bundle/youcompleteme/third_party/ycmd/.ycm_extra_conf.py'
-"let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_global_ycm_extra_conf = '/home/torsho/.vim/bundle/youcompleteme/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:ycm_seed_identifiers_with_syntax = 1
 "Django recommended settings
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
 "let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
+let g:ycm_filetype_blacklist = {}
 
 "rooter
 let g:rooter_silent_chdir = 1
@@ -522,6 +530,7 @@ let g:gutentags_generate_on_missing = 1
 
 "Visual mode Search and replace
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+"vnoremap <C-r> "hy::,$s/<C-r>h//gc|1,''-&&<left><left><left><left><left><left><left><left><left><left><left>
 "Visual mode swap
 vnoremap <C-x> <Esc>`.``gvP``P
 "Visual mode search selected 
@@ -557,7 +566,7 @@ nnoremap <Left> :bprevious<Return>
 nnoremap <Right> :bnext<Return>
 
 map <F2> :NERDTreeToggle<CR>
-map <S-F2> :NERDTreeFind<CR>
+map <F4> :NERDTreeFind<CR>
 "tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
@@ -570,7 +579,7 @@ let g:header_field_filename = 0
 let g:header_field_modified_timestamp = 1
 let g:header_field_modified_by = 0
 "let g:header_field_timestamp_format 
-map <F4> :AddHeader<CR>
+"map <F4> :AddHeader<CR>
 "extra keycommands
 nmap <A-a> :%y+<CR>
 "insert mode
@@ -854,6 +863,10 @@ let g:splitjoin_join_mapping = ''
 nmap <Leader>j :SplitjoinJoin<cr>
 nmap <Leader>s :SplitjoinSplit<cr>
 
+" SimpleNote
+
+let g:SimplenoteUsername = "torshobuet@gmail.com"
+
 "Indentline  
 "let g:indentLine_conceallevel = 0
 
@@ -916,3 +929,7 @@ imap <Down> <Esc> ]<space>A
 "nmap d <Plug>MoveMotionPlug
 nnoremap gm m
 
+" ColorStepper Keys
+"nmap <F6> <Plug>ColorstepPrev
+"nmap <F7> <Plug>ColorstepNext
+"nmap <S-F7> <Plug>ColorstepReload

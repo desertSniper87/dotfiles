@@ -32,13 +32,15 @@ antigen bundle battery
 antigen bundle colored-man-pages
 antigen bundle virtualenv
 antigen bundle thefuck
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
 
 antigen bundle popstas/zsh-command-time
 
 #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 antigen bundle zsh-autosuggestions
 antigen bundle zsh-history-substring-search
@@ -69,13 +71,13 @@ source /usr/share/autojump/autojump.zsh
 antigen apply
 
 # Aliases
-alias python=python3.6
-alias pip=pip3
+#alias python=python3.6
+#alias pip=pip3
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-alias dokku=${HOME}/.dokku/contrib/dokku_client.sh
-export DOKKU_HOST=dev.concitus.com
+#alias dokku=${HOME}/.dokku/contrib/dokku_client.sh
+#export DOKKU_HOST=dev.concitus.com
 
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}

@@ -51,8 +51,8 @@ URxvt.allow_bold:           true
 !URxvt*font:                 xft:monaco\ for\ powerline:size=12:antialias=true
 !URxvt*boldFont:             xft:monaco\ for\ powerline:size=12:antialias=true
 !URxvt*font :                xft:Tamzenforpowerline:style=bold:size=8
-URxvt*font :                xft:ProFont\ for\ powerline:size=12:minspace=false,xft:Dejavu Sans:pixelsize=27
-URxvt*boldFont :            xft:ProFont\ for\ powerline:style=bold:size=12
+!URxvt*font :                xft:ProFont\ for\ powerline:size=12:minspace=true,xft:Dejavu Sans:pixelsize=27
+!URxvt*boldFont :            xft:ProFont\ for\ powerline:style=bold:size=12
 !URxvt*font :                xft:Terminess\ Powerline:style=bold:size=12
 !URxvt*font :                xft:Roboto mono for powerline:size=12
 !URxvt*boldFont :            xft:Roboto mono for powerline:style=bold:size=12
@@ -61,6 +61,9 @@ URxvt*boldFont :            xft:ProFont\ for\ powerline:style=bold:size=12
 !URxvt*boldFont:             xft:Tamzenforpowerline\ bold:size=12:antialias=true
 !URxvt*font :                xft:Space\ Mono\ for\ Powerline:size=8:antialias=true
 !URxvt*boldFont:             xft:Space\ Mono\ for\ Powerline:size=8:style=bold:antialias=true
+
+URxvt*font :                xft:TerminessTTF Nerd Font Mono:size=13:antialias=true,xft:Mitra Mono:pixelsize=23
+URxvt*boldFont :            xft:TerminessTTF Nerd Font Mono:style=bold:size=13:antialias=true
 
 !URxvt.keysym.C-Down:        command:\033]710;-*-dina-medium-r-normal-12-*-*-*-*-*-*-*\007
 URxvt.keysym.M-C-Down:      command:\033]710; -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1\007
@@ -81,11 +84,11 @@ URxvt.scrollStyle:          rxvt
 URxvt.scrollBar:            false
 
 ! Perl extensions1
-! URxvt.perl-lib:             /home/torsho/urxvt-perls
+URxvt.perl-lib:             /home/torsho/urxvt-perls
 URxvt.matcher.button:       1
-URxvt.urlLauncher:          qutebrowser
+URxvt.urlLauncher:          chromium-browser
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font,matcher,vtwheel
-URxvt.url-select.launcher:  qutebrowser
+URxvt.url-select.launcher:  chromium-browser
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
@@ -99,10 +102,11 @@ URxvt.keysym.M-s:           perl:keyboard-select:search
 !URxvt.resize-font.smaller: C-Down
 !URxvt.resize-font.bigger: C-Up
 
-URxvt.clipboard.autocopy:   true
-URxvt.keysym.M-c:           perl:clipboard:copy
-URxvt.keysym.M-v:           perl:clipboard:paste
-URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+!URxvt.clipboard.autocopy:   true
+!URxvt.keysym.M-c:           perl:clipboard:copy
+!URxvt.keysym.M-v:           perl:clipboard:paste
+!URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.keysym.M-v: eval:paste_clipboard
 
 
 ! Cursor
@@ -263,6 +267,66 @@ URxvt*saveLines:            4095
 ! white
 *.color7:       #dddddd
 *.color15:      #cccccc
+
+! Atom One Light theme
+
+!xterm*background: #f9f9f9
+!xterm*foreground: #383a42
+!xterm*cursorColor: #d0d0d0
+!xterm*color0: #000000
+!xterm*color1: #E45649
+!xterm*color2: #50A14F
+!xterm*color3: #986801
+!xterm*color4: #4078F2
+!xterm*color5: #A626A4
+!xterm*color6: #0184BC
+!xterm*color7: #A0A1A7
+!xterm*color8: #5c6370
+!xterm*color9: #e06c75
+!xterm*color10: #50A14F
+!xterm*color11: #986801
+!xterm*color12: #4078F2
+!xterm*color13: #A626A4
+!xterm*color14: #0184BC
+!xterm*color15: #ffffff
+
+!Terminal.sexy solarized light
+! special
+!*.foreground:   #586e75
+!*.background:   #fdf6e3
+!*.cursorColor:  #586e75
+
+!! black
+!*.color0:       #002b36
+!*.color8:       #657b83
+
+!! red
+!*.color1:       #dc322f
+!*.color9:       #dc322f
+
+!! green
+!*.color2:       #859900
+!*.color10:      #859900
+
+!! yellow
+!*.color3:       #b58900
+!*.color11:      #b58900
+
+!! blue
+!*.color4:       #268bd2
+!*.color12:      #268bd2
+
+!! magenta
+!*.color5:       #6c71c4
+!*.color13:      #6c71c4
+
+!! cyan
+!*.color6:       #2aa198
+!*.color14:      #2aa198
+
+!! white
+!*.color7:       #93a1a1
+!*.color15:      #fdf6e3
 
 Xft.antialias:  true
 Xft.hinting:    true
