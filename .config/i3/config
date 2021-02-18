@@ -275,10 +275,15 @@ bar {
         # tray_output eDP-1
 }
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# Pulse Audio controls -- Old
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Pulse Audio controls -- New
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 #bindsym $mod+z exec mocp --previous
 #bindsym $mod+x exec mocp --next
@@ -314,21 +319,22 @@ exec --no-startup-id xautolock -time 6 -locker 'i3lock-fancy'
 exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 
 #exec --no-startup-id nitrogen --restore
-exec --no-startup-id feh --bg-scale /usr/share/backgrounds/warty-final-ubuntu.png
-exec --no-startup-id variety
-exec --no-startup-id nm-applet
-#exec --no-startup-id cmst -m
-#exec --no-startup-id connmand
+exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
+#exec --no-startup-id variety
+#exec --no-startup-id nm-applet
+exec --no-startup-id cmst -m
+exec --no-startup-id connmand
 #exec --no-startup-id cmst
 #exec --no-startup-id dropbox                   #nethog
 exec --no-startup-id dropbox start                   #nethog 
 #exec --no-startup-id ibus-daemon --xim -d
-exec --no-startup-id blueman-applet
+#exec --no-startup-id blueman-applet
 #exec --no-startup-id blueberry-tray
-exec --no-startup-id i3session restore
-exec --no-startup-id rescuetime
-exec --no-startup-id compton
-exec --no-startup-id kdeinit5
+#exec --no-startup-id i3session restore
+#exec --no-startup-id rescuetime
+#exec --no-startup-id compton
+#exec --no-startup-id xcompmgr -c -l0 -t0 -r0 -o.00
+#exec --no-startup-id kdeinit5
 #exec --no-startup-id pamac-tray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id aclidswitch
@@ -343,8 +349,8 @@ exec --no-startup-id redshift -l 23.71:90.41
 #exec --no-startup-id mattermost-desktop
 exec --no-startup-id copyq
 exec --no-startup-id flameshot
-#exec --no-startup-id google-chrome-stable --no-startup-window --password-store=gnome
-exec --no-startup-id chromium-browser --no-startup-window --password-store=gnome
+exec --no-startup-id google-chrome-stable --no-startup-window --password-store=gnome
+#exec --no-startup-id chromium-browser --no-startup-window --password-store=gnome
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id xbindkeys
@@ -371,4 +377,5 @@ bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~
 
 bindsym --release Shift+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # Area selection
 
+bindsym --release $mod+Shift+s exec "flameshot gui"
 
