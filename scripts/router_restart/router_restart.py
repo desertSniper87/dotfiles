@@ -217,7 +217,10 @@ if __name__ == '__main__':
     while not is_connected():
         print("* "*20, "Trying to connect", " *"*20)
         print("* "*20, datetime.now().strftime("%H:%M:%S"), " *"*20)
-        restart()
+        try:
+            restart()
+        except (ConnectionError and requests.exceptions.ConnectionError):
+            pass
         sleep(20)
     else:
         print("* "*20, " *"*20)
