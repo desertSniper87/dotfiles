@@ -12,6 +12,7 @@ set tabstop=4               " number of columns occupied by a tab character
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set clipboard=unnamedplus
 " check if we have the lastest stable version of nvim
 " let s:expect_ver = printf('nvim-%s', '0.7.2')
 " let s:actual_ver = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
@@ -22,12 +23,12 @@ set softtabstop=4           " see multiple spaces as tabstops so <BS> does the r
 " endif
 
 let s:core_conf_files = [ 
-            \ 'plugins.vim'
+            \ 'plugins.vim',
+            \ 'autocommands.vim'
             \ ]
 
      " \ 'globals.vim',
      " \ 'options.vim',
-     " \ 'autocommands.vim',
      " \ 'mappings.vim',
      " \ 'themes.vim'
 
