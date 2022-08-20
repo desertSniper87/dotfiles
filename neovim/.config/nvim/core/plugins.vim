@@ -56,7 +56,10 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
+"Plug 'feline-nvim/feline.nvim'
+Plug 'ojroques/nvim-hardline'
+
 
 call plug#end()
 
@@ -65,9 +68,11 @@ map <F2> :NERDTreeToggle<CR>
 map <F4> :NERDTreeFind<CR>
 
 "airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tagbar#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tagbar#enabled = 1
+
+
 
 "nvim-cmp
 
@@ -143,5 +148,11 @@ lua <<EOF
   -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
   --   capabilities = capabilities
   -- }
+-- feline
+-- require('feline').setup()
+
+-- nvim-hardline
+require('hardline').setup {}
+
 EOF
 

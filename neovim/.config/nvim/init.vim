@@ -24,11 +24,11 @@ set clipboard=unnamedplus
 
 let s:core_conf_files = [ 
             \ 'plugins.vim',
-            \ 'autocommands.vim'
+            \ 'autocommands.vim',
+            \ 'options.vim'
             \ ]
 
-     " \ 'globals.vim',
-     " \ 'options.vim',
+            " \ 'globals.vim'
      " \ 'mappings.vim',
      " \ 'themes.vim'
 
