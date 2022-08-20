@@ -9,6 +9,7 @@ Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 
 " Using a non-default branch
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }

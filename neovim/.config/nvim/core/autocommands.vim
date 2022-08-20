@@ -8,41 +8,11 @@ nnoremap <C-H> <C-W><C-H>
  
 "Visual mode Search and replace
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-"vnoremap <C-r> "hy::,$s/<C-r>h//gc|1,''-&&<left><left><left><left><left><left><left><left><left><left><left>
 "Visual mode swap
 vnoremap <C-x> <Esc>`.``gvP``P
 "Visual mode search selected 
 vnoremap // y/<C-R>"<CR>
 
-"Tim Pope's cursor keyscheme
-nmap <Up> [e
-nmap <Down> ]e
-vmap <Up> [egv
-vmap <Down> ]egv
-
-function! DelEmptyLineAbove()
-    if line(".") == 1
-        return
-    endif
-    let l:line = getline(line(".") - 1)
-    if l:line =~ '^s*$'
-        let l:colsave = col(".")
-        .-1d
-        silent normal! <C-y>
-        call cursor(line("."), l:colsave)
-    endif
-endfunction
-
-function! AddEmptyLineAbove()
-    let l:scrolloffsave = &scrolloff
-    " Avoid jerky scrolling with ^E at top of window
-    set scrolloff=0
-    call append(line(".") - 1, "")
-    if winline() != winheight(0)
-        silent normal! <C-e>
-    endif
-    let &scrolloff = l:scrolloffsave
-endfunction
 
 function! DelEmptyLineBelow()
     if line(".") == line("$")
@@ -89,8 +59,15 @@ nnoremap <Space>l :execute "normal! iLine No.\ " . ( line(".") )<cr>
 
 imap <silent> <Left> <C-D>
 imap <silent> <Right> <C-T>
-inoremap <silent> <C-Up> <Esc>:call DelEmptyLineBelow()<CR>a
-inoremap <silent> <C-Down> <Esc>:call AddEmptyLineBelow()<CR>a
+inoremap <silent> <C-Up> <Esc>:call DelEmptyLineBelow()<CR>
+inoremap <silent> <C-Down> <Esc>:call AddEmptyLineBelow()<CR>
 
 imap <Up> <Esc> [<space>A
 imap <Down> <Esc> ]<space>A
+
+"Tim Pope's cursor keyscheme 
+"Requires vim-unimpaired
+nmap <Up> [e
+nmap <Down> ]e
+vmap <Up> [egv
+vmap <Down> ]egv
