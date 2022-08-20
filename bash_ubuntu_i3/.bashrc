@@ -19,7 +19,7 @@ shopt -s checkwinsize
 #shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -78,21 +78,37 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # N = show line numbers
-export LESS='-N'
+#export LESS='-N'
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+
 export PATH="$PATH:/home/torsho/depot_tools"
 export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
 export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
+export PATH="$PATH:/home/torsho/dotfiles/git-custom-scripts"
 export PATH="$(yarn global bin):$PATH" 
+export PATH="$PATH:/home/torsho/spring-1.2.0.M2/bin" 
+export PATH=${PATH}:${JAVA_HOME}/bin
+
+# Android SDK
+export ANDROID_HOME="~/Android/Sdk"
+export ANDROID_SDK_ROOT="~/Android/Sdk"
+
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias tailf='tail -f'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -129,3 +145,20 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 
 eval "$(direnv hook bash)"
+SPRING_HOME="/home/torsho/spring-1.2.0.M2"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export VISUAL=nvim;
+export EDITOR=nvim;
+
+# microk8s aliases
+
+# alias kubectl='microk8s kubectl'
+alias kubectl='minikube kubectl --'
