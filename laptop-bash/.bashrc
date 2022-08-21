@@ -85,6 +85,7 @@ fi
 
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 
+export PATH="$PATH:/home/torsho/bin"
 export PATH="$PATH:/home/torsho/depot_tools"
 export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
