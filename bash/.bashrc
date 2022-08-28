@@ -1,7 +1,35 @@
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+# if [ -f /etc/os-release ]; then
+#     # freedesktop.org and systemd
+#     . /etc/os-release
+#     OS=$NAME
+#     VER=$VERSION_ID
+# elif type lsb_release >/dev/null 2>&1; then
+#     # linuxbase.org
+#     OS=$(lsb_release -si)
+#     VER=$(lsb_release -sr)
+# elif [ -f /etc/lsb-release ]; then
+#     # For some versions of Debian/Ubuntu without lsb_release command
+#     . /etc/lsb-release
+#     OS=$DISTRIB_ID
+#     VER=$DISTRIB_RELEASE
+# elif [ -f /etc/debian_version ]; then
+#     # Older Debian/Ubuntu/etc.
+#     OS=Debian
+#     VER=$(cat /etc/debian_version)
+# elif [ -f /etc/SuSe-release ]; then
+#     # Older SuSE/etc.
+#     ...
+# elif [ -f /etc/redhat-release ]; then
+#     # Older Red Hat, CentOS, etc.
+#     ...
+# else
+#     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+#     OS=$(uname -s)
+#     VER=$(uname -r)
+# ficase $- in
+#     *i*) ;;
+#       *) return;;
+# esac
 
 HISTCONTROL=ignoredups:erasedups
 
@@ -65,6 +93,10 @@ xterm*|rxvt*)
     ;;
 esac
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -87,7 +119,6 @@ export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
 export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
-export PATH="$(yarn global bin):$PATH" 
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -119,13 +150,15 @@ if ! shopt -oq posix; then
 fi
 
 GOPATH="/home/torsho/go"
-source /usr/share/autojump/autojump.sh
+# UBUNTU: source /usr/share/autojump/autojump.sh
+source /etc/profile.d/autojump.sh # FEDORA
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
+# if [ -n "$DESKTOP_SESSION" ];then
+#     eval $(gnome-keyring-daemon --start)
+#     export SSH_AUTH_SOCK
+# fi
 
 eval "$(direnv hook bash)"
+
