@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# call: uberwatch <interval> <command>
+while true; do
+    ${@:2};
+    sleep $1;
+done
