@@ -1,36 +1,3 @@
-# if [ -f /etc/os-release ]; then
-#     # freedesktop.org and systemd
-#     . /etc/os-release
-#     OS=$NAME
-#     VER=$VERSION_ID
-# elif type lsb_release >/dev/null 2>&1; then
-#     # linuxbase.org
-#     OS=$(lsb_release -si)
-#     VER=$(lsb_release -sr)
-# elif [ -f /etc/lsb-release ]; then
-#     # For some versions of Debian/Ubuntu without lsb_release command
-#     . /etc/lsb-release
-#     OS=$DISTRIB_ID
-#     VER=$DISTRIB_RELEASE
-# elif [ -f /etc/debian_version ]; then
-#     # Older Debian/Ubuntu/etc.
-#     OS=Debian
-#     VER=$(cat /etc/debian_version)
-# elif [ -f /etc/SuSe-release ]; then
-#     # Older SuSE/etc.
-#     ...
-# elif [ -f /etc/redhat-release ]; then
-#     # Older Red Hat, CentOS, etc.
-#     ...
-# else
-#     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-#     OS=$(uname -s)
-#     VER=$(uname -r)
-# ficase $- in
-#     *i*) ;;
-#       *) return;;
-# esac
-
 HISTCONTROL=ignoredups:erasedups
 
 shopt -s histappend
@@ -123,8 +90,6 @@ export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
 export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
-<<<<<<<< HEAD:bash/.bashrc
-========
 export PATH="$PATH:/home/torsho/dotfiles/git-custom-scripts"
 export PATH="$(yarn global bin):$PATH" 
 export PATH="$PATH:/home/torsho/spring-1.2.0.M2/bin" 
@@ -138,7 +103,6 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
->>>>>>>> origin/master:laptop-bash/.bashrc
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -182,9 +146,7 @@ alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 # fi
 
 eval "$(direnv hook bash)"
-<<<<<<<< HEAD:bash/.bashrc
 
-========
 SPRING_HOME="/home/torsho/spring-1.2.0.M2"
 
 export NVM_DIR="$HOME/.nvm"
@@ -198,8 +160,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export VISUAL=nvim;
 export EDITOR=nvim;
 
-# microk8s aliases
+# microk8s/minikube aliases
 
 # alias kubectl='microk8s kubectl'
 alias kubectl='minikube kubectl --'
->>>>>>>> origin/master:laptop-bash/.bashrc

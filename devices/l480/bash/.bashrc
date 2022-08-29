@@ -1,36 +1,3 @@
-# if [ -f /etc/os-release ]; then
-#     # freedesktop.org and systemd
-#     . /etc/os-release
-#     OS=$NAME
-#     VER=$VERSION_ID
-# elif type lsb_release >/dev/null 2>&1; then
-#     # linuxbase.org
-#     OS=$(lsb_release -si)
-#     VER=$(lsb_release -sr)
-# elif [ -f /etc/lsb-release ]; then
-#     # For some versions of Debian/Ubuntu without lsb_release command
-#     . /etc/lsb-release
-#     OS=$DISTRIB_ID
-#     VER=$DISTRIB_RELEASE
-# elif [ -f /etc/debian_version ]; then
-#     # Older Debian/Ubuntu/etc.
-#     OS=Debian
-#     VER=$(cat /etc/debian_version)
-# elif [ -f /etc/SuSe-release ]; then
-#     # Older SuSE/etc.
-#     ...
-# elif [ -f /etc/redhat-release ]; then
-#     # Older Red Hat, CentOS, etc.
-#     ...
-# else
-#     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-#     OS=$(uname -s)
-#     VER=$(uname -r)
-# ficase $- in
-#     *i*) ;;
-#       *) return;;
-# esac
-
 HISTCONTROL=ignoredups:erasedups
 
 shopt -s histappend
@@ -41,6 +8,7 @@ HISTFILESIZE=100000
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 shopt -s checkwinsize
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
@@ -122,8 +90,6 @@ export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
 export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
-<<<<<<<< HEAD:bash/.bashrc
-========
 export PATH="$PATH:/home/torsho/dotfiles/git-custom-scripts"
 export PATH="$(yarn global bin):$PATH" 
 export PATH="$PATH:/home/torsho/spring-1.2.0.M2/bin" 
@@ -137,7 +103,6 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
->>>>>>>> origin/master:laptop-bash/.bashrc
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -170,8 +135,7 @@ if ! shopt -oq posix; then
 fi
 
 GOPATH="/home/torsho/go"
-# UBUNTU: source /usr/share/autojump/autojump.sh
-source /etc/profile.d/autojump.sh # FEDORA
+source /usr/share/autojump/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 
@@ -195,7 +159,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export VISUAL=nvim;
 export EDITOR=nvim;
 
-# microk8s aliases
+# microk8s/minikube aliases
 
 # alias kubectl='microk8s kubectl'
 alias kubectl='minikube kubectl --'
