@@ -101,7 +101,6 @@ export ANDROID_SDK_ROOT="~/Android/Sdk"
 
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 
 # some more ls aliases
@@ -139,10 +138,10 @@ source /usr/share/autojump/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 
-# if [ -n "$DESKTOP_SESSION" ];then
-#     eval $(gnome-keyring-daemon --start)
-#     export SSH_AUTH_SOCK
-# fi
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 eval "$(direnv hook bash)"
 
@@ -163,3 +162,8 @@ export EDITOR=nvim;
 
 # alias kubectl='microk8s kubectl'
 alias kubectl='minikube kubectl --'
+
+for FILE in ~/bashrc/*; do
+    source $FILE
+done
+
