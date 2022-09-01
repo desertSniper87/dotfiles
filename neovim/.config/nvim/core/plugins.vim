@@ -1,51 +1,16 @@
 call plug#begin()
 " Plug 'junegunn/vim-easy-align'
 
-" Any valid git URL is allowed
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'SirVer/ultisnips' 
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 
-" Using a non-default branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-" Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-
-" Initialize plugin system
-" - Automatically executes `filetype plugin indent on` and `syntax enable`.
-"
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
 
-" main one
-" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" 9000+ Snippets
-" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-
-" lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-" Need to **configure separately**
-
-" Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-" - shell repl
-" - nvim lua api
-" - scientific calculator
-" - comment banner
-" - etc
 
 "nvim-cmp
 
@@ -57,41 +22,40 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-"Plug 'vim-airline/vim-airline'
-"Plug 'feline-nvim/feline.nvim'
 Plug 'ojroques/nvim-hardline'
-
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
 " Nerd Tree
-map <F2> :NERDTreeToggle<CR>                                                    
+map <F2> :NERDTreeToggle<CR>
 map <F4> :NERDTreeFind<CR>
-
-"airline
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tagbar#enabled = 1
-
 
 
 "nvim-cmp
-
-
 set completeopt=menu,menuone,noselect
 
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
+
+  -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+
   cmp.setup({
+    sources = {
+      { name = 'nvim_lsp' },
+      { 
+        name = 'path',
+        option = {}
+      },
+    },
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     window = {
@@ -99,6 +63,8 @@ lua <<EOF
       -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
+      ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item()),
+      ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item()),
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
@@ -107,10 +73,7 @@ lua <<EOF
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
+      { name = 'ultisnips' }, -- For ultisnips users.
     }, {
       { name = 'buffer' },
     })
@@ -143,17 +106,41 @@ lua <<EOF
     })
   })
 
-  -- -- Setup lspconfig.
-  -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
-  --   capabilities = capabilities
-  -- }
--- feline
--- require('feline').setup()
+  -- Setup lspconfig.
+  local lspconfig = require('lspconfig')
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+  -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+  local servers = { 'pyright', 'tsserver', 'svelte' }
+  for _, lsp in ipairs(servers) do
+      lspconfig[lsp].setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          }
+      end
+  
 -- nvim-hardline
 require('hardline').setup {}
 
-EOF
+-- nvim-treesitter
 
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "javascript", "python", "typescript", "tsx", "html" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = true,
+
+
+
+  highlight = {
+    enable = true,
+    disable =  { "vim" },
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+EOF

@@ -139,10 +139,10 @@ source /usr/share/autojump/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 
-# if [ -n "$DESKTOP_SESSION" ];then
-#     eval $(gnome-keyring-daemon --start)
-#     export SSH_AUTH_SOCK
-# fi
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 eval "$(direnv hook bash)"
 
