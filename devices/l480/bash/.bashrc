@@ -101,7 +101,6 @@ export ANDROID_SDK_ROOT="~/Android/Sdk"
 
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 
 # some more ls aliases
@@ -163,3 +162,8 @@ export EDITOR=nvim;
 
 # alias kubectl='microk8s kubectl'
 alias kubectl='minikube kubectl --'
+
+for FILE in ~/bashrc/*; do
+    source $FILE
+done
+
