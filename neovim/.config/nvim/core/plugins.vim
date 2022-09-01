@@ -2,6 +2,7 @@ call plug#begin()
 " Plug 'junegunn/vim-easy-align'
 
 Plug 'SirVer/ultisnips' 
+Plug 'honza/vim-snippets'
 
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
@@ -24,6 +25,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 Plug 'ojroques/nvim-hardline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -34,6 +36,12 @@ map <F4> :NERDTreeFind<CR>
 
 "nvim-cmp
 set completeopt=menu,menuone,noselect
+
+"ultisnips/supertab
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 
 lua <<EOF
   -- Setup nvim-cmp.
