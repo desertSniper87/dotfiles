@@ -26,6 +26,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'ojroques/nvim-hardline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'preservim/nerdcommenter'
+Plug 'windwp/nvim-ts-autotag'
 
 call plug#end()
 
@@ -119,7 +120,7 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-  local servers = { 'pyright', 'tsserver', 'svelte' }
+  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls' }
   for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
           on_attach = on_attach,
@@ -149,6 +150,10 @@ require'nvim-treesitter.configs'.setup {
     disable =  { "vim" },
     additional_vim_regex_highlighting = false,
   },
+
+
 }
+
+require('nvim-ts-autotag').setup()
 
 EOF
