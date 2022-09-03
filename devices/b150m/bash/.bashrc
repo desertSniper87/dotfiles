@@ -8,6 +8,7 @@ HISTFILESIZE=100000
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 shopt -s checkwinsize
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
@@ -89,8 +90,6 @@ export PATH="$PATH:/usr/lib/go-1.14/bin"
 export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
 export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
-<<<<<<<< HEAD:bash/.bashrc
-========
 export PATH="$PATH:/home/torsho/dotfiles/git-custom-scripts"
 export PATH="$(yarn global bin):$PATH" 
 export PATH="$PATH:/home/torsho/spring-1.2.0.M2/bin" 
@@ -102,9 +101,7 @@ export ANDROID_SDK_ROOT="~/Android/Sdk"
 
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
->>>>>>>> origin/master:laptop-bash/.bashrc
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -137,15 +134,14 @@ if ! shopt -oq posix; then
 fi
 
 GOPATH="/home/torsho/go"
-# UBUNTU: source /usr/share/autojump/autojump.sh
-source /etc/profile.d/autojump.sh # FEDORA
+source /etc/profile.d/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 
-# if [ -n "$DESKTOP_SESSION" ];then
-#     eval $(gnome-keyring-daemon --start)
-#     export SSH_AUTH_SOCK
-# fi
+#if [ -n "$DESKTOP_SESSION" ];then
+#    eval $(gnome-keyring-daemon --start)
+#    export SSH_AUTH_SOCK
+#fi
 
 eval "$(direnv hook bash)"
 
@@ -166,3 +162,8 @@ export EDITOR=nvim;
 
 # alias kubectl='microk8s kubectl'
 alias kubectl='minikube kubectl --'
+
+for FILE in ~/bashrc/*; do
+    source $FILE
+done
+

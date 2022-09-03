@@ -134,7 +134,7 @@ if ! shopt -oq posix; then
 fi
 
 GOPATH="/home/torsho/go"
-source /usr/share/autojump/autojump.sh
+source /etc/profile.d/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
 

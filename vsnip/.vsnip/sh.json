@@ -1,0 +1,13 @@
+{
+  "sudo": {
+    "prefix": "sudo",
+    "body": [
+      "if [[ $UID != 0 ]]; then",
+      "\techo \"Please run this script with sudo:\"",
+      "\techo \"sudo \\$0 \\$*\"",
+      "\texit 1",
+      "fi"
+    ],
+    "description": "Echo a message."
+  }
+}
