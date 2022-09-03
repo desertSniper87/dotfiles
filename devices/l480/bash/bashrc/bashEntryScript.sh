@@ -7,9 +7,8 @@ popd () { builtin popd "$@" && chpwd; }
 # }
 chpwd () {
   case $PWD in
-    /home/torsho/ekyc-native-app) 
+    /home/torsho/ekyc-native-app|~/sec/BurpSuiteCommunity2022) 
         sdk use java 11.0.12-open;;
     # *) unset_all_project_settings;;
   esac
 }
-
