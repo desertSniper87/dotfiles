@@ -30,6 +30,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'preservim/nerdcommenter'
 Plug 'windwp/nvim-ts-autotag'
 
+Plug 'svermeulen/vim-easyclip'
+Plug 'flazz/vim-colorschemes'
+
+Plug 'lervag/vimtex'
+
 call plug#end()
 
 " Nerd Tree
@@ -64,6 +69,17 @@ nmap        S   <Plug>(vsnip-cut-text)
 xmap        S   <Plug>(vsnip-cut-text)
 
 let g:vsnip_snippet_dir = '~/.vsnip'
+
+"Vim-easyclip 
+
+let g:EasyClipUsePasteToggleDefaults = 0
+let g:EasyClipUseSubstituteDefaults = 1
+
+nnoremap gm m
+
+"vimtex
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 
 lua <<EOF
   -- Setup nvim-cmp.
@@ -142,6 +158,18 @@ lua <<EOF
           capabilities = capabilities,
           }
       end
+
+  local configPath = vim.fn.stdpath("config")
+  local languageServerPath = configPath.."/languageserver"
+  local angular_cmd = {"node", languageServerPath.."/node_modules/@angular/language-server/index.js", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath}
+
+  require'lspconfig'.angularls.setup{
+     on_attach = on_attach_common,
+     cmd = angular_cmd,
+     on_new_config = function(new_config,new_root_dir)
+     new_config.cmd = angular_cmd
+     end,
+  }
   
 -- nvim-hardline
 require('hardline').setup {}
