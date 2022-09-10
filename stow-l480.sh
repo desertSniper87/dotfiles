@@ -3,4 +3,4 @@
 stow --verbose --restow neovim
 stow --verbose --restow ranger
 stow --verbose --restow vsnip
-stow --verbose -d devices/l480 --target $HOME --restow bash
+stow --verbose -d devices/l480 --target "$HOME" --restow bash

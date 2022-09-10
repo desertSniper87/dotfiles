@@ -25,12 +25,12 @@ set clipboard=unnamedplus
 let s:core_conf_files = [ 
             \ 'plugins.vim',
             \ 'autocommands.vim',
-            \ 'options.vim'
+            \ 'options.vim',
+            \ 'themes.vim'
             \ ]
 
             " \ 'globals.vim'
      " \ 'mappings.vim',
-     " \ 'themes.vim'
 
 for s:fname in s:core_conf_files
    execute printf('source %s/core/%s', stdpath('config'), s:fname)
