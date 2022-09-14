@@ -26,7 +26,8 @@ let s:core_conf_files = [
             \ 'plugins.vim',
             \ 'autocommands.vim',
             \ 'options.vim',
-            \ 'themes.vim'
+            \ 'themes.vim',
+            \ 'neovide.vim'
             \ ]
 
             " \ 'globals.vim'
