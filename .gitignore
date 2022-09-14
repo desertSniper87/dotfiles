@@ -2,3 +2,4 @@ bcc_ca_vpn.sh
 sshpass_cred.sh
 ssh_cred.sh
 ranger/.config/ranger/bookmarks
+.gitsecret/keys/random_seed
