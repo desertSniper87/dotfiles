@@ -83,6 +83,9 @@ nnoremap gm m
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 
+" vim-surround
+let g:surround_{char2nr("\<CR>")} = "\n\r\n"
+
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
