@@ -13,7 +13,6 @@ vnoremap <C-x> <Esc>`.``gvP``P
 "Visual mode search selected 
 vnoremap // y/<C-R>"<CR>
 
-
 function! DelEmptyLineBelow()
     if line(".") == line("$")
         return

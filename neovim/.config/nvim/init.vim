@@ -4,7 +4,7 @@ set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
 set ignorecase
 set smartcase
-set autochdir
+"set autochdir
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
