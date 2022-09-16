@@ -2,7 +2,7 @@
   "sudo": {
     "prefix": "sudo",
     "body": [
-      "if [[ $UID != 0 ]]; then",
+      "if [[ \\$UID != 0 ]]; then",
       "\techo \"Please run this script with sudo:\"",
       "\techo \"sudo \\$0 \\$*\"",
       "\texit 1",

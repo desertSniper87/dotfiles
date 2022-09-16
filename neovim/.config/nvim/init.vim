@@ -1,8 +1,10 @@
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
-set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
+set ignorecase
+set smartcase
+set autochdir
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
@@ -13,6 +15,8 @@ set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set clipboard=unnamedplus
+set virtualedit=all
+set relativenumber
 " check if we have the lastest stable version of nvim
 " let s:expect_ver = printf('nvim-%s', '0.7.2')
 " let s:actual_ver = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
