@@ -34,6 +34,10 @@ Plug 'svermeulen/vim-easyclip'
 Plug 'flazz/vim-colorschemes'
 
 Plug 'lervag/vimtex'
+Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 call plug#end()
 
@@ -86,6 +90,11 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " vim-surround
 let g:surround_{char2nr("\<CR>")} = "\n\r\n"
 
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -113,7 +122,8 @@ lua <<EOF
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = cmp.mapping.confirm({ select = false }),
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -203,5 +213,20 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require('nvim-ts-autotag').setup()
+require('gitsigns').setup()
+
+
+require('telescope').setup{
+  defaults = {
+    mappings = {
+    }
+  },
+  pickers = {
+  },
+  extensions = {
+  }
+}
+
+
 
 EOF
