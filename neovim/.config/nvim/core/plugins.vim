@@ -206,7 +206,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable =  { "vim" },
+    disable =  { "vim", "latex" },
     additional_vim_regex_highlighting = false,
   },
 
