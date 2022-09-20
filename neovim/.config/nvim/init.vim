@@ -10,10 +10,12 @@ set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 set cc=80                   " set an 80 column border for good coding style
 filetype plugin indent on   " allows auto-indenting depending on file type
+
 set tabstop=4               " number of columns occupied by a tab character
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+
 set clipboard=unnamedplus
 set virtualedit=all
 set relativenumber
