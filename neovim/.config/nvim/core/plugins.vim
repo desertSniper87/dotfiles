@@ -40,6 +40,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'jremmen/vim-ripgrep'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'phaazon/hop.nvim'
 
 call plug#end()
 
@@ -92,10 +93,10 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " vim-surround
 let g:surround_{char2nr("\<CR>")} = "\n\r\n"
 
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <c-p><c-o> <cmd>Telescope find_files<cr>
+nnoremap <c-p><c-p> <cmd>Telescope live_grep<cr>
+nnoremap <c-p><c-i> <cmd>Telescope buffers<cr>
+nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
 
 lua <<EOF
   -- Setup nvim-cmp.
@@ -228,7 +229,12 @@ require('telescope').setup{
   extensions = {
   }
 }
+  -- hop.nvim
 
+require('hop').setup()
 
-
+vim.api.nvim_set_keymap('', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>", {})
+vim.api.nvim_set_keymap('', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>", {})
+vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, hint_offset = -1 })<cr>", {})
+vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, hint_offset = 1 })<cr>", {})
 EOF
