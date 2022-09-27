@@ -188,6 +188,15 @@ lua <<EOF
      new_config.cmd = angular_cmd
      end,
   }
+
+  require'lspconfig'.angularls.setup{
+    init_options = {
+      cache = {
+        directory = ".ccls-cache";
+      };
+    }
+  }
+
   
 -- nvim-hardline
 require('hardline').setup {}
