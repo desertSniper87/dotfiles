@@ -98,6 +98,8 @@ nnoremap <c-p><c-p> <cmd>Telescope live_grep<cr>
 nnoremap <c-p><c-i> <cmd>Telescope buffers<cr>
 nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
 nnoremap <c-p><c-g> <cmd>Telescope git_files<cr>
+nnoremap <c-p><c-q> <cmd>Telescope quickfix<cr>
+nnoremap <c-p><c-r> <cmd>Telescope registers<cr>
 
 lua <<EOF
   -- Setup nvim-cmp.
