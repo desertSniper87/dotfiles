@@ -8,6 +8,7 @@ nnoremap <Right> :bnext<Return>
  
 "Visual mode Search and replace
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <C-r><C-r> "hy:.,$s/<C-r>h//gc<left><left><left>
 "Visual mode swap
 vnoremap <C-x> <Esc>`.``gvP``P
 "Visual mode search selected 
