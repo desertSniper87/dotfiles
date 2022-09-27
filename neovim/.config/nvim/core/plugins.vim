@@ -39,7 +39,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'jremmen/vim-ripgrep'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+"Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'phaazon/hop.nvim'
 
 call plug#end()
@@ -109,6 +109,11 @@ lua <<EOF
 
 
   cmp.setup({
+    -- completion = {
+    --   completeopt = 'menu,menuone,noselect',
+    --   autocomplete = true
+    -- },
+
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
@@ -197,6 +202,12 @@ lua <<EOF
     }
   }
 
+if vim.fn.has("mac") == 1 then
+  require'lspconfig'.sourcekit.setup{
+    init_options = {
+    }
+  }
+end
   
 -- nvim-hardline
 require('hardline').setup {}
