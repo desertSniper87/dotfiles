@@ -14,3 +14,5 @@ sudo apt install shellcheck
 #curl -OL https://github.com/latex-lsp/texlab/releases/download/$texlab_version/texlab-x86_64-linux.tar.gz
 #tar -xf texlab-x86_64-linux.tar.gz
 #sudo mv texlab /usr/bin/
+
+sudo apt  install ccls
