@@ -177,7 +177,7 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls' }
+  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls' }
   for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
           on_attach = on_attach,
@@ -197,7 +197,7 @@ lua <<EOF
      end,
   }
 
-  require'lspconfig'.angularls.setup{
+  require'lspconfig'.ccls.setup{
     init_options = {
       cache = {
         directory = ".ccls-cache";
@@ -231,7 +231,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable =  { "vim", "latex" },
+    disable =  { "vim", "latex", "kotlin" },
     additional_vim_regex_highlighting = false,
   }
 }
