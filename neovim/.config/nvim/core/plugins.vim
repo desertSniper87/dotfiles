@@ -93,7 +93,8 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " vim-surround
 let g:surround_{char2nr("\<CR>")} = "\n\r\n"
 
-nnoremap <c-p><c-o> <cmd>Telescope find_files<cr>
+nnoremap <c-p><c-o> <cmd>Telescope oldfiles<cr>
+nnoremap <c-p><c-f> <cmd>Telescope find_files<cr>
 nnoremap <c-p><c-p> <cmd>Telescope live_grep<cr>
 nnoremap <c-p><c-i> <cmd>Telescope buffers<cr>
 nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
