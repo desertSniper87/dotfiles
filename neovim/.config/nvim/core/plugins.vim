@@ -42,6 +42,11 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'phaazon/hop.nvim'
 
+" Markdown 
+ Plug 'godlygeek/tabular'
+ Plug 'preservim/vim-markdown'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+
 call plug#end()
 
 " Nerd Tree
@@ -101,6 +106,15 @@ nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
 nnoremap <c-p><c-g> <cmd>Telescope git_files<cr>
 nnoremap <c-p><c-q> <cmd>Telescope quickfix<cr>
 nnoremap <c-p><c-r> <cmd>Telescope registers<cr>
+
+" Markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1 
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1  
 
 lua <<EOF
   -- Setup nvim-cmp.
@@ -232,7 +246,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable =  { "vim", "latex", "kotlin" },
+    disable =  { "vim", "latex", "kotlin", "markdown" },
     additional_vim_regex_highlighting = false,
   }
 }
