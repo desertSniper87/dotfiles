@@ -42,6 +42,11 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'phaazon/hop.nvim'
 
+" Markdown 
+ Plug 'godlygeek/tabular'
+ Plug 'preservim/vim-markdown'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+
 call plug#end()
 
 " Nerd Tree
@@ -93,13 +98,23 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " vim-surround
 let g:surround_{char2nr("\<CR>")} = "\n\r\n"
 
-nnoremap <c-p><c-o> <cmd>Telescope find_files<cr>
+nnoremap <c-p><c-o> <cmd>Telescope oldfiles<cr>
+nnoremap <c-p><c-f> <cmd>Telescope find_files<cr>
 nnoremap <c-p><c-p> <cmd>Telescope live_grep<cr>
 nnoremap <c-p><c-i> <cmd>Telescope buffers<cr>
 nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
 nnoremap <c-p><c-g> <cmd>Telescope git_files<cr>
 nnoremap <c-p><c-q> <cmd>Telescope quickfix<cr>
 nnoremap <c-p><c-r> <cmd>Telescope registers<cr>
+
+" Markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1 
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1  
 
 lua <<EOF
   -- Setup nvim-cmp.
@@ -177,7 +192,7 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls' }
+  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls' }
   for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
           on_attach = on_attach,
@@ -197,7 +212,7 @@ lua <<EOF
      end,
   }
 
-  require'lspconfig'.angularls.setup{
+  require'lspconfig'.ccls.setup{
     init_options = {
       cache = {
         directory = ".ccls-cache";
@@ -231,7 +246,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable =  { "vim", "latex" },
+    disable =  { "vim", "latex", "kotlin", "markdown" },
     additional_vim_regex_highlighting = false,
   }
 }

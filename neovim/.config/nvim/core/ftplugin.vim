@@ -10,4 +10,3 @@ endfunction
 function! Latex_settings()
     syntax on
 endfunction
- 
