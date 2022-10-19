@@ -282,13 +282,15 @@ require('telescope').setup{
   extensions = {
   }
 }
-  -- hop.nvim
+-- hop.nvim
 
 require('hop').setup()
 
 vim.api.nvim_set_keymap('', '<leader>w', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR,  current_line_only = false })<cr>", {})
-vim.api.nvim_set_keymap('', '<leader>W', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,  current_line_only = false })<cr>", {})
-vim.api.nvim_set_keymap('', '<leader>p', "<cmd>lua require'hop'.hint_patterns({ current_line_only = false })<cr>", {})
+vim.api.nvim_set_keymap('', '<leader>b', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,  current_line_only = false })<cr>", {})
+vim.api.nvim_set_keymap('', '<leader>e', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR,  current_line_only = false, hint_position = require'hop.hint'.HintPosition.END})<cr>", {})
+vim.api.nvim_set_keymap('', '<leader>E', "<cmd>lua require'hop'.hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,  current_line_only = false, hint_position = require'hop.hint'.HintPosition.END})<cr>", {})
+vim.api.nvim_set_keymap('', '<space>p', "<cmd>lua require'hop'.hint_patterns({ current_line_only = false })<cr>", {})
 vim.api.nvim_set_keymap('', '<leader>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>", {})
 vim.api.nvim_set_keymap('', '<leader>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>", {})
 vim.api.nvim_set_keymap('', '<leader>t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, hint_offset = -1 })<cr>", {})
