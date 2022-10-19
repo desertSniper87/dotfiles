@@ -4,7 +4,8 @@ autocmd FileType tex call Latex_settings()
 
 
 function! Markdown_settings()
-    let b:surround_{char2nr('b')} = "```bash\n\r\n```"
+    let b:surround_{char2nr('s')} = "```bash\n\r\n```"
+    let b:surround_{char2nr('b')} = "**\r**"
 endfunction
 
 function! Latex_settings()
