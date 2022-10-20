@@ -13,6 +13,6 @@ if exists("g:neovide")
         execute('set guifont=DejaVu\ Sans\ Mono:h'.g:gui_font_size)
     endfunction
 
-    noremap <expr><C-=> ResizeFont(1)
-    noremap <expr><C--> ResizeFont(-1)
+    noremap <expr><C-Up> ResizeFont(1)
+    noremap <expr><C-Down> ResizeFont(-1)
 endif
