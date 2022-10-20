@@ -167,3 +167,4 @@ for FILE in ~/bashrc/*; do
     source $FILE
 done
 
+alias "c=xclip -selection clipboard"
