@@ -212,17 +212,18 @@ lua <<EOF
      end,
   }
 
+
+if vim.fn.has("mac") == 1 then
+  require'lspconfig'.sourcekit.setup{
+    init_options = {
+    }
+  }
+else
   require'lspconfig'.ccls.setup{
     init_options = {
       cache = {
         directory = ".ccls-cache";
       };
-    }
-  }
-
-if vim.fn.has("mac") == 1 then
-  require'lspconfig'.sourcekit.setup{
-    init_options = {
     }
   }
 end
