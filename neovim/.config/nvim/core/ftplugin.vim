@@ -1,7 +1,4 @@
-
 autocmd FileType markdown call Markdown_settings()
-autocmd FileType tex call Latex_settings()
-
 
 function! Markdown_settings()
     let b:surround_{char2nr('s')} = "```bash\n\r\n```"
@@ -9,6 +6,8 @@ function! Markdown_settings()
 
     let @a=":%s/[•–]/-/gc"
 endfunction
+
+autocmd FileType tex call Latex_settings()
 
 function! Latex_settings()
     syntax on
