@@ -12,3 +12,9 @@ autocmd FileType tex call Latex_settings()
 function! Latex_settings()
     syntax on
 endfunction
+
+autocmd FileType sh call Shell_settings()
+
+function! Shell_settings()
+    nnoremap <F9> :!%:p<Enter>
+endfunction
