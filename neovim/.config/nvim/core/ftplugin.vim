@@ -18,3 +18,11 @@ autocmd FileType sh call Shell_settings()
 function! Shell_settings()
     nnoremap <F9> :!%:p<Enter>
 endfunction
+
+
+autocmd FileType html call HTML_settings()
+
+function! HTML_settings()
+    nnoremap <leader>a :s/<[^>]*>/\r&\r/g<Enter>
+    nnoremap <leader>s :g/^$/d<Enter>
+endfunction
