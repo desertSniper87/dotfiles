@@ -6,6 +6,8 @@ function! Markdown_settings()
 
     let @a=":%s/[•–]/-/gc"
 endfunction
+    vnoremap <leader>s :s/\(,\<bar>and\<bar>\.\)/\r/g<Enter>
+    ",and.
 
 autocmd FileType tex call Latex_settings()
 
