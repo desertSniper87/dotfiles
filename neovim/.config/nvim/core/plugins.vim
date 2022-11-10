@@ -47,6 +47,8 @@ Plug 'phaazon/hop.nvim'
  Plug 'preservim/vim-markdown'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 
+Plug 'folke/which-key.nvim'
+
 call plug#end()
 
 " Nerd Tree
@@ -263,6 +265,8 @@ require('gitsigns').setup {
    -- Navigation
    map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true})
    map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
+   map('n', '<leader>hp', gs.preview_hunk)
+   map('n', '<leader>hd', gs.diffthis)
 
    -- Text object
    map('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>')
@@ -296,4 +300,9 @@ vim.api.nvim_set_keymap('', '<leader>f', "<cmd>lua require'hop'.hint_char1({ dir
 vim.api.nvim_set_keymap('', '<leader>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>", {})
 vim.api.nvim_set_keymap('', '<leader>t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, hint_offset = -1 })<cr>", {})
 vim.api.nvim_set_keymap('', '<leader>T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, hint_offset = 1 })<cr>", {})
+
+
+-- which-key
+
+require("which-key").setup {}
 EOF
