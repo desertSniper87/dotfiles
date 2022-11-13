@@ -48,6 +48,7 @@ Plug 'phaazon/hop.nvim'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'folke/which-key.nvim'
+Plug 'sile-typesetter/vim-sile'
 
 call plug#end()
 
