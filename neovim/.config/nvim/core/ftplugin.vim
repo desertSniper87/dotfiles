@@ -6,6 +6,8 @@ function! Markdown_settings()
 
     let @a=":%s/[•–]/-/gc"
 endfunction
+    vnoremap <leader>s :s/\(,\<bar>and\<bar>\.\)/\r/g<Enter>
+    ",and.
 
 autocmd FileType tex call Latex_settings()
 
@@ -17,4 +19,12 @@ autocmd FileType sh call Shell_settings()
 
 function! Shell_settings()
     nnoremap <F9> :!%:p<Enter>
+endfunction
+
+
+autocmd FileType html call HTML_settings()
+
+function! HTML_settings()
+    nnoremap <leader>a :s/<[^>]*>/\r&\r/g<Enter>
+    nnoremap <leader>s :g/^$/d<Enter>
 endfunction

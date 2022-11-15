@@ -168,3 +168,5 @@ for FILE in ~/bashrc/*; do
 done
 
 alias "c=xclip -selection clipboard"
+alias rm='echo "Please use trash-cli for temporary deletion"; false'
+alias vim='nvim'
