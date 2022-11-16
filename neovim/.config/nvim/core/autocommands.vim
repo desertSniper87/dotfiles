@@ -65,6 +65,8 @@ inoremap <silent> <C-Down> <Esc>:call AddEmptyLineBelow()<CR>
 imap <Up> <Esc> [<space>A
 imap <Down> <Esc> ]<space>A
 
+imap <C-Q>f <C-R>=expand("%:t:r")<CR>
+
 "Tim Pope's cursor keyscheme 
 "Requires vim-unimpaired
 nmap <Up> [e
