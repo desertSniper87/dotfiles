@@ -51,6 +51,7 @@ Plug 'phaazon/hop.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
@@ -121,6 +122,10 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1 
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1  
+
+" vim-easy-align
+xmap <leader>a <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
 
 lua <<EOF
   local keymap = vim.keymap.set
@@ -367,4 +372,5 @@ vim.api.nvim_set_keymap('', '<leader>T', "<cmd>lua require'hop'.hint_char1({ dir
 -- which-key
 
 require("which-key").setup {}
+
 EOF
