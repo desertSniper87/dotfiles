@@ -111,6 +111,7 @@ nnoremap <c-p><c-g> <cmd>Telescope git_files<cr>
 nnoremap <c-p><c-q> <cmd>Telescope quickfix<cr>
 nnoremap <c-p><c-r> <cmd>Telescope registers<cr>
 
+
 " Markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
@@ -121,6 +122,7 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1  
 
 lua <<EOF
+  local keymap = vim.keymap.set
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
@@ -323,6 +325,29 @@ require('telescope').setup{
   extensions = {
   }
 }
+
+
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+local tb = require('telescope.builtin')
+local opts = { noremap = true, silent = true }
+
+keymap('v', '<leader><leader>', function()
+    local text = vim.getVisualSelection()
+    tb.live_grep({ default_text = text })
+end, opts)
+
 -- hop.nvim
 
 require('hop').setup()
