@@ -24,6 +24,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'uga-rosa/cmp-dictionary'
 
 Plug 'ojroques/nvim-hardline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -126,7 +127,7 @@ lua <<EOF
 
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 
   cmp.setup({
@@ -158,6 +159,7 @@ lua <<EOF
       { name = 'nvim_lsp' },
       { name = 'path', option = {} },
       { name = 'vsnip' },
+	  { name = "dictionary", keyword_length = 2 },
     }, {
       { name = 'buffer' },
     })
@@ -190,9 +192,38 @@ lua <<EOF
     })
   })
 
+
+
+  -- CMP Dictionary
+  require("cmp_dictionary").setup({
+      dic = {
+          ["*"] = { "/usr/share/dict/words" },
+          ["lua"] = "path/to/lua.dic",
+          ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+          filename = {
+              ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+          },
+          filepath = {
+              ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+          },
+          spelllang = {
+              en = "path/to/english.dic",
+          },
+      },
+      -- The following are default values.
+      exact = 2,
+      first_case_insensitive = false,
+      document = false,
+      document_command = "wn %s -over",
+      async = false, 
+      max_items = -1,
+      capacity = 5,
+      debug = false,
+  })
+
   -- Setup lspconfig.
   local lspconfig = require('lspconfig')
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
   local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls' }

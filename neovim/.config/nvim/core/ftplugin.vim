@@ -4,7 +4,7 @@ function! Markdown_settings()
     let b:surround_{char2nr('s')} = "```bash\n\r\n```"
     let b:surround_{char2nr('b')} = "**\r**"
 
-    let @a=":%s/[•–]/-/gc"
+    let @a=":%s/[•–○␣]/-/gc"
 endfunction
     vnoremap <leader>s :s/\(,\<bar>and\<bar>\.\)/\r/g<Enter>
     ",and.
