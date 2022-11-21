@@ -50,6 +50,7 @@ Plug 'phaazon/hop.nvim'
 
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
