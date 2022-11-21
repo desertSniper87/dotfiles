@@ -105,7 +105,7 @@ let g:surround_{char2nr("\<CR>")} = "\n\r\n"
 nnoremap <c-p><c-o> <cmd>Telescope oldfiles<cr>
 nnoremap <c-p><c-f> <cmd>Telescope find_files<cr>
 nnoremap <c-p><c-p> <cmd>Telescope live_grep<cr>
-nnoremap <c-p><c-i> <cmd>Telescope buffers<cr>
+nnoremap <c-p><c-k> <cmd>Telescope buffers<cr>
 nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
 nnoremap <c-p><c-g> <cmd>Telescope git_files<cr>
 nnoremap <c-p><c-q> <cmd>Telescope quickfix<cr>
