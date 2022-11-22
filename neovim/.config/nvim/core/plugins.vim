@@ -24,6 +24,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'uga-rosa/cmp-dictionary'
 
 Plug 'ojroques/nvim-hardline'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -49,6 +50,8 @@ Plug 'phaazon/hop.nvim'
 
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
@@ -104,11 +107,12 @@ let g:surround_{char2nr("\<CR>")} = "\n\r\n"
 nnoremap <c-p><c-o> <cmd>Telescope oldfiles<cr>
 nnoremap <c-p><c-f> <cmd>Telescope find_files<cr>
 nnoremap <c-p><c-p> <cmd>Telescope live_grep<cr>
-nnoremap <c-p><c-i> <cmd>Telescope buffers<cr>
+nnoremap <c-p><c-k> <cmd>Telescope buffers<cr>
 nnoremap <c-p><c-l> <cmd>Telescope help_tags<cr>
 nnoremap <c-p><c-g> <cmd>Telescope git_files<cr>
 nnoremap <c-p><c-q> <cmd>Telescope quickfix<cr>
 nnoremap <c-p><c-r> <cmd>Telescope registers<cr>
+
 
 " Markdown
 let g:vim_markdown_folding_disabled = 1
@@ -119,14 +123,19 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1  
 
+" vim-easy-align
+xmap <leader>a <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
+
 lua <<EOF
+  local keymap = vim.keymap.set
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
 
   -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 
   cmp.setup({
@@ -158,6 +167,7 @@ lua <<EOF
       { name = 'nvim_lsp' },
       { name = 'path', option = {} },
       { name = 'vsnip' },
+	  { name = "dictionary", keyword_length = 2 },
     }, {
       { name = 'buffer' },
     })
@@ -190,9 +200,38 @@ lua <<EOF
     })
   })
 
+
+
+  -- CMP Dictionary
+  require("cmp_dictionary").setup({
+      dic = {
+          ["*"] = { "/usr/share/dict/words" },
+          ["lua"] = "path/to/lua.dic",
+          ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+          filename = {
+              ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+          },
+          filepath = {
+              ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+          },
+          spelllang = {
+              en = "path/to/english.dic",
+          },
+      },
+      -- The following are default values.
+      exact = 2,
+      first_case_insensitive = false,
+      document = false,
+      document_command = "wn %s -over",
+      async = false, 
+      max_items = -1,
+      capacity = 5,
+      debug = false,
+  })
+
   -- Setup lspconfig.
   local lspconfig = require('lspconfig')
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
   local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls' }
@@ -292,6 +331,29 @@ require('telescope').setup{
   extensions = {
   }
 }
+
+
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+local tb = require('telescope.builtin')
+local opts = { noremap = true, silent = true }
+
+keymap('v', '<leader><leader>', function()
+    local text = vim.getVisualSelection()
+    tb.live_grep({ default_text = text })
+end, opts)
+
 -- hop.nvim
 
 require('hop').setup()
@@ -310,4 +372,5 @@ vim.api.nvim_set_keymap('', '<leader>T', "<cmd>lua require'hop'.hint_char1({ dir
 -- which-key
 
 require("which-key").setup {}
+
 EOF

@@ -99,8 +99,8 @@ URxvt.keysym.M-s:           perl:keyboard-select:search
 !URxvt.keysym.C-S-Up:   font-size:incglobal
 !URxvt.keysym.C-S-Down: font-size:decglobal
 
-!URxvt.resize-font.smaller: C-Down
-!URxvt.resize-font.bigger: C-Up
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
 
 !URxvt.clipboard.autocopy:   true
 !URxvt.keysym.M-c:           perl:clipboard:copy

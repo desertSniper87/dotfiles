@@ -234,7 +234,7 @@ bindsym $Mod+Control+Shift+x [class="^.*"] border toggle
 #for_window [class="Vlc"] border pixel 0
 #for_window [class="mpv"] border pixel 0
 #for_window [class="Pcmanfm"] border pixel 0
-for_window [class="Firefox"] border pixel 1
+for_window [class="[Ff]irefox"] border pixel 1
 for_window [class="chromium"] border pixel 1
 for_window [class="Chromium"] border pixel 1
 for_window [class="chrome"] border pixel 1
@@ -321,14 +321,14 @@ exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 #exec --no-startup-id nitrogen --restore
 exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
 #exec --no-startup-id variety
-#exec --no-startup-id nm-applet
-exec --no-startup-id cmst -m
+exec --no-startup-id nm-applet
+#exec --no-startup-id cmst -m
 exec --no-startup-id connmand
 #exec --no-startup-id cmst
 #exec --no-startup-id dropbox                   #nethog
 exec --no-startup-id dropbox start                   #nethog 
 #exec --no-startup-id ibus-daemon --xim -d
-#exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 #exec --no-startup-id blueberry-tray
 #exec --no-startup-id i3session restore
 #exec --no-startup-id rescuetime
