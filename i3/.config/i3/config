@@ -319,8 +319,9 @@ exec --no-startup-id xautolock -time 6 -locker 'i3lock-fancy'
 exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 
 #exec --no-startup-id nitrogen --restore
-exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
 #exec --no-startup-id variety
+#exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
+exec_always "/home/torsho/dotfiles/wallpapers/script.py --setter feh > /home/torsho/tmp/error.log 2>&1"
 exec --no-startup-id nm-applet
 #exec --no-startup-id cmst -m
 exec --no-startup-id connmand
