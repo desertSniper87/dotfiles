@@ -167,7 +167,7 @@ lua <<EOF
       { name = 'nvim_lsp' },
       { name = 'path', option = {} },
       { name = 'vsnip' },
-	  { name = "dictionary", keyword_length = 2 },
+	  { name = "dictionary", keyword_length = 4 },
     }, {
       { name = 'buffer' },
     })
