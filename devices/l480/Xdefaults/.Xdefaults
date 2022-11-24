@@ -1,0 +1,337 @@
+!-------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
+
+!Xft.dpi:                    96
+!Xft.antialias:              false
+!Xft.rgba:                   rgb
+!Xft.hinting:                true
+!Xft.hintstyle:              hintslight
+
+!-------------------------------------------------------------------------------
+! URxvt settings
+! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
+! More info at:
+! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!-------------------------------------------------------------------------------
+
+URxvt.depth:                32
+URxvt.geometry:             90x30
+URxvt.transparent:          false
+URxvt.fading:               0
+! URxvt.urgentOnBell:         true
+! URxvt.visualBell:           true
+URxvt.loginShell:           true
+URxvt.saveLines:            4096
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+
+! Fonts
+URxvt.allow_bold:           true
+!URxvt*font:                 -*-terminus-*-12-120-72-72-c-60-iso8859-1
+!URxvt*font:                 -*-terminus-bold-*-*-*-14-*-*-*-*
+!URxvt*font:                 xft:bitstream vera sans Mono:size=12:antialias=true
+!URxvt*boldFont:             xft:bitstream vera sans Mono:style=bold:size=12:antialias=true
+!URxvt.font:                 -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
+!URxvt*boldFont:             xft:bitstream vera sans Mono:size=12:antialias=true
+!URxvt*font:                 xft:dejavu sans Mono:size=12:antialias=true
+!URxvt*boldFont:             xft:dejavu sans Mono:size=12:antialias=true
+!URxvt*font:                 xft:droid sans mono for powerline:size=10:antialias=true
+!URxvt*font:                 xft:droid sans mono for powerline:style=bold:size=10:antialias=true
+!URxvt*boldFont:             xft:droid sans mono for powerline:style=bold:size=10:antialias=true
+!URxvt*font:                 xft:source code pro:size=12:antialias=true
+!URxvt*boldFont:             xft:source code pro:size=12:antialias=true
+!URxvt*font:                 xft:ubuntu mono:size=12:antialias=true
+!URxvt*boldFont:             xft:ubuntu mono bold:size=12:antialias=true
+!URxvt*font:                 xft:inconsolata regular:size=10:antialias=true
+!URxvt*boldFont:             xft:inconsolata regular:size=10:antialias=true
+!URxvt*font:                 xft:monaco:size=12:antialias=true
+!URxvt*boldFont:             xft:monaco:size=12:antialias=true
+!urxvt*font:                 -misc-terminusmodx.icons-medium-r-normal-*-12-120-72-72-c-60-iso8859-1
+!URxvt*font:                 xft:monaco\ for\ powerline:size=12:antialias=true
+!URxvt*boldFont:             xft:monaco\ for\ powerline:size=12:antialias=true
+!URxvt*font :                xft:Tamzenforpowerline:style=bold:size=8
+!URxvt*font :                xft:ProFont\ for\ powerline:size=12:minspace=true,xft:Dejavu Sans:pixelsize=27
+!URxvt*boldFont :            xft:ProFont\ for\ powerline:style=bold:size=12
+!URxvt*font :                xft:Terminess\ Powerline:style=bold:size=12
+!URxvt*font :                xft:Roboto mono for powerline:size=12
+!URxvt*boldFont :            xft:Roboto mono for powerline:style=bold:size=12
+!URxvt*font :                -misc-tamzenforpowerline-bold-r-normal--12-87-100-100-c-60-iso10646-1
+!URxvt*font :                : -misc-tamzenforpowerline-medium-r-normal--16*
+!URxvt*boldFont:             xft:Tamzenforpowerline\ bold:size=12:antialias=true
+!URxvt*font :                xft:Space\ Mono\ for\ Powerline:size=8:antialias=true
+!URxvt*boldFont:             xft:Space\ Mono\ for\ Powerline:size=8:style=bold:antialias=true
+
+URxvt*font :                xft:TerminessTTF Nerd Font Mono:size=13:antialias=true,xft:Mitra Mono:pixelsize=23
+URxvt*boldFont :            xft:TerminessTTF Nerd Font Mono:style=bold:size=13:antialias=true
+
+!URxvt.keysym.C-Down:        command:\033]710;-*-dina-medium-r-normal-12-*-*-*-*-*-*-*\007
+URxvt.keysym.M-C-Down:      command:\033]710; -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1\007
+!URxvt.keysym.M-C-Down:      command:\033]710;xft:terminus:pixelsize=14\007
+!URxvt.keysym.C-Down:        command:\033]710;xft:Dina:pixelsize=13\007
+!URxvt.keysym.C-Up:          command:\033]710;xft:bitstream vera sans Mono:pixelsize=16:antialias=true\007
+!URxvt.keysym.C-Up:          command:\033]710;xft:Ubuntu\ Mono\ Derivative\ Powerline:style=bold:pixelsize=16:antialias=true\007
+!URxvt.keysym.C-Up:          command:\033]710;xft:dejavu sans Mono:antialias=true\007
+!URxvt.keysym.M-C-Up:        command:\033]710;xft:monaco:antialias=true\007
+URxvt.keysym.M-C-Up:        command:\033]710;xft:monaco\ for\ powerline:size=12:antialias=true\007
+
+
+! Fix font space
+URxvt*letterSpace: 1
+
+! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+
+! Perl extensions1
+URxvt.perl-lib:             /home/torsho/urxvt-perls
+URxvt.matcher.button:       1
+URxvt.urlLauncher:          google-chrome-stable
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,resize-font,matcher,vtwheel
+URxvt.url-select.launcher:  google-chrome-stable
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+
+!URxvt.resize-font.smaller: C-Down
+!URxvt.resize-font.bigger: C-Up
+
+!URxvt.clipboard.autocopy:   true
+!URxvt.keysym.M-c:           perl:clipboard:copy
+!URxvt.keysym.M-v:           perl:clipboard:paste
+!URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.keysym.M-v: eval:paste_clipboard
+
+
+! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #657b83
+URxvt.cursorUnderline:      false
+
+! Pointer
+URxvt.pointerBlank:         true
+
+! ScrollBack Buffer
+URxvt*saveLines:            4095
+
+! Print Pipe
+URxvt.print-pipe: cat > $(TMPDIR=$HOME/urxvt-dumps mktemp urxvt.XXXXXX)
+
+!! do not scroll with output
+!URxvt*scrollTtyOutput: false
+
+!!Source http://github.com/altercation/solarized
+
+!*background: #002b36
+!*foreground: #657b83
+!!!*fading: 40
+!*fadeColor: #002b36
+!*cursorColor: #93a1a1
+!*pointerColorBackground: #586e75
+!*pointerColorForeground: #93a1a1
+
+!!! black dark/light
+!*color0: #073642
+!*color8: #002b36
+
+!!! red dark/light
+!*color1: #dc322f
+!*color9: #cb4b16
+
+!!! green dark/light
+!*color2: #859900
+!*color10: #586e75
+
+!!! yellow dark/light
+!*color3: #b58900
+!*color11: #657b83
+
+!!! blue dark/light
+!*color4: #268bd2
+!*color12: #839496
+
+!!! magenta dark/light
+!*color5: #d33682
+!*color13: #6c71c4
+
+!!! cyan dark/light
+!*color6: #2aa198
+!*color14: #93a1a1
+
+!!! white dark/light
+!*color7: #eee8d5
+!*color15: #fdf6e3
+
+!Source:https://github.com/dracula/xresources/blob/master/Xresources
+!Dracula Xresources palette
+!*.foreground: #F8F8F2
+!*.background: #282A36
+!*.color0:     #000000
+!*.color8:     #4D4D4D
+!*.color1:     #FF5555
+!*.color9:     #FF6E67
+!*.color2:     #50FA7B
+!*.color10:    #5AF78E
+!*.color3:     #F1FA8C
+!*.color11:    #F4F99D
+!*.color4:     #BD93F9
+!*.color12:    #CAA9FA
+!*.color5:     #FF79C6
+!*.color13:    #FF92D0
+!*.color6:     #8BE9FD
+!*.color14:    #9AEDFE
+!*.color7:     #BFBFBF
+!*.color15:    #E6E6E6Xft.dpi:        96
+
+
+! -----------------------------------------------------------------------------
+! File: gruvbox-urxvt256.xresources
+! Description: Retro groove colorscheme generalized
+!Author: <morhetz> morhetz@gmail.com
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 13 Dec 2013
+! -----------------------------------------------------------------------------
+!Source: https://github.com/morhetz/gruvbox-contrib/blob/master/urxvt256/gruvbox-urxvt256.xresources
+!URxvt.color24:  #076678
+!URxvt.color66:  #427b58
+!URxvt.color88:  #9d0006
+!URxvt.color96:  #8f3f71
+!URxvt.color100: #79740e
+!URxvt.color108: #8ec07c
+!URxvt.color109: #83a598
+!URxvt.color130: #af3a03
+!URxvt.color136: #b57614
+!URxvt.color142: #b8bb26
+!URxvt.color167: #fb4934
+!URxvt.color175: #d3869b
+!URxvt.color208: #fe8019
+!URxvt.color214: #fabd2f
+!URxvt.color223: #ebdbb2
+!URxvt.color228: #f2e5bc
+!URxvt.color229: #fbf1c7
+!URxvt.color230: #f9f5d7
+!URxvt.color234: #1d2021
+!URxvt.color235: #282828
+!URxvt.color236: #32302f
+!URxvt.color237: #3c3836
+!URxvt.color239: #504945
+!URxvt.color241: #665c54
+!URxvt.color243: #7c6f64
+!URxvt.color244: #928374
+!URxvt.color245: #928374
+!URxvt.color246: #a89984
+!URxvt.color248: #bdae93
+!URxvt.color250: #d5c4a1
+!
+!Source: Hund from terminal.sexy
+! special
+*.foreground:   #ffffff
+*.background:   #161616
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #222222
+*.color8:       #666666
+
+! red
+*.color1:       #e84f4f
+*.color9:       #d23d3d
+
+! green
+*.color2:       #b7ce42
+*.color10:      #bde077
+
+! yellow
+*.color3:       #fea63c
+*.color11:      #ffe863
+
+! blue
+*.color4:       #66aabb
+*.color12:      #28519A
+
+! magenta
+*.color5:       #b7416e
+*.color13:      #e16a98
+
+! cyan
+*.color6:       #6d878d
+*.color14:      #42717b
+
+! orange
+!*.color6:       #ff3200
+!*.color14:      #ff5d00
+
+! white
+*.color7:       #dddddd
+*.color15:      #cccccc
+
+! Atom One Light theme
+
+!xterm*background: #f9f9f9
+!xterm*foreground: #383a42
+!xterm*cursorColor: #d0d0d0
+!xterm*color0: #000000
+!xterm*color1: #E45649
+!xterm*color2: #50A14F
+!xterm*color3: #986801
+!xterm*color4: #4078F2
+!xterm*color5: #A626A4
+!xterm*color6: #0184BC
+!xterm*color7: #A0A1A7
+!xterm*color8: #5c6370
+!xterm*color9: #e06c75
+!xterm*color10: #50A14F
+!xterm*color11: #986801
+!xterm*color12: #4078F2
+!xterm*color13: #A626A4
+!xterm*color14: #0184BC
+!xterm*color15: #ffffff
+
+!Terminal.sexy solarized light
+! special
+!*.foreground:   #586e75
+!*.background:   #fdf6e3
+!*.cursorColor:  #586e75
+
+!! black
+!*.color0:       #002b36
+!*.color8:       #657b83
+
+!! red
+!*.color1:       #dc322f
+!*.color9:       #dc322f
+
+!! green
+!*.color2:       #859900
+!*.color10:      #859900
+
+!! yellow
+!*.color3:       #b58900
+!*.color11:      #b58900
+
+!! blue
+!*.color4:       #268bd2
+!*.color12:      #268bd2
+
+!! magenta
+!*.color5:       #6c71c4
+!*.color13:      #6c71c4
+
+!! cyan
+!*.color6:       #2aa198
+!*.color14:      #2aa198
+
+!! white
+!*.color7:       #93a1a1
+!*.color15:      #fdf6e3
+
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.hintstyle:  hintslightQ
