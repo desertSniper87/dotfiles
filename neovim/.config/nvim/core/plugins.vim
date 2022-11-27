@@ -167,7 +167,7 @@ lua <<EOF
       { name = 'nvim_lsp' },
       { name = 'path', option = {} },
       { name = 'vsnip' },
-	  { name = "dictionary", keyword_length = 2 },
+	  { name = "dictionary", keyword_length = 4 },
     }, {
       { name = 'buffer' },
     })
@@ -206,20 +206,20 @@ lua <<EOF
   require("cmp_dictionary").setup({
       dic = {
           ["*"] = { "/usr/share/dict/words" },
-          ["lua"] = "path/to/lua.dic",
-          ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
-          filename = {
-              ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
-          },
-          filepath = {
-              ["%.tmux.*%.conf"] = "path/to/tmux.dic"
-          },
-          spelllang = {
-              en = "path/to/english.dic",
-          },
+          -- ["lua"] = "path/to/lua.dic",
+          -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+          -- filename = {
+          --     ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+          -- },
+          -- filepath = {
+          --     ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+          -- },
+          -- spelllang = {
+          --     en = "path/to/english.dic",
+          -- },
       },
       -- The following are default values.
-      exact = 2,
+      exact = 4,
       first_case_insensitive = false,
       document = false,
       document_command = "wn %s -over",
