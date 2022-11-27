@@ -50,7 +50,7 @@ Plug 'phaazon/hop.nvim'
 
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
 Plug 'junegunn/vim-easy-align'
 
 call plug#end()
