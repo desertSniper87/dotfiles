@@ -357,13 +357,14 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id xbindkeys
 
 # Keyboard layout
-exec --no-startup-id "setxkbmap -layout us,bd -variant ,bd -option grp:shifts_toggle"
+exec --no-startup-id "setxkbmap -layout us,bd -variant ,probhat -option grp:shifts_toggle"
 
 #touchpad settigns
 #exec --no-startup-id "synclient TapButton1=1"
 #exec --no-startup-id "synclient TapButton2=2"
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
 exec synclient VertEdgeScroll=1
+exec synclient TapButton1=0
 exec --no-startup-id syndaemon -t -k -i 2 -d
 
 

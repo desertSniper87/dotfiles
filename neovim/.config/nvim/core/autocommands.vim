@@ -44,10 +44,6 @@ nnoremap <Space>w :w <CR>
 nnoremap <Space>e :e <CR>
 nnoremap <Space>y4 y$ sCR>
 nnoremap <Space>ya :%y+ <CR>
-"nnoremap <Space>rp :w <bar> :term python % <CR>
-nnoremap <Space>rp :w <bar> :!python3.7 % <CR>
-nnoremap <Space>rs :source % <CR>
-"nnoremap <Space>rc :g++; ./a.out <CR>
 nnoremap <Space>rc :!gcc % ; ./a.out <CR>
 nnoremap <Space>r :cd %:p:h <CR>
 nnoremap <Space><Space> i<Space><esc>
