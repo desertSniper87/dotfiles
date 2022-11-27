@@ -15,6 +15,4 @@ if exists("g:neovide")
 
     noremap <expr><C-Up> ResizeFont(1)
     noremap <expr><C-Down> ResizeFont(-1)
-
-    let g:neovide_transparency=1
 endif
