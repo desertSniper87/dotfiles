@@ -28,3 +28,15 @@ function! HTML_settings()
     nnoremap <leader>a :s/<[^>]*>/\r&\r/g<Enter>
     nnoremap <leader>s :g/^$/d<Enter>
 endfunction
+
+autocmd FileType python call Python_settings()
+
+function! Python_settings()
+    nnoremap <F9> :w <bar> :!python3 % <CR>
+endfunction
+
+autocmd FileType vim call Vim_settings()
+
+function! Vim_settings()
+    nnoremap <F9> :source % <CR>
+endfunction
