@@ -1,6 +1,6 @@
 colorscheme Benokai
 
-hi Normal ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 
 "hi Normal guibg=none ctermbg=none
 "hi LineNr guibg=none ctermbg=none
