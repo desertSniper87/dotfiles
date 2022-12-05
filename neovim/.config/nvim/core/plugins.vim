@@ -1,5 +1,5 @@
 call plug#begin()
-" Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
@@ -51,7 +51,7 @@ Plug 'phaazon/hop.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
 "Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
-Plug 'junegunn/vim-easy-align'
+Plug 'pearofducks/ansible-vim'
 
 call plug#end()
 
@@ -234,7 +234,7 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls' }
+  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls', 'ansiblels' }
   for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
           on_attach = on_attach,

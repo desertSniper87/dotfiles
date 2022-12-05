@@ -6,7 +6,7 @@ if [[ $UID != 0 ]]; then
     exit 1
 fi
 
-npm install -g pyright typescript-language-server svelte-language-server bash-language-server @angular/language-server
+npm install -g pyright typescript-language-server svelte-language-server bash-language-server @angular/language-server @ansible/ansible-language-server
 sudo apt install shellcheck
 
 #cd "$(mktemp -d)" || return

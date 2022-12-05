@@ -40,3 +40,5 @@ autocmd FileType vim call Vim_settings()
 function! Vim_settings()
     nnoremap <F9> :source % <CR>
 endfunction
+
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
