@@ -127,6 +127,10 @@ let g:vim_markdown_json_frontmatter = 1
 xmap <leader>a <Plug>(EasyAlign)
 nmap <leader>a <Plug>(EasyAlign)
 
+" Nerd Commenter
+
+let g:NERDSpaceDelims = 1
+
 lua <<EOF
   local keymap = vim.keymap.set
   -- Setup nvim-cmp.

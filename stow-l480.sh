@@ -12,3 +12,4 @@ stow --verbose --restow shell_scripts
 stow --verbose --restow i3
 stow --verbose --restow Xdefaults
 stow --verbose --restow rxvt_perls
+stow --verbose --restow git
