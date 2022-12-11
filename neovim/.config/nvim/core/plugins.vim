@@ -237,6 +237,26 @@ lua <<EOF
   local lspconfig = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+  -- You will likely want to reduce updatetime which affects CursorHold
+  -- note: this setting is global and should be set only once
+  vim.o.updatetime = 250
+  vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+      buffer = bufnr,
+      callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end
+  })
+
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
   local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls', 'ansiblels' }
   for _, lsp in ipairs(servers) do
@@ -244,7 +264,7 @@ lua <<EOF
           on_attach = on_attach,
           capabilities = capabilities,
           }
-      end
+  end
 
   local configPath = vim.fn.stdpath("config")
   local languageServerPath = configPath.."/languageserver"
