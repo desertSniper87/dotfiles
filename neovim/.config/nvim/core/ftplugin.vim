@@ -35,6 +35,15 @@ function! Python_settings()
     nnoremap <F9> :w <bar> :!python3 % <CR>
 endfunction
 
+nnoremap <F10> :call InsertPrintStatementWithVar() <CR>
+
+function InsertPrintStatementWithVar()
+  let input = input('Enter the value to print: ')
+  let debugStatement = ' ' . input . ': ' . '{' . input . '} '
+
+  exe "normal! a" . debugStatement . "\<Esc>"
+endfunction
+
 autocmd FileType vim call Vim_settings()
 
 function! Vim_settings()
