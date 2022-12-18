@@ -167,3 +167,8 @@ for FILE in ~/bashrc/*; do
     source $FILE
 done
 
+alias "c=wl-copy"
+alias rm='echo "Please use trash-cli for temporary deletion"; false'
+alias vim='nvim'
+
+source "$HOME/git-prompt.sh"

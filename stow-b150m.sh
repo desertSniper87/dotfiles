@@ -6,3 +6,4 @@ stow --verbose --restow vsnip
 stow --verbose -d devices/b150m --target $HOME --restow bash
 stow --verbose --restow alacritty
 stow --verbose --restow shell_scripts
+stow --verbose --restow git
