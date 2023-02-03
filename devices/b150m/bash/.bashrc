@@ -85,13 +85,12 @@ fi
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 
 export PATH="$PATH:/home/torsho/bin"
+export PATH="$PATH:/home/torsho/.local/bin"
 export PATH="$PATH:/home/torsho/depot_tools"
-export PATH="$PATH:/usr/lib/go-1.14/bin"
-export PATH="$PATH:/home/torsho/go/bin"
 export PATH="$PATH:/home/torsho/dotfiles/scripts"
 export PATH="$PATH:/home/torsho/kafka_2.11-2.4.1/bin"
 export PATH="$PATH:/home/torsho/dotfiles/git-custom-scripts"
-export PATH="$(yarn global bin):$PATH" 
+export PATH="$PATH:$(yarn global bin)" 
 export PATH="$PATH:/home/torsho/spring-1.2.0.M2/bin" 
 export PATH=${PATH}:${JAVA_HOME}/bin
 
@@ -133,7 +132,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-GOPATH="/home/torsho/go"
 source /etc/profile.d/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
@@ -168,7 +166,8 @@ for FILE in ~/bashrc/*; do
 done
 
 alias "c=wl-copy"
-alias rm='echo "Please use trash-cli for temporary deletion"; false'
+# alias rm='echo "Please use trash-cli for temporary deletion"; false'
 alias vim='nvim'
 
 source "$HOME/git-prompt.sh"
+export GOPATH=$HOME/go
