@@ -110,14 +110,16 @@
   #multiplier: 3
 
 font:
-  size: 13.0
+  size: 15.0
   normal:
-    family: TerminessTTF Nerd Font Mono
-    style: Bold
+    # family: TerminessTTF Nerd Font Mono
+    family: Iosevka Nerd Font Mono
+    # style: Bold
+    style: Regular
   bold:
-    family: TerminessTTF Nerd Font Mono
+    family: Iosevka Nerd Font Mono
   italic:
-    family: TerminessTTF Nerd Font Mono
+    family: Iosevka Nerd Font Mono
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -717,9 +719,9 @@ selection:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
-  #- { key: Paste,                                       action: Paste          }
-  #- { key: Copy,                                        action: Copy           }
+key_bindings:
+  - { key: V,   mods: Alt,                              action: Paste          }
+  - { key: C,   mods: Alt,                              action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
