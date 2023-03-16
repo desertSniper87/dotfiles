@@ -132,6 +132,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -f ~/.bash_completion ]; then
+    . ~/.bash_completion
+fi
+
 source /etc/profile.d/autojump.sh
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 alias mocp='python3 /home/torsho/mocp-scrobbler.py -d ; mocp'
