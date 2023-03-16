@@ -49,16 +49,14 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
-#
-# Basics:
-#
 set $Locker swaylock && sleep 1
+
+gaps inner 30
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
     #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
@@ -308,7 +306,7 @@ exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 #exec --no-startup-id nitrogen --restore
 #exec --no-startup-id variety
 #exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
-exec "sleep 3 && /home/torsho/dotfiles/wallpapers/script.py --setter feh > /home/torsho/tmp/error.log 2>&1"
+exec "sleep 3 && /home/torsho/dotfiles/wallpapers/script.py --setter hsetroot > /home/torsho/tmp/error.log 2>&1"
 exec --no-startup-id nm-applet
 #exec --no-startup-id cmst -m
 exec --no-startup-id connmand

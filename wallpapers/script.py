@@ -7,7 +7,7 @@ from datetime import datetime
 import argparse
 
 root_dir = "~/Pictures/bing"
-wallpaper_setters = ["feh", "nitrogen", "hsetroot"]
+wallpaper_setters = ["feh", "nitrogen", "hsetroot", "swaybg"]
 
 parser = argparse.ArgumentParser()
 
@@ -26,6 +26,8 @@ def set_wallpaper(img_name, setter_app):
         cmd = f"feh --bg-fill {img_name}" # note that this sets it on all monitors
     elif setter_app == "nitrogen":
         cmd = f"nitrogen {img_name}"
+    elif setter_app == "swaybg":
+        cmd = f"swaybg -i {img_name} -m fill"
     os.system(cmd)
 
 def download_daily_image():
