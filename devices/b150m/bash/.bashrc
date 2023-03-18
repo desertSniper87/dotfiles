@@ -172,6 +172,8 @@ done
 alias "c=wl-copy"
 # alias rm='echo "Please use trash-cli for temporary deletion"; false'
 alias vim='nvim'
+alias obsidian_='flatpak run md.obsidian.Obsidian'
+alias add_='sudo dnf install -y'
 
 source "$HOME/git-prompt.sh"
 export GOPATH=$HOME/go

@@ -10,6 +10,7 @@ set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
+set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
 
 ### Output configuration
 #
@@ -27,9 +28,9 @@ include /etc/sway/config-vars.d/*
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 '~/.config/swaylock/lock.sh' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep '~/.config/swaylock/lock.sh'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -48,8 +49,6 @@ exec swayidle -w \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-
-set $Locker swaylock && sleep 1
 
 gaps inner 30
 
@@ -217,8 +216,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # border / titlebar
-default_border normal
-hide_edge_borders vertical
+default_border pixel 3
+# hide_edge_borders vertical
 bindsym $mod+Control+Shift+x [class="^.*"] border toggle
 #for_window [app_id="^.*"] border pixel 1
 #for_window [app_id="URxvt"] border normal
@@ -304,9 +303,9 @@ exec --no-startup-id xautolock -time 6 -locker 'i3lock-fancy'
 exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 
 #exec --no-startup-id nitrogen --restore
-#exec --no-startup-id variety
+exec --no-startup-id variety
 #exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
-exec "sleep 3 && /home/torsho/dotfiles/wallpapers/script.py --setter hsetroot > /home/torsho/tmp/error.log 2>&1"
+# exec /home/torsho/dotfiles/wallpapers/script.py --setter swaymsg
 exec --no-startup-id nm-applet
 #exec --no-startup-id cmst -m
 exec --no-startup-id connmand
@@ -353,9 +352,6 @@ exec --no-startup-id syndaemon -t -k -i 2 -d
 
 # Workspace layout
 exec_always /home/torsho/per-workspace-layout.pl
-
-# Monitor layout
-exec_always xrandr --output HDMI-1 --left-of eDP-1
 
 # Simple Screenshot
 bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens

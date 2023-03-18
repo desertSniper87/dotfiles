@@ -7,7 +7,7 @@ from datetime import datetime
 import argparse
 
 root_dir = "~/Pictures/bing"
-wallpaper_setters = ["feh", "nitrogen", "hsetroot", "swaybg"]
+wallpaper_setters = ["feh", "nitrogen", "hsetroot", "swaybg", "swaymsg"]
 
 parser = argparse.ArgumentParser()
 
@@ -20,6 +20,8 @@ parser.add_argument("--setter", help="specify tool to use when setting wallpaper
 args = vars(parser.parse_args())
 
 def set_wallpaper(img_name, setter_app):
+    cmd = None
+
     if setter_app == "hsetroot":
         cmd = f"hsetroot -cover {img_name}"
     elif setter_app == "feh":
@@ -28,7 +30,11 @@ def set_wallpaper(img_name, setter_app):
         cmd = f"nitrogen {img_name}"
     elif setter_app == "swaybg":
         cmd = f"swaybg -i {img_name} -m fill"
-    os.system(cmd)
+    elif setter_app == "swaymsg":
+        cmd = f'swaymsg output "*" bg {img_name} fill'
+
+    if cmd:
+        os.system(cmd)
 
 def download_daily_image():
     response = requests.get("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US").json()
