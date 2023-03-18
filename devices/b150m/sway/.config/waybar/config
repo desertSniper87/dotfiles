@@ -10,20 +10,25 @@
     "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
+        // "disable-scroll": true,
+        // "all-outputs": true,
+        // "format": "{name}: {icon}",
+        // "format-icons": {
+            // "1": "",
+            // "3": "",
+            // "3": "",
+            // "U": "",
+            // "5": "",
+            // "urgent": "",
+            // "focused": "",
+            // "default": ""
+        // }
     // },
+    "sway/window" : {
+        "format": "{app_id}: {title}",
+        "on-scroll-up": "{}",
+        "icon": true
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -86,11 +91,11 @@
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{load} ",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "{used}/{total}GiB "
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -148,7 +153,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/media": {
         "format": "{icon} {}",
