@@ -1,31 +1,21 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
+
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
+
+set $term alacritty
+
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
+set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -37,11 +27,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 300 '~/.config/swaylock/lock.sh' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep '~/.config/swaylock/lock.sh'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -60,10 +50,25 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
-#
-# Basics:
-#
+gaps inner 30
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Home mode "$mode_system"
+
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -82,6 +87,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r restart
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -112,28 +118,43 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Workspaces:
 #
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    bindsym $mod+t workspace T
+    bindsym $mod+y workspace Y
+    bindsym $mod+u workspace U
+    bindsym $mod+i workspace I
+    bindsym $mod+o workspace O
+    bindsym $mod+p workspace P
+    bindsym $mod+Tab workspace next
+    bindsym $mod+Shift+Tab workspace prev
+
+
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+    bindsym $mod+Shift+t move container to workspace T
+    bindsym $mod+Shift+y move container to workspace Y
+    bindsym $mod+Shift+u move container to workspace U
+    bindsym $mod+Shift+i move container to workspace I
+    bindsym $mod+Shift+o move container to workspace O
+    bindsym $mod+Shift+p move container to workspace P
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -177,14 +198,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -198,16 +215,59 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# border / titlebar
+default_border pixel 3
+# hide_edge_borders vertical
+bindsym $mod+Control+Shift+x [class="^.*"] border toggle
+#for_window [app_id="^.*"] border pixel 1
+#for_window [app_id="URxvt"] border normal
+#for_window [app_id="Leafpad"] border normal
+#for_window [app_id="Lxappearance"] border normal
+#for_window [app_id="Vlc"] border pixel 0
+#for_window [app_id="mpv"] border pixel 0
+#for_window [app_id="Pcmanfm"] border pixel 0
+for_window [app_id="firefox"] border pixel 1
+for_window [app_id="chromium"] border pixel 1
+for_window [app_id="chrome"] border pixel 1
+for_window [app_id="Pale moon"] border pixel 1
+for_window [app_id="Opera"] border pixel 1
+for_window [app_id="qutebrowser"] border pixel 1
+#for_window [app_id="Geary"] border pixel 0
+#for_window [app_id="Lmms"] border pixel 0
+#for_window [app_id="Feh"] border pixel 0
+for_window [app_id="Terminator"] border pixel 1, floating disable
+
+# --- Assignment to Workspace -- #
+assign [app_id="kate"] 5
+assign [app_id="mattermost"] 5
+#assign [app_id="gvim"] 10
+assign [app_id="qbittorrent"] T
+assign [app_id="firefox"] 3
+assign [app_id="chromium"] 3
+assign [app_id="Pale moon"] 3
+assign [app_id="chrome"] 3
+assign [app_id="opera"] 3
+assign [app_id="qutebrowser"] 3
+assign [app_id="Intellij"] 10
+assign [app_id="jetbrains-pycharm-ce"] 10
+assign [app_id="jetbrains-pycharm"] 10
+assign [app_id="sun-awt-X11-XDialogPeer"] 10
+assign [app_id="jetbrains-rubymine"] 10
+assign [app_id="virtualbox"] P
+assign [app_id="Spotify"] U
+assign [app_id="sun-awt-X11-XFramePeer"] 10
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    # position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    # status_command i3blocks
+    status_command swaybar_command waybar
+    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
 
     colors {
         statusline #ffffff
@@ -215,5 +275,94 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
+
+bindsym $mod+z exec "playerctl previous ; exec mocp --previous"
+bindsym $mod+x exec "playerctl next ; exec mocp --next"
+
+bindsym XF86MonBrightnessDown exec light -U 2
+bindsym XF86MonBrightnessUp exec light -A 2
+
+input type:keyboard {
+    xkb_layout us,bd(probhat)
+    xkb_options grp:shifts_toggle
+}
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /home/torsho/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+# Auto Screen Locing
+exec --no-startup-id xautolock -time 6 -locker 'i3lock-fancy' 
+
+
+exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
+
+#exec --no-startup-id nitrogen --restore
+exec --no-startup-id variety
+#exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
+# exec /home/torsho/dotfiles/wallpapers/script.py --setter swaymsg
+exec --no-startup-id nm-applet
+#exec --no-startup-id cmst -m
+exec --no-startup-id connmand
+#exec --no-startup-id cmst
+#exec --no-startup-id dropbox                   #nethog
+exec --no-startup-id dropbox start                   #nethog 
+#exec --no-startup-id ibus-daemon --xim -d
+exec --no-startup-id blueman-applet
+#exec --no-startup-id blueberry-tray
+#exec --no-startup-id i3session restore
+#exec --no-startup-id rescuetime
+#exec --no-startup-id compton
+#exec --no-startup-id xcompmgr -c -l0 -t0 -r0 -o.00
+#exec --no-startup-id kdeinit5
+#exec --no-startup-id pamac-tray
+exec --no-startup-id aclidswitch
+#exec --no-startup-id tilda
+#exec --no-startup-id megasync
+#exec --no-startup-id mocp-scrobbler.py
+exec --no-startup-id lxqt-policykit-agent
+#exec --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id redshift -l 23.71:90.41
+#exec --no-startup-id udiskie --tray
+#exec --no-startup-id qbittorrent
+#exec --no-startup-id mattermost-desktop
+exec --no-startup-id copyq
+exec --no-startup-id flameshot
+exec --no-startup-id google-chrome-stable --no-startup-window --password-store=gnome
+#exec --no-startup-id chromium-browser --no-startup-window --password-store=gnome
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
+# Keyboard layout
+# exec --no-startup-id "setxkbmap -layout us,bd -variant ,probhat -option grp:shifts_toggle"
+
+#touchpad settigns
+#exec --no-startup-id "synclient TapButton1=1"
+#exec --no-startup-id "synclient TapButton2=2"
+exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
+exec synclient VertEdgeScroll=1
+exec synclient TapButton1=0
+exec --no-startup-id syndaemon -t -k -i 2 -d
+
+
+# Workspace layout
+exec_always /home/torsho/per-workspace-layout.pl
+
+# Simple Screenshot
+bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens
+
+bindsym --release Shift+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # Area selection
+
+bindsym --release $mod+Shift+s exec "flameshot gui"
 
 include /etc/sway/config.d/*
