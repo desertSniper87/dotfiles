@@ -10,7 +10,8 @@ set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
-set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
+# set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
+set $Locker swaylock && sleep 1
 
 ### Output configuration
 #
@@ -28,9 +29,9 @@ set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 '~/.config/swaylock/lock.sh' \
+         timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep '~/.config/swaylock/lock.sh'
+         before-sleep 'swaylock'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
