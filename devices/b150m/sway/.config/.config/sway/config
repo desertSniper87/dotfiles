@@ -10,7 +10,8 @@ set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
-set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
+# set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
+set $Locker swaylock && sleep 1
 
 ### Output configuration
 #
@@ -28,9 +29,9 @@ set $Locker $HOME/.config/swaylock/lock.sh && sleep 1
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 '~/.config/swaylock/lock.sh' \
+         timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep '~/.config/swaylock/lock.sh'
+         before-sleep 'swaylock'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -50,22 +51,17 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-input type:keyboard {
-    xkb_layout us,bd(probhat)
-    xkb_options grp:shifts_toggle
-}
-
 gaps inner 30
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec  $Locker, mode "default"
-    bindsym e exec  swaymsg exit, mode "default"
-    #bindsym s exec  $Locker && systemctl suspend, mode "default"
-    bindsym s exec  systemctl suspend, mode "default"
-    bindsym h exec  $Locker && systemctl hibernate, mode "default"
-    bindsym r exec  systemctl reboot, mode "default"
-    bindsym Shift+s exec  systemctl poweroff -i, mode "default"  
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
     # back to normal: Enter or Escape
 
@@ -281,15 +277,20 @@ bar {
     }
 }
 
-bindsym XF86AudioRaiseVolume exec  amixer -q sset Master 5%+
-bindsym XF86AudioLowerVolume exec  amixer -q sset Master 5%-
-bindsym XF86AudioMute exec  amixer -q -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 bindsym $mod+z exec "playerctl previous ; exec mocp --previous"
 bindsym $mod+x exec "playerctl next ; exec mocp --next"
 
 bindsym XF86MonBrightnessDown exec light -U 2
 bindsym XF86MonBrightnessUp exec light -A 2
+
+input type:keyboard {
+    xkb_layout us,bd(probhat)
+    xkb_options grp:shifts_toggle
+}
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/torsho/toggletouchpad.sh # toggle touchpad
@@ -302,58 +303,57 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 # Auto Screen Locing
-exec  xautolock -time 6 -locker 'i3lock-fancy' 
+exec --no-startup-id xautolock -time 6 -locker 'i3lock-fancy' 
 
 
-exec  xmodmap -e "keycode 135 = XF86AudioNext"
+exec --no-startup-id xmodmap -e "keycode 135 = XF86AudioNext"
 
-#exec  nitrogen --restore
-exec  variety
-#exec  feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
+#exec --no-startup-id nitrogen --restore
+exec --no-startup-id variety
+#exec --no-startup-id feh --bg-center /home/torsho/Pictures/sudo-wallppaper.png
 # exec /home/torsho/dotfiles/wallpapers/script.py --setter swaymsg
-exec  nm-applet
-#exec  cmst -m
-exec  connmand
-#exec  cmst
-#exec  dropbox                   #nethog
-# exec  dropbox start                   #nethog 
-exec flatpak run com.dropbox.Client
-#exec  ibus-daemon --xim -d
-exec  blueman-applet
-#exec  blueberry-tray
-#exec  i3session restore
-#exec  rescuetime
-#exec  compton
-#exec  xcompmgr -c -l0 -t0 -r0 -o.00
-#exec  kdeinit5
-#exec  pamac-tray
-exec  aclidswitch
-#exec  tilda
-#exec  megasync
-#exec  mocp-scrobbler.py
-exec  lxqt-policykit-agent
-#exec  setxkbmap -option caps:swapescape
-exec redshift -l 23.71:90.41
-#exec udiskie --tray
-#exec qbittorrent
-#exec mattermost-desktop
-exec copyq
-exec flameshot
-exec google-chrome-stable --no-startup-window --password-store=gnome
-#exec  chromium-browser --no-startup-window --password-store=gnome
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-exec /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id nm-applet
+#exec --no-startup-id cmst -m
+exec --no-startup-id connmand
+#exec --no-startup-id cmst
+#exec --no-startup-id dropbox                   #nethog
+exec --no-startup-id dropbox start                   #nethog 
+#exec --no-startup-id ibus-daemon --xim -d
+exec --no-startup-id blueman-applet
+#exec --no-startup-id blueberry-tray
+#exec --no-startup-id i3session restore
+#exec --no-startup-id rescuetime
+#exec --no-startup-id compton
+#exec --no-startup-id xcompmgr -c -l0 -t0 -r0 -o.00
+#exec --no-startup-id kdeinit5
+#exec --no-startup-id pamac-tray
+exec --no-startup-id aclidswitch
+#exec --no-startup-id tilda
+#exec --no-startup-id megasync
+#exec --no-startup-id mocp-scrobbler.py
+exec --no-startup-id lxqt-policykit-agent
+#exec --no-startup-id setxkbmap -option caps:swapescape
+exec --no-startup-id redshift -l 23.71:90.41
+#exec --no-startup-id udiskie --tray
+#exec --no-startup-id qbittorrent
+#exec --no-startup-id mattermost-desktop
+exec --no-startup-id copyq
+exec --no-startup-id flameshot
+exec --no-startup-id google-chrome-stable --no-startup-window --password-store=gnome
+#exec --no-startup-id chromium-browser --no-startup-window --password-store=gnome
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 # Keyboard layout
-exec "setxkbmap -layout us,bd -variant ,probhat -option grp:shifts_toggle"
+# exec --no-startup-id "setxkbmap -layout us,bd -variant ,probhat -option grp:shifts_toggle"
 
 #touchpad settigns
-#exec  "synclient TapButton1=1"
-#exec  "synclient TapButton2=2"
-exec xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
+#exec --no-startup-id "synclient TapButton1=1"
+#exec --no-startup-id "synclient TapButton2=2"
+exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
 exec synclient VertEdgeScroll=1
 exec synclient TapButton1=0
-exec syndaemon -t -k -i 2 -d
+exec --no-startup-id syndaemon -t -k -i 2 -d
 
 
 # Workspace layout
