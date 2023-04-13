@@ -33,9 +33,10 @@ autocmd FileType python call Python_settings()
 
 function! Python_settings()
     nnoremap <F9> :w <bar> :!python3 % <CR>
+    nnoremap <F10> :call InsertPrintStatementWithVar() <CR>
+    nnoremap <expr> <leader>ct ':g/^\s*print/norm \c<space><Enter>'
+    nnoremap <expr> <leader>cr ':g/^\s*#\s*print/norm \c<space><Enter>'
 endfunction
-
-nnoremap <F10> :call InsertPrintStatementWithVar() <CR>
 
 function InsertPrintStatementWithVar()
   let input = input('Enter the value to print: ')
