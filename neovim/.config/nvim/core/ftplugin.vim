@@ -40,7 +40,7 @@ endfunction
 
 function InsertPrintStatementWithVar()
   let input = input('Enter the value to print: ')
-  let debugStatement = ' ' . input . ': ' . '{' . input . '} '
+  let debugStatement = input . ': ' . '{' . input . '} '
 
   exe "normal! a" . debugStatement . "\<Esc>"
 endfunction
