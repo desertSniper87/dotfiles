@@ -279,14 +279,14 @@ lua <<EOF
   }
 
 
-if vim.fn.has("mac") == 1 then
+-- if vim.fn.has("mac") == 1 then
   -- require'lspconfig'.clangd.setup{}
   require'lspconfig'.sourcekit.setup{
     init_options = {
         filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp", "objc" }
     }
   }
-else
+-- else
   require'lspconfig'.ccls.setup{
     init_options = {
       cache = {
@@ -294,7 +294,7 @@ else
       };
     }
   }
-end
+-- end
   
 -- nvim-hardline
 require('hardline').setup {}

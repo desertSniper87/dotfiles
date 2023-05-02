@@ -14,3 +14,4 @@ stow --verbose --restow Xdefaults
 stow --verbose --restow rxvt_perls
 stow --verbose --restow git
 stow --verbose -d devices/$DEVICE --target "$HOME" --restow sway
+stow --verbose --restow tmux
