@@ -346,7 +346,7 @@ exec --no-startup-id lxqt-policykit-agent
 #exec --no-startup-id setxkbmap -option caps:swapescape
 exec --no-startup-id redshift -l 23.71:90.41
 #exec --no-startup-id udiskie --tray
-#exec --no-startup-id qbittorrent
+exec --no-startup-id transmission-gtk
 #exec --no-startup-id mattermost-desktop
 exec --no-startup-id copyq
 exec --no-startup-id flameshot
@@ -364,7 +364,7 @@ exec --no-startup-id "setxkbmap -layout us,bd -variant ,probhat -option grp:shif
 #exec --no-startup-id "synclient TapButton2=2"
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 274 1
 exec synclient VertEdgeScroll=1
-exec synclient TapButton1=0
+exec synclient TapButton1=1
 exec --no-startup-id syndaemon -t -k -i 2 -d
 
 
@@ -372,7 +372,7 @@ exec --no-startup-id syndaemon -t -k -i 2 -d
 exec_always /home/torsho/per-workspace-layout.pl
 
 # Monitor layout
-exec_always xrandr --output HDMI-1 --left-of eDP-1
+exec_always xrandr --output HDMI-1 --right-of eDP-1
 
 # Simple Screenshot
 bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # All screens

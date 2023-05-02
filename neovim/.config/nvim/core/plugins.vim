@@ -52,6 +52,7 @@ Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
 "Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
 Plug 'pearofducks/ansible-vim'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
