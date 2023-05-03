@@ -53,6 +53,7 @@ Plug 'sile-typesetter/vim-sile'
 "Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
 Plug 'pearofducks/ansible-vim'
 Plug 'mbbill/undotree'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -259,7 +260,7 @@ lua <<EOF
   })
 
   -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqls', 'ansiblels' }
+  local servers = { 'pyright', 'tsserver', 'svelte', 'bashls', 'sqlls', 'ansiblels' }
   for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
           on_attach = on_attach,
