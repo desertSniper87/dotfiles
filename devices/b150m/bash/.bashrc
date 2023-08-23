@@ -177,3 +177,5 @@ alias add_='sudo dnf install -y'
 
 source "$HOME/git-prompt.sh"
 export GOPATH=$HOME/go
+
+alias bfg='java -jar /usr/local/bin/bfg-1.14.0.jar'
