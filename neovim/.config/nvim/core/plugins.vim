@@ -54,6 +54,8 @@ Plug 'sile-typesetter/vim-sile'
 Plug 'pearofducks/ansible-vim'
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ludovicchabant/vim-gutentags'
+
 
 call plug#end()
 
