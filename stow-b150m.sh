@@ -11,3 +11,4 @@ stow --verbose --restow git
 stow --verbose -d devices/$DEVICE --target $HOME --restow sway
 stow --verbose -d devices/$DEVICE --target "$HOME" --restow alacritty
 stow --verbose --restow tmux
+stow --verbose --restow qutebrowser
