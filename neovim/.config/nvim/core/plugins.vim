@@ -38,7 +38,7 @@ Plug 'lervag/vimtex'
 Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'jremmen/vim-ripgrep'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'phaazon/hop.nvim'

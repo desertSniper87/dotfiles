@@ -52,3 +52,5 @@ function! Vim_settings()
 endfunction
 
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+autocmd BufNewFile,BufRead *.bru, setfiletype config
+

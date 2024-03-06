@@ -82,9 +82,9 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
+# export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 # export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-# export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
 
 export PATH="$PATH:/home/torsho/bin"
 export PATH="$PATH:/home/torsho/depot_tools"
@@ -182,21 +182,5 @@ source "$HOME/git-prompt.sh"
 
 alias bfg='java -jar /usr/local/bin/bfg-1.14.0.jar'
 
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' >> ~/.bashrc
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
-fi
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
-fi
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
-fi
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
