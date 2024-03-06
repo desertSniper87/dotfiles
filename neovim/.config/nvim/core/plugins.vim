@@ -50,12 +50,11 @@ Plug 'phaazon/hop.nvim'
 
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
-"Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
+Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
 Plug 'pearofducks/ansible-vim'
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ludovicchabant/vim-gutentags'
-
+" Plug 'epwalsh/obsidian.nvim'
 
 call plug#end()
 
