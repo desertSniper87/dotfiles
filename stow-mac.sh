@@ -8,4 +8,7 @@ stow --verbose -d devices/$DEVICE --target "$HOME" --restow zsh
 stow --verbose --restow ranger
 stow --verbose -d devices/$DEVICE --target "$HOME" --restow zsh
 stow --verbose -d devices/$DEVICE --target "$HOME" --restow alacritty
+stow --verbose --restow tmux
+stow --verbose --restow atuin
+
 
