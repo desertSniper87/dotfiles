@@ -183,4 +183,4 @@ source "$HOME/git-prompt.sh"
 alias bfg='java -jar /usr/local/bin/bfg-1.14.0.jar'
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
+eval "$(atuin init bash --disable-up-arrow)"
