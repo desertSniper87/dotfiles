@@ -1,0 +1,2 @@
+export AZURE_IP=20.219.28.198
+

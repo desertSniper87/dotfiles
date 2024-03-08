@@ -25,4 +25,4 @@ export PATH=$M2_HOME/bin:$PATH
 # for intel x86_64 brew
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
