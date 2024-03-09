@@ -16,6 +16,12 @@ alias l='ls -CF'
 alias tailf='tail -f'
 alias vim='nvim'
 
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$M2_HOME/bin:$PATH
+export PATH="/Users/bccca/.local/bin:$PATH"
+export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -31,13 +37,11 @@ for FILE in ~/bashrc/*; do
 done
 
 export M2_HOME=/opt/maven
-export PATH=$M2_HOME/bin:$PATH
 if [ -f "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     __GIT_PROMPT_DIR="/opt/homebrew/opt/bash-git-prompt/share"
     source "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
-eval "$(atuin init bash --disable-up-arrow)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 
@@ -50,8 +54,8 @@ alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export PATH=$M2_HOME/bin:$PATH
-export PATH="/Users/bccca/.local/bin:$PATH"
-export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(atuin init bash --disable-up-arrow)"
+#eval "$(/opt/homebrew/bin/brew shellenv)"
