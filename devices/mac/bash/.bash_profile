@@ -58,4 +58,4 @@ alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(atuin init bash --disable-up-arrow)"
-#eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
