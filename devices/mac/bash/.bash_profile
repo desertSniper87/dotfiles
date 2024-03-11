@@ -16,11 +16,10 @@ alias l='ls -CF'
 alias tailf='tail -f'
 alias vim='nvim'
 alias alacritty='/Applications/Alacritty.app/Contents/MacOS/alacritty'
+alias bruno='/Applications/Bruno.app/Contents/MacOS/Bruno'
 
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/usr/local/bin:$PATH
+export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin$PATH"
 export PATH=$M2_HOME/bin:$PATH
-export PATH="/Users/bccca/.local/bin:$PATH"
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 
 
