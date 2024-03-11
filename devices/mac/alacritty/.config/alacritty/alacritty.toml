@@ -30,6 +30,12 @@ key = "Right"
 mode = "AppCursor"
 mods = "Command"
 
+[[keyboard.bindings]]
+chars = "\u001BOF"
+key = "Right"
+mode = "AppCursor"
+mods = "Command"
+
 [selection]
 save_to_clipboard = true
 

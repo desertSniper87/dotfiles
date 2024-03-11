@@ -56,6 +56,7 @@ alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(atuin init bash --disable-up-arrow)"
