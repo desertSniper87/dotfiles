@@ -15,12 +15,14 @@ alias la='ls -A'
 alias l='ls -CF'
 alias tailf='tail -f'
 alias vim='nvim'
+alias alacritty='/Applications/Alacritty.app/Contents/MacOS/alacritty'
 
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$M2_HOME/bin:$PATH
 export PATH="/Users/bccca/.local/bin:$PATH"
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
