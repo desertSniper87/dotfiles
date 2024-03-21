@@ -53,4 +53,5 @@ endfunction
 
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 autocmd BufNewFile,BufRead *.bru, setfiletype javascript
+autocmd BufNewFile,BufRead Podfile, setfiletype ruby
 

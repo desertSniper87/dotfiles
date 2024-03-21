@@ -61,3 +61,7 @@ alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(atuin init bash --disable-up-arrow)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Created by `pipx` on 2024-03-18 06:29:06
+export PATH="$PATH:/Users/bccca/.local/bin"
