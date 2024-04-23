@@ -17,9 +17,11 @@ alias tailf='tail -f'
 alias vim='nvim'
 alias alacritty='/Applications/Alacritty.app/Contents/MacOS/alacritty'
 alias bruno='/Applications/Bruno.app/Contents/MacOS/Bruno'
+alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 
+export M3_HOME=/opt/maven
 export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin$PATH"
-export PATH=$M2_HOME/bin:$PATH
+export PATH=$M3_HOME/bin:$PATH
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 
 
@@ -37,7 +39,6 @@ for FILE in ~/bashrc/*; do
     source $FILE
 done
 
-export M2_HOME=/opt/maven
 if [ -f "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     __GIT_PROMPT_DIR="/opt/homebrew/opt/bash-git-prompt/share"
     source "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh"

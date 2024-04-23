@@ -1,0 +1,9 @@
+[
+  {
+    "context": "Pane",
+    "bindings": {
+      "shift-cmd-left": "pane::ActivatePrevItem",
+      "shift-cmd-right": "pane::ActivateNextItem"
+    }
+  }
+]
