@@ -18,18 +18,21 @@ alias vim='nvim'
 alias alacritty='/Applications/Alacritty.app/Contents/MacOS/alacritty'
 alias bruno='/Applications/Bruno.app/Contents/MacOS/Bruno'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+alias google-chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
 export M3_HOME=/opt/maven
 export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin$PATH"
 export PATH=$M3_HOME/bin:$PATH
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-
+export DENO_INSTALL="/Users/bccca/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+[[ -f $HOME/.git-completion.bash ]] && . "$HOME/.git-completion.bash" 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 export VISUAL=nvim;

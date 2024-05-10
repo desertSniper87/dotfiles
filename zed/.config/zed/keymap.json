@@ -1,9 +1,40 @@
 [
   {
+    "bindings": {
+      "cmd-+": "zed::IncreaseBufferFontSize",
+      "cmd--": "zed::DecreaseBufferFontSize",
+      "alt-cmd-o": "projects::OpenRecent"
+    }
+  },
+  {
+    "context": "BufferSearchBar",
+    "bindings": {
+      "cmd-enter": "search::SelectAllMatches"
+    }
+  },
+  {
     "context": "Pane",
     "bindings": {
       "shift-cmd-left": "pane::ActivatePrevItem",
       "shift-cmd-right": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-cmd--": "editor::Fold",
+      "alt-cmd-+": "editor::UnfoldLines",
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-j": "terminal_panel::ToggleFocus",
+      "alt-cmd-j": "workspace::ToggleBottomDock"
     }
   }
 ]

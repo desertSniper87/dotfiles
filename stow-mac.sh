@@ -11,5 +11,6 @@ stow --verbose -d devices/$DEVICE --target "$HOME" --restow alacritty
 stow --verbose --restow tmux
 stow --verbose --restow atuin
 stow --verbose --restow zed
+stow --verbose --restow ranger
 
 

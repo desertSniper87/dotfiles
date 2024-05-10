@@ -44,8 +44,8 @@ Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'phaazon/hop.nvim'
 
 " Markdown 
- Plug 'godlygeek/tabular'
- Plug 'preservim/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'folke/which-key.nvim'
@@ -54,6 +54,7 @@ Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
 Plug 'pearofducks/ansible-vim'
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'nelstrom/vim-mac-classic-theme'
 " Plug 'epwalsh/obsidian.nvim'
 
 call plug#end()

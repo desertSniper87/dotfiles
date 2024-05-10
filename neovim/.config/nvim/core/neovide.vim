@@ -6,11 +6,11 @@ if exists("g:neovide")
     set mouse=a
 
     let g:gui_font_size = 11
-    silent! execute('set guifont=DejaVu\ Sans\ Mono:h'.g:gui_font_size)
+    "silent! execute('set guifont=DejaVu\ Sans\ Mono:h'.g:gui_font_size)
 
     function! ResizeFont(delta)
         let g:gui_font_size = g:gui_font_size + a:delta
-        execute('set guifont=DejaVu\ Sans\ Mono:h'.g:gui_font_size)
+        "execute('set guifont=DejaVu\ Sans\ Mono:h'.g:gui_font_size)
     endfunction
 
     noremap <expr><C-Up> ResizeFont(1)
