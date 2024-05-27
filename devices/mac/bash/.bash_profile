@@ -20,12 +20,21 @@ alias bruno='/Applications/Bruno.app/Contents/MacOS/Bruno'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 alias google-chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
-export M3_HOME=/opt/maven
+# === Maven Location === #
+# export M3_HOME=/opt/maven
+export M3_HOME=/opt/maven-3.5.4
+
+# === JAVA_HOME === #
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home
+
 export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin$PATH"
 export PATH=$M3_HOME/bin:$PATH
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 export DENO_INSTALL="/Users/bccca/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="/usr/local/mysql-8.0.33-macos13-arm64/bin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

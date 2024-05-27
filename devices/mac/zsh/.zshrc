@@ -26,3 +26,8 @@ export PATH=$M2_HOME/bin:$PATH
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
 eval "$(atuin init zsh --disable-up-arrow)"
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)

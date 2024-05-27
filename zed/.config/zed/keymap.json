@@ -34,7 +34,25 @@
     "context": "Workspace",
     "bindings": {
       "cmd-j": "terminal_panel::ToggleFocus",
-      "alt-cmd-j": "workspace::ToggleBottomDock"
+      "alt-cmd-j": "workspace::ToggleBottomDock",
+      "alt-q": "workspace::NewTerminal",
+      "cmd-f1": "workspace::ToggleLeftDock",
+      "cmd-1": ["workspace::ActivatePane", 0],
+      "cmd-2": ["workspace::ActivatePane", 1],
+      "cmd-3": ["workspace::ActivatePane", 2],
+      "cmd-4": ["workspace::ActivatePane", 3],
+      "cmd-5": ["workspace::ActivatePane", 4],
+      "cmd-alt-6": ["workspace::ActivatePane", 5],
+      "cmd-7": ["workspace::ActivatePane", 6],
+      "cmd-8": ["workspace::ActivatePane", 7],
+      "cmd-9": ["workspace::ActivatePane", 8]
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "shift-enter": "editor::NewlineBelow",
+      "cmd-enter": "editor::NewlineAbove"
     }
   }
 ]
