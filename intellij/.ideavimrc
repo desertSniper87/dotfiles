@@ -11,6 +11,8 @@ set ReplaceWithRegister
 set exchange
 set relativenumber
 set which-key
+set clipboard=unnamedplus
+
 " Trying the new syntax
 Plug 'machakann/vim-highlightedyank'
 
@@ -39,6 +41,9 @@ map <leader>d <Action>(Debug)
 map <leader>r <Action>(RenameElement)
 map <leader>c <Action>(Stop)
 map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>n <Action>(VcsShowNextChangeMarker)
+map <leader>p <Action>(VcsShowPrevChangeMarker)
+
 
 map <leader>s <Action>(SelectInProjectView)
 map <leader>a <Action>(Annotate)
@@ -63,3 +68,6 @@ vmap <leader>u d~h
 
 " I think it's a better solution
 map U <C-R>
+map <C-H> <Action>(PrevSplitter)
+map <C-L> <Action>(NextSplitter)
+

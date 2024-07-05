@@ -9,7 +9,7 @@
 {
   "base_keymap": "JetBrains",
   "vim_mode": true,
-  "theme": "macOS Classic Light",
+  "theme": "Xcode High Contrast Light",
   "format_on_save": "on",
   "autosave": "on_focus_change",
   "always_treat_brackets_as_autoclosed": true,
@@ -25,5 +25,25 @@
   },
   "file_types": {
     "html": ["vto"]
+  },
+  "assistant": {
+    "version": "1",
+    "provider": {
+      "default_model": {
+        "name": "codellama:13b",
+        "max_tokens": 2048,
+        "keep_alive": "10m"
+      },
+      "name": "ollama",
+      "low_speed_timeout_in_seconds": 30
+    }
+  },
+  "languages": {
+    "TSX": {
+      "format_on_save": "off"
+    },
+    "Kotlin": {
+      "format_on_save": "off"
+    }
   }
 }

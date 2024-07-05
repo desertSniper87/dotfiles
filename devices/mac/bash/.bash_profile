@@ -13,6 +13,7 @@ shopt -s checkwinsize
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lk='ls -haltr'
 alias tailf='tail -f'
 alias vim='nvim'
 alias alacritty='/Applications/Alacritty.app/Contents/MacOS/alacritty'
@@ -78,3 +79,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Created by `pipx` on 2024-03-18 06:29:06
 export PATH="$PATH:/Users/bccca/.local/bin"
+
+
+# >>>> Vagrant command completion (start)
+. /opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/bash/completion.sh
+# <<<<  Vagrant command completion (end)

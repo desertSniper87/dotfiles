@@ -27,7 +27,15 @@
       "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-alt-up": "editor::AddSelectionAbove",
+      "ctrl-alt-down": "editor::AddSelectionBelow"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "g o": "editor::FindAllReferences"
     }
   },
   {
@@ -53,6 +61,17 @@
     "bindings": {
       "shift-enter": "editor::NewlineBelow",
       "cmd-enter": "editor::NewlineAbove"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
+    "bindings": {
+      "shift-s": [
+        "vim::PushOperator",
+        {
+          "AddSurrounds": {}
+        }
+      ]
     }
   }
 ]
