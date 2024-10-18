@@ -1,3 +1,4 @@
+" colorscheme lightning
 colorscheme Benokai
 
 hi Normal guibg=NONE ctermbg=NONE

@@ -82,8 +82,9 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 # export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64
 
 export PATH="$PATH:/home/torsho/bin"
 export PATH="$PATH:/home/torsho/depot_tools"
@@ -95,6 +96,8 @@ export PATH="$PATH:/home/torsho/dotfiles/git-custom-scripts"
 export PATH="$(yarn global bin):$PATH" 
 export PATH="$PATH:/home/torsho/spring-1.2.0.M2/bin" 
 export PATH=${PATH}:${JAVA_HOME}/bin
+export PATH=$PATH:/opt/gradle/gradle-8.2.1/bin
+
 
 export M2_HOME=/opt/maven
 export PATH=$M2_HOME/bin:$PATH
@@ -178,3 +181,6 @@ source "$HOME/git-prompt.sh"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 alias bfg='java -jar /usr/local/bin/bfg-1.14.0.jar'
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash --disable-up-arrow)"

@@ -38,22 +38,24 @@ Plug 'lervag/vimtex'
 Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 Plug 'jremmen/vim-ripgrep'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'phaazon/hop.nvim'
 
 " Markdown 
- Plug 'godlygeek/tabular'
- Plug 'preservim/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'folke/which-key.nvim'
 Plug 'sile-typesetter/vim-sile'
-"Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
+Plug 'ludovicchabant/vim-gutentags' "High CPU Usage
 Plug 'pearofducks/ansible-vim'
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'nelstrom/vim-mac-classic-theme'
+" Plug 'epwalsh/obsidian.nvim'
 
 call plug#end()
 
