@@ -3,126 +3,129 @@
 # Configuration
 INSTALL_DIR="/usr/local/bin"
 SCRIPT_NAME="imgup"
-CONFIG_DIR="$HOME/.config/imgup"
-CONFIG_FILE="$CONFIG_DIR/config"
 
-# Create installation script
-cat > /tmp/imgup << 'EOF'
-#!/bin/bash
+# Create temporary Python script
+TMP_SCRIPT=$(mktemp)
 
-# Function to show usage
-show_usage() {
-    echo "Usage: imgup <image_file>"
-    echo "Options:"
-    echo "  -h, --help     Show this help message"
-    echo "  -c, --config   Configure API key"
-    echo "  -d, --debug    Enable debug mode"
-    exit 1
-}
+# Copy the Python script content
+cat > "$TMP_SCRIPT" << 'PYTHON_EOF'
+#!/usr/bin/env python3
 
-# Function to set configuration
-set_config() {
-    mkdir -p "$HOME/.config/imgup"
-    echo -n "Enter your imgbb API key: "
-    read -r api_key
-    echo "API_KEY=$api_key" > "$HOME/.config/imgup/config"
-    chmod 600 "$HOME/.config/imgup/config"
-    echo "Configuration saved!"
-    exit 0
-}
+import os
+import sys
+import json
+import argparse
+import configparser
+from pathlib import Path
+import requests
+from typing import Optional, Dict, Any
 
-# Process command line arguments
-DEBUG_MODE=0
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        -h|--help)
-            show_usage
-            ;;
-        -c|--config)
-            set_config
-            ;;
-        -d|--debug)
-            DEBUG_MODE=1
-            shift
-            ;;
-        *)
-            IMAGE_FILE="$1"
-            shift
-            ;;
-    esac
-done
+class ImgBBUploader:
+    def __init__(self):
+        self.config_dir = Path.home() / '.config' / 'imgup'
+        self.config_file = self.config_dir / 'config.ini'
+        self.api_key = self._load_config()
 
-# Check if an image file is provided
-if [ -z "$IMAGE_FILE" ]; then
-    show_usage
-fi
+    def _load_config(self) -> Optional[str]:
+        """Load API key from config file."""
+        if not self.config_file.exists():
+            return None
 
-# Load configuration
-if [ -f "$HOME/.config/imgup/config" ]; then
-    source "$HOME/.config/imgup/config"
-else
-    echo "Error: Configuration not found. Run 'imgup --config' to set up."
-    exit 1
-fi
+        config = configparser.ConfigParser()
+        config.read(self.config_file)
+        return config.get('imgbb', 'api_key', fallback=None)
 
-# Check if file exists
-if [ ! -f "$IMAGE_FILE" ]; then
-    echo "Error: File '$IMAGE_FILE' does not exist"
-    exit 1
-fi
+    def configure(self) -> None:
+        """Configure the API key."""
+        self.config_dir.mkdir(parents=True, exist_ok=True)
 
-# Create base64 string without line breaks and strip the mime type prefix
-BASE64_STRING=$(base64 -w 0 "$IMAGE_FILE")
+        api_key = input("Enter your ImgBB API key: ").strip()
 
-if [ $DEBUG_MODE -eq 1 ]; then
-    echo "Debug: Sending request to imgbb API..."
-    echo "Debug: Image file: $IMAGE_FILE"
-    echo "Debug: API Key length: ${#API_KEY}"
-    echo "Debug: Base64 string length: ${#BASE64_STRING}"
-fi
+        config = configparser.ConfigParser()
+        config['imgbb'] = {'api_key': api_key}
 
-# Make the API request
-if [ $DEBUG_MODE -eq 1 ]; then
-    RESPONSE=$(curl --location \
-         --verbose \
-         --request POST \
-         "https://api.imgbb.com/1/upload" \
-         --form "key=$API_KEY" \
-         --form "image=$BASE64_STRING")
-else
-    RESPONSE=$(curl --location \
-         --silent \
-         --request POST \
-         "https://api.imgbb.com/1/upload" \
-         --form "key=$API_KEY" \
-         --form "image=$BASE64_STRING")
-fi
+        with open(self.config_file, 'w') as f:
+            config.write(f)
 
-# Check if the response contains an error
-if echo "$RESPONSE" | grep -q "error"; then
-    echo "Error occurred while uploading:"
-    if command -v jq >/dev/null 2>&1; then
-        echo "$RESPONSE" | jq '.'
-    else
-        echo "$RESPONSE"
-    fi
-    exit 1
-fi
+        # Set file permissions to user-only
+        self.config_file.chmod(0o600)
+        print("Configuration saved!")
 
-# Output response
-if command -v jq >/dev/null 2>&1; then
-    echo "$RESPONSE" | jq '.'
-else
-    echo "$RESPONSE"
-fi
-EOF
+    def upload(self, image_path: str, debug: bool = False) -> Dict[str, Any]:
+        """Upload an image to ImgBB."""
+        if not self.api_key:
+            raise ValueError("API key not configured. Run 'imgup --config' first.")
+
+        if not os.path.exists(image_path):
+            raise FileNotFoundError(f"Image file not found: {image_path}")
+
+        if debug:
+            print(f"Debug: Uploading file: {image_path}")
+            print(f"Debug: API key length: {len(self.api_key)}")
+
+        url = "https://api.imgbb.com/1/upload"
+
+        with open(image_path, 'rb') as image_file:
+            files = {'image': image_file}
+            data = {'key': self.api_key}
+
+            if debug:
+                print("Debug: Sending request to ImgBB API...")
+
+            response = requests.post(url, files=files, data=data)
+
+            if debug:
+                print(f"Debug: Response status code: {response.status_code}")
+
+            response_data = response.json()
+
+            if not response.ok:
+                raise Exception(f"Upload failed: {json.dumps(response_data, indent=2)}")
+
+            return response_data
+
+def main():
+    parser = argparse.ArgumentParser(description='Upload images to ImgBB')
+    parser.add_argument('image', nargs='?', help='Image file to upload')
+    parser.add_argument('-c', '--config', action='store_true', help='Configure API key')
+    parser.add_argument('-d', '--debug', action='store_true', help='Enable debug output')
+    args = parser.parse_args()
+
+    uploader = ImgBBUploader()
+
+    try:
+        if args.config:
+            uploader.configure()
+            return
+
+        if not args.image:
+            parser.print_help()
+            return
+
+        result = uploader.upload(args.image, args.debug)
+        print(json.dumps(result, indent=2))
+
+    except Exception as e:
+        print(f"Error: {str(e)}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()
+PYTHON_EOF
 
 # Make the script executable
-chmod +x /tmp/imgup
+chmod +x "$TMP_SCRIPT"
 
-# Install the script (requires sudo)
+# Check Python dependencies
+echo "Checking Python dependencies..."
+python3 -c "import requests" 2>/dev/null || {
+    echo "Installing required Python package: requests"
+    pip3 install requests
+}
+
+# Install the script
 echo "Installing script to $INSTALL_DIR/$SCRIPT_NAME..."
-sudo mv /tmp/imgup "$INSTALL_DIR/$SCRIPT_NAME"
+sudo mv "$TMP_SCRIPT" "$INSTALL_DIR/$SCRIPT_NAME"
 
 echo "Installation completed!"
 echo "To configure your API key, run: imgup --config"
