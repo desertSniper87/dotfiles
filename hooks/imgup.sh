@@ -16,6 +16,7 @@ show_usage() {
     echo "Options:"
     echo "  -h, --help     Show this help message"
     echo "  -c, --config   Configure API key"
+    echo "  -d, --debug    Enable debug mode"
     exit 1
 }
 
@@ -31,17 +32,28 @@ set_config() {
 }
 
 # Process command line arguments
-case "$1" in
-    -h|--help)
-        show_usage
-        ;;
-    -c|--config)
-        set_config
-        ;;
-esac
+DEBUG_MODE=0
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            show_usage
+            ;;
+        -c|--config)
+            set_config
+            ;;
+        -d|--debug)
+            DEBUG_MODE=1
+            shift
+            ;;
+        *)
+            IMAGE_FILE="$1"
+            shift
+            ;;
+    esac
+done
 
 # Check if an image file is provided
-if [ $# -eq 0 ]; then
+if [ -z "$IMAGE_FILE" ]; then
     show_usage
 fi
 
@@ -54,22 +66,50 @@ else
 fi
 
 # Check if file exists
-if [ ! -f "$1" ]; then
-    echo "Error: File '$1' does not exist"
+if [ ! -f "$IMAGE_FILE" ]; then
+    echo "Error: File '$IMAGE_FILE' does not exist"
     exit 1
 fi
 
-# Convert image to base64
-BASE64_IMAGE=$(base64 "$1")
+# Create base64 string without line breaks and strip the mime type prefix
+BASE64_STRING=$(base64 -w 0 "$IMAGE_FILE")
+
+if [ $DEBUG_MODE -eq 1 ]; then
+    echo "Debug: Sending request to imgbb API..."
+    echo "Debug: Image file: $IMAGE_FILE"
+    echo "Debug: API Key length: ${#API_KEY}"
+    echo "Debug: Base64 string length: ${#BASE64_STRING}"
+fi
 
 # Make the API request
-RESPONSE=$(curl --location \
-     --silent \
-     --request POST \
-     "https://api.imgbb.com/1/upload?expiration=600&key=$API_KEY" \
-     --form "image=$BASE64_IMAGE")
+if [ $DEBUG_MODE -eq 1 ]; then
+    RESPONSE=$(curl --location \
+         --verbose \
+         --request POST \
+         "https://api.imgbb.com/1/upload" \
+         --form "key=$API_KEY" \
+         --form "image=$BASE64_STRING")
+else
+    RESPONSE=$(curl --location \
+         --silent \
+         --request POST \
+         "https://api.imgbb.com/1/upload" \
+         --form "key=$API_KEY" \
+         --form "image=$BASE64_STRING")
+fi
 
-# Check if jq is available
+# Check if the response contains an error
+if echo "$RESPONSE" | grep -q "error"; then
+    echo "Error occurred while uploading:"
+    if command -v jq >/dev/null 2>&1; then
+        echo "$RESPONSE" | jq '.'
+    else
+        echo "$RESPONSE"
+    fi
+    exit 1
+fi
+
+# Output response
 if command -v jq >/dev/null 2>&1; then
     echo "$RESPONSE" | jq '.'
 else
