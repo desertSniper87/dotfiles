@@ -7,9 +7,34 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "terminal": {
+    "dock": "bottom"
+  },
+  "language_models": {
+    "ollama": {
+      "low_speed_timeout_in_seconds": 30
+    }
+  },
+  "lsp": {
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          // Ruff server settings goes here
+          "lineLength": 80,
+
+          "lint": {
+            "extendSelect": ["I"]
+          }
+        }
+      }
+    }
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
   "base_keymap": "JetBrains",
   "vim_mode": true,
-  "theme": "Xcode High Contrast Light",
+  "theme": "Xcode Default Light",
   "format_on_save": "on",
   "autosave": "on_focus_change",
   "always_treat_brackets_as_autoclosed": true,
@@ -24,26 +49,54 @@
     "use_smartcase_find": true
   },
   "file_types": {
-    "html": ["vto"]
+    "html": ["vto"],
+    "elixir": ["d2"]
   },
   "assistant": {
-    "version": "1",
-    "provider": {
-      "default_model": {
-        "name": "codellama:13b",
-        "max_tokens": 2048,
-        "keep_alive": "10m"
-      },
-      "name": "ollama",
-      "low_speed_timeout_in_seconds": 30
-    }
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-20240620"
+    },
+    "version": "2",
+    "provider": null
   },
   "languages": {
+    "Python": {
+      "show_inline_completions": true,
+      "language_servers": ["pyright", "ruff"],
+      "formatter": [
+        {
+          "code_actions": {
+            "source.fixAll.ruff": true,
+            "source.organizeImports.ruff": true,
+            "source.organizeImports.pyright": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    },
     "TSX": {
-      "format_on_save": "off"
+      "format_on_save": "off",
+      "tab_size": 4
+    },
+    "TypeScript": {
+      "tab_size": 4
+    },
+    "JavaScript": {
+      "tab_size": 4
     },
     "Kotlin": {
       "format_on_save": "off"
+    },
+    "Java": {
+      "format_on_save": "off"
     }
+  },
+  "features": {
+    "inline_completion_provider": "supermaven"
   }
 }

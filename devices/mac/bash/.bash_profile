@@ -20,6 +20,7 @@ alias alacritty='/Applications/Alacritty.app/Contents/MacOS/alacritty'
 alias bruno='/Applications/Bruno.app/Contents/MacOS/Bruno'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 alias google-chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+alias openssl='/usr/bin/openssl'
 
 # === Maven Location === #
 # export M3_HOME=/opt/maven
@@ -27,15 +28,20 @@ export M3_HOME=/opt/maven-3.5.4
 
 # === JAVA_HOME === #
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.12/libexec/openjdk.jdk/Contents/Home
 
 export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin$PATH"
 export PATH=$M3_HOME/bin:$PATH
-export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 export DENO_INSTALL="/Users/bccca/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="/usr/local/mysql-8.0.33-macos13-arm64/bin:$PATH"
+export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+export PATH=$PATH:"/Applications/KeyStore Explorer.app/Contents/MacOS"
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/16/bin
+export ANDROID_HOME=/Users/$USER/Library/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

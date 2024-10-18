@@ -3,7 +3,8 @@
     "bindings": {
       "cmd-+": "zed::IncreaseBufferFontSize",
       "cmd--": "zed::DecreaseBufferFontSize",
-      "alt-cmd-o": "projects::OpenRecent"
+      "alt-cmd-o": "projects::OpenRecent",
+      "cmd-shift-o": "project_panel::ToggleFocus"
     }
   },
   {
@@ -72,6 +73,13 @@
           "AddSurrounds": {}
         }
       ]
+    }
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "bindings": {
+      "enter": "assistant::Assist"
+      // "alt-enter": "assistant::ConfirmCommand"
     }
   }
 ]

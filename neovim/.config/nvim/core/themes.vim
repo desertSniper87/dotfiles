@@ -1,5 +1,8 @@
 " colorscheme lightning
+" colorscheme gruvbox
 colorscheme Benokai
+
+
 
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -11,3 +14,9 @@ hi Normal guibg=NONE ctermbg=NONE
 "hi VertSplit guibg=none ctermbg=none
 "hi SignColumn guibg=none ctermbg=none
 "hi EndOfBuffer guibg=none ctermbg=none
+
+function ToggleBackgroundOfEditor()
+    let &background = &background == "dark" ? "light" : "dark"
+endfunction
+
+nnoremap <silent> <F12> :call ToggleBackgroundOfEditor()<cr>

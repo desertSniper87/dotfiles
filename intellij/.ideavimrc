@@ -12,6 +12,8 @@ set exchange
 set relativenumber
 set which-key
 set clipboard=unnamedplus
+set ignorecase
+set smartcase
 
 " Trying the new syntax
 Plug 'machakann/vim-highlightedyank'
