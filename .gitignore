@@ -26,3 +26,4 @@ cscope.po.out
 
 
 # End of https://www.toptal.com/developers/gitignore/api/tags
+ollama-modelfiles/.webui_secret_key

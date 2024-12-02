@@ -30,7 +30,9 @@
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Down"],
       "ctrl-alt-up": "editor::AddSelectionAbove",
-      "ctrl-alt-down": "editor::AddSelectionBelow"
+      "ctrl-alt-down": "editor::AddSelectionBelow",
+      "alt-up": "editor::SelectLargerSyntaxNode", // Expand Selection
+      "alt-down": "editor::SelectSmallerSyntaxNode" // Shrink Selection
     }
   },
   {

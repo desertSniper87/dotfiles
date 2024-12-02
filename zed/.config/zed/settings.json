@@ -1,4 +1,3 @@
-// Zed settings
 //
 // For information on how to configure Zed, see the Zed
 // documentation: https://zed.dev/docs/configuring-zed
@@ -21,7 +20,6 @@
         "settings": {
           // Ruff server settings goes here
           "lineLength": 80,
-
           "lint": {
             "extendSelect": ["I"]
           }
@@ -40,8 +38,10 @@
   "always_treat_brackets_as_autoclosed": true,
   "enable_language_server": true,
   "auto_update": true,
+  "ui_font_family": "Monaco for Powerline",
   "ui_font_size": 16,
   "buffer_font_size": 16,
+  "buffer_font_family": "IosevkaTerm Nerd Font Propo",
   "relative_line_numbers": true,
   "vim": {
     "use_system_clipboard": "always",
@@ -55,12 +55,15 @@
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-20240620"
+      "model": "claude-3-5-sonnet-latest"
     },
     "version": "2",
     "provider": null
   },
   "languages": {
+    "Typst": {
+      "show_inline_completions": false
+    },
     "Python": {
       "show_inline_completions": true,
       "language_servers": ["pyright", "ruff"],
