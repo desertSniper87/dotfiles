@@ -22,6 +22,7 @@ alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 alias google-chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 alias openssl='/usr/bin/openssl'
 alias siyoek='/Applications/sioyek.app/Contents/MacOS/sioyek'
+alias c='pbcopy'
 
 # === Maven Location === #
 # export M3_HOME=/opt/maven
@@ -29,10 +30,15 @@ export M3_HOME=/opt/maven-3.5.4
 
 # === JAVA_HOME === #
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.2/libexec/openjdk.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.12/libexec/openjdk.jdk/Contents/Home
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk/23/libexec/openjdk.jdk/Contents/Home
 
-export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin$PATH"
+# === JavaFX === #
+export PATH_TO_FX=/Users/bcc/Downloads/javafx-sdk1.3/lib
+
+export PATH="/opt/homebrew/bin:/bin:/usr/bin:/usr/local/bin:/Users/bccca/.local/bin:$PATH"
 export PATH=$M3_HOME/bin:$PATH
 export DENO_INSTALL="/Users/bccca/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -44,6 +50,8 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/16/bin
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=${PATH}:/opt/sonar-scanner/bin
+export PATH=${PATH}:"$HOME/python_scripts"
+export PATH=$PATH:/opt/gradle/gradle-8.2.1/bin
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+for f in *.txt ; do 
+    echo $f
+    aspell list < $f | sort | uniq -c
+done
+
+echo "Please correct misspelled words..."
+
+for f in *.txt; do 
+    aspell check $f
+done

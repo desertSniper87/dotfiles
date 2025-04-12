@@ -15,6 +15,11 @@
     }
   },
   "lsp": {
+    "pyright": {
+      "binary": {
+        "ignore_system_version": true
+      }
+    },
     "ruff": {
       "initialization_options": {
         "settings": {
@@ -40,7 +45,7 @@
   "auto_update": true,
   "ui_font_family": "Monaco for Powerline",
   "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "buffer_font_size": 15.0,
   "buffer_font_family": "IosevkaTerm Nerd Font Propo",
   "relative_line_numbers": true,
   "vim": {
@@ -54,18 +59,18 @@
   },
   "assistant": {
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "provider": "anthropic",
+      "model": "claude-3-5-haiku-latest"
     },
     "version": "2",
     "provider": null
   },
   "languages": {
     "Typst": {
-      "show_inline_completions": false
+      "show_edit_predictions": false
     },
     "Python": {
-      "show_inline_completions": true,
+      "show_edit_predictions": true,
       "language_servers": ["pyright", "ruff"],
       "formatter": [
         {
@@ -100,6 +105,6 @@
     }
   },
   "features": {
-    "inline_completion_provider": "supermaven"
+    "edit_prediction_provider": "zed"
   }
 }

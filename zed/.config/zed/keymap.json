@@ -32,7 +32,8 @@
       "ctrl-alt-up": "editor::AddSelectionAbove",
       "ctrl-alt-down": "editor::AddSelectionBelow",
       "alt-up": "editor::SelectLargerSyntaxNode", // Expand Selection
-      "alt-down": "editor::SelectSmallerSyntaxNode" // Shrink Selection
+      "alt-down": "editor::SelectSmallerSyntaxNode", // Shrink Selection
+      "cmd-shift-backspace": "pane::GoBack"
     }
   },
   {
@@ -82,6 +83,15 @@
     "bindings": {
       "enter": "assistant::Assist"
       // "alt-enter": "assistant::ConfirmCommand"
+    }
+  },
+  {
+    "context": "Workspace && !Terminal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "workspace::NewFile",
+      "alt-shift-t": "task::Spawn",
+      "alt-t": "task::Rerun"
     }
   }
 ]

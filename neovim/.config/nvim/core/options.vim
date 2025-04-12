@@ -7,5 +7,5 @@ if has('persistent_undo')      "check if your vim version supports it
 endif
 
 if has('mac')
-    let g:python3_host_prog = '/opt/homebrew/bin/python3.11'
+    let g:python3_host_prog = '/Users/bccca/.env/bin/python'
 endif
