@@ -14,7 +14,7 @@ stow --verbose --restow zed
 stow --verbose --restow ranger
 stow --verbose --restow intellij
 stow --verbose --restow python_scripts
-stow --verbose --restow bin
+stow --verbose --restow bash_aliases
 
 
 

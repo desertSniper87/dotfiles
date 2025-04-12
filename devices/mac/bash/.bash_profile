@@ -51,6 +51,7 @@ export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=${PATH}:/opt/sonar-scanner/bin
 export PATH=${PATH}:"$HOME/python_scripts"
+export PATH=${PATH}:"$HOME/bin"
 export PATH=$PATH:/opt/gradle/gradle-8.2.1/bin
 
 if [ -f ~/.bash_aliases ]; then
