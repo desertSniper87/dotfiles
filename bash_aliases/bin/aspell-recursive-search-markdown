@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Part 1: Recursively find all md files and list misspelled words
+echo "Checking for misspelled words in Markdown files..."
+find . -type f -name "*.md" | while read file; do
+    misspelled=$(aspell list < "$file" | sort | uniq)
+    if [ -n "$misspelled" ]; then
+        echo "File: $file"
+        aspell list < "$file" | sort | uniq
+        echo ""
+    fi
+done
+
+# Part 2: Interactive spell checking for each md file
+echo "Please correct misspelled words..."
+find . -type f -name "*.md" | while read file; do
+    echo "Checking: $file"
+    aspell check "$file"
+done

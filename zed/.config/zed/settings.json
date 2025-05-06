@@ -6,6 +6,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false
+  },
   "terminal": {
     "dock": "bottom"
   },
@@ -37,7 +45,7 @@
   },
   "base_keymap": "JetBrains",
   "vim_mode": true,
-  "theme": "Xcode Default Light",
+  "theme": "Xcode Bare",
   "format_on_save": "on",
   "autosave": "on_focus_change",
   "always_treat_brackets_as_autoclosed": true,
@@ -59,8 +67,8 @@
   },
   "assistant": {
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-3-5-haiku-latest"
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
     },
     "version": "2",
     "provider": null
@@ -102,6 +110,9 @@
     },
     "Java": {
       "format_on_save": "off"
+    },
+    "C": {
+      "tab_size": 4
     }
   },
   "features": {

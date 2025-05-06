@@ -3,5 +3,6 @@
 
 # Created by `pipx` on 2024-03-18 06:29:06
 export PATH="$PATH:/Users/bccca/.local/bin"
+export TERM=xterm-256color
 
 . "$HOME/.cargo/env"
