@@ -6,13 +6,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "icon_theme": "Catppuccin Latte",
   "edit_predictions": {
-    "mode": "eager",
+    "mode": "subtle",
     "copilot": {
       "proxy": null,
       "proxy_no_verify": null
     },
-    "enabled_in_assistant": false
+    "enabled_in_text_threads": false
   },
   "terminal": {
     "dock": "bottom"
@@ -65,10 +66,12 @@
     "html": ["vto"],
     "elixir": ["d2"]
   },
-  "assistant": {
+  "agent": {
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "provider": "google",
+      "model": "gemini-2.0-flash"
     },
     "version": "2",
     "provider": null
@@ -116,6 +119,6 @@
     }
   },
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "supermaven"
   }
 }

@@ -1,0 +1,32 @@
+ #!/bin/bash
+
+exec 2> /dev/null
+
+# Script to download a file using curl with optional filename
+
+# Check if a URL is provided
+if [ -z "$1" ]; then
+    echo "Error: URL is required."
+    echo "Usage: $0 <URL> [output_filename]"
+    exit 1
+fi
+
+URL="$1"
+OUTPUT_FILENAME="$2"
+
+# If no output filename is provided, use curl's -O option
+if [ -z "$OUTPUT_FILENAME" ]; then
+    curl -sO "$URL" > /dev/null 2>&1
+else
+    curl -so "$OUTPUT_FILENAME" "$URL" > /dev/null 2>&1
+fi
+
+# Check if download was successful
+if [ $? -ne 0 ]; then
+    echo "Error occurred during download."
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then 
+    $(basename "$URL" | pbcopy)
+fi            
+        
